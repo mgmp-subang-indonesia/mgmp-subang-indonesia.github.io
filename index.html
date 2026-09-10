@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda | MGMP Bindo Subang</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hover-lift { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 relative flex flex-col min-h-screen">
+
+    <!-- HEADER STATIS DENGAN KONTEN DINAMIS -->
+    <header class="absolute top-0 inset-x-0 z-50 border-b border-white/20 bg-gradient-to-b from-black/70 to-transparent">
+        <div class="max-w-7xl mx-auto px-4 h-24 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center text-white shadow-lg">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <span id="header-site-name" class="font-extrabold text-lg text-white tracking-wide leading-tight">MGMP BAHASA INDONESIA</span>
+                    <span id="header-tagline" class="text-xs text-blue-200 font-semibold uppercase tracking-widest mt-0.5">Tingkat SMP - Kab. Subang</span>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex h-full text-sm font-medium text-white/90 items-center space-x-2">
+                <a href="#" class="px-4 py-2 text-white bg-white/30 rounded-md transition font-semibold">Beranda</a>
+                <a href="profil.html" class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md transition">Profil</a>
+                <div class="relative group h-full flex items-center">
+                    <button class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md flex items-center gap-1 focus:outline-none transition">
+                        Perangkat Ajar
+                        <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="absolute top-[calc(100%-15px)] left-0 mt-0 w-56 bg-white border border-gray-100 shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="materi.html#modul" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Modul Ajar</a>
+                        <a href="materi.html#buku" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Buku Teks</a>
+                        <a href="materi.html#media" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">Media Pembelajaran</a>
+                    </div>
+                </div>
+                <a href="karya.html" class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md transition">Karya</a>
+            </nav>
+
+            <div class="hidden md:flex items-center gap-4">
+                <button class="bg-blue-600 text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-700 transition shadow-lg border border-blue-500">Masuk</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- WADAH HALAMAN DINAMIS -->
+    <main id="dynamic-homepage" class="flex flex-col flex-grow">
+        <!-- Tampilan Loading (Hanya terlihat jika tidak ada Cache sama sekali) -->
+        <div class="min-h-screen flex items-center justify-center pt-24">
+            <div class="text-center">
+                <svg class="animate-spin h-10 w-10 text-blue-600 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <p class="text-gray-500 font-medium">Membangun halaman...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER STATIS DENGAN KONTEN DINAMIS -->
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <p>
+                        <span id="footer-site-name" class="font-bold text-white text-lg">MGMP BAHASA INDONESIA</span>
+                        <br/>
+                        <span id="footer-site-tagline" class="text-sm text-gray-400">Tingkat SMP - Kab. Subang</span>
+                    </p>
+                </div>
+                <p id="footer-desc" class="text-sm text-gray-400 mb-4 leading-relaxed">Memuat deskripsi...</p>
+            </div>
+            <div class="md:ml-auto">
+                <h4 class="text-white font-bold mb-4">Tautan Cepat</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-blue-400 transition">Beranda</a></li>
+                    <li><a href="materi.html" class="hover:text-blue-400 transition">Gudang Digital</a></li>
+                    <li><a href="#" class="hover:text-blue-400 transition">Agenda</a></li>
+                    <li><a href="profil.html" class="hover:text-blue-400 transition">Profil</a></li>
+                </ul>
+            </div>
+            <div class="md:ml-auto">
+                <h4 class="text-white font-bold mb-4">Hubungi Kami</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li class="flex items-center gap-2">
+                        <svg class="w-5 h-5 text-gray-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <a id="footer-email" href="#" class="hover:text-blue-400 transition">Memuat...</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 mt-8 pt-8 border-t border-gray-800 text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center">
+            <p>&copy; 2026 Hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT MESIN RENDER (COMPONENT-DRIVEN + CACHING) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbyo_VhBHvPdhV-vAnKh8b-cp5Zm8lHyBwq4WyzKdt-SZQ-aBwa-x2cKpPGuAK371ZhC/exec'; 
+            const mainContainer = document.getElementById('dynamic-homepage');
+
+            // --- Fungsi Pembantu ---
+            function getDirectImageUrl(url) {
+                if (!url) return null;
+                if (url.includes('drive.google.com')) {
+                    const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                    if (match && match[1]) return `https://lh3.googleusercontent.com/d/${match[1]}`;
+                }
+                return url; 
+            }
+
+            // --- PUSTAKA TEMPLATE LAYOUT ---
+            const Templates = {
+                // 1. Template HERO IMAGE
+                hero: (config, data) => {
+                    const item = data.find(x => x.status && x.status.toLowerCase() === 'aktif') || data[0];
+                    if (!item) return '';
+
+                    const bgUrl = getDirectImageUrl(item.foto) || 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1920&q=80';
+                    
+                    return `
+                    <section id="${config.section_id}" class="relative min-h-screen md:min-h-[90vh] flex items-center pt-24 overflow-hidden">
+                        <div class="absolute inset-0 z-0 bg-gray-900">
+                            <img src="${bgUrl}" class="w-full h-full object-cover opacity-40">
+                            <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent"></div>
+                        </div>
+                        <div class="relative z-10 max-w-7xl mx-auto px-4 w-full flex flex-col items-start gap-12">
+                            <div class="max-w-4xl">
+                                <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-white drop-shadow-lg tracking-tight">
+                                    ${item.hero_first_title}
+                                    ${item.hero_second_title ? `<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">${item.hero_second_title}</span>` : ''}
+                                </h1>
+                                <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl font-medium leading-relaxed">
+                                    ${item.hero_subtitle}
+                                </p>
+                                <div class="flex flex-col sm:flex-row gap-4">
+                                    ${item.cta_1_text ? `<a href="${item.cta_1_link}" class="flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg border border-blue-500 text-lg">${item.cta_1_text}</a>` : ''}
+                                    ${item.cta_2_text ? `<a href="${item.cta_2_link}" class="flex items-center justify-center gap-2 bg-white/10 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition backdrop-blur-sm border border-white/20 text-lg">${item.cta_2_text}</a>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Wave Divider -->
+                        <div class="absolute -bottom-1 inset-x-0">
+                            <svg class="w-full h-auto text-gray-50 drop-shadow-sm" viewBox="0 0 1440 120" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,42.7C1120,32,1280,32,1360,32L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
+                            </svg>
+                        </div>
+                    </section>`;
+                },
+
+                // 2. Template GRID KARTU MATERI (Dengan Color Coding & UMUM)
+                grid_card: (config, data) => {
+                    let cards = data.map((item, index) => {
+                        let imgSource = item.img_cover ? getDirectImageUrl(item.img_cover) : '';
+                        
+                        // SETTING WARNA TEMA
+                        let jenis = item.jenis ? item.jenis.toLowerCase().trim() : 'modul';
+                        let themeText = 'text-blue-600';
+                        let themeHover = 'group-hover:text-blue-600';
+                        let avatarBg = 'bg-blue-50';
+                        let avatarBorder = 'border-blue-100';
+
+                        if (jenis === 'buku') {
+                            themeText = 'text-purple-600';
+                            themeHover = 'group-hover:text-purple-600';
+                            avatarBg = 'bg-purple-50';
+                            avatarBorder = 'border-purple-100';
+                        } else if (jenis === 'video' || jenis === 'media') {
+                            themeText = 'text-red-600';
+                            themeHover = 'group-hover:text-red-600';
+                            avatarBg = 'bg-red-50';
+                            avatarBorder = 'border-red-100';
+                        }
+
+                        // SETTING LABEL KELAS (UMUM)
+                        let labelKelasRaw = item.kelas ? item.kelas.toString().toUpperCase().trim() : '';
+                        let teksKelas = (labelKelasRaw === 'UMUM') ? 'UMUM' : `KELAS ${item.kelas}`;
+
+                        // VISUAL BLOCK (Thumbnails)
+                        let visualBlock = '';
+                        if (jenis === 'video' && item.youtube_id) {
+                            visualBlock = `
+                            <div class="relative aspect-[4/3] bg-gray-900 overflow-hidden cursor-pointer group">
+                                <img src="https://img.youtube.com/vi/${item.youtube_id}/maxresdefault.jpg" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:bg-red-700 group-hover:scale-110 transition-all">
+                                        <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                                    </div>
+                                </div>
+                                <div class="absolute top-4 left-4 bg-white/95 backdrop-blur text-red-700 text-xs font-bold px-3 py-1.5 rounded shadow-sm border border-red-100 uppercase tracking-wider">Video</div>
+                            </div>`;
+                        } else if (jenis === 'buku' && !item.img_cover) {
+                            visualBlock = `
+                            <div class="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-indigo-500 to-purple-700 flex flex-col items-center justify-center text-white group-hover:from-indigo-600 group-hover:to-purple-800 transition-colors">
+                                <svg class="w-20 h-20 mb-4 opacity-80 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                <div class="absolute top-4 left-4 bg-white/95 backdrop-blur text-purple-700 text-xs font-bold px-3 py-1.5 rounded shadow-sm border border-purple-100 uppercase tracking-wider">Buku</div>
+                            </div>`;
+                        } else {
+                            visualBlock = `
+                            <div class="relative aspect-[4/3] bg-gray-100 overflow-hidden">
+                                <img src="${imgSource}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80'">
+                                <div class="absolute top-4 left-4 bg-white/95 backdrop-blur ${themeText} text-xs font-bold px-3 py-1.5 rounded shadow-sm border ${avatarBorder} uppercase tracking-wider">${item.jenis}</div>
+                            </div>`;
+                        }
+
+                        const spanClass = index === 2 ? 'md:col-span-2 xl:col-span-1' : '';
+
+                        return `
+                        <div class="hover-lift bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col group ${spanClass}">
+                            ${visualBlock}
+                            <div class="p-6 flex-grow flex flex-col">
+                                <p class="text-xs ${themeText} font-bold mb-2 uppercase tracking-wide">${item.jenis} • ${teksKelas}</p>
+                                <h3 class="text-xl font-bold text-gray-900 mb-4 leading-tight ${themeHover} transition">${item.judul}</h3>
+                                <div class="mt-auto flex justify-between items-center text-sm border-t border-gray-100 pt-4">
+                                    <div class="flex items-center text-gray-600 font-medium">
+                                        <div class="w-8 h-8 rounded-full ${avatarBg} mr-3 flex items-center justify-center font-bold ${themeText} border ${avatarBorder} text-xs">
+                                            ${item.penulis_inisial || '?'}
+                                        </div>
+                                        ${item.penulis_nama}
+                                    </div>
+                                    <span class="text-gray-400 font-medium flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                        ${item.views || 0}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>`;
+                    }).join('');
+
+                    return `
+                    <section id="${config.section_id}" class="py-20 bg-gray-50">
+                        <div class="max-w-7xl mx-auto px-4">
+                            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                                <div>
+                                    <h2 class="text-3xl font-extrabold text-gray-900 mb-3">${config.title}</h2>
+                                    ${config.subtitle ? `<p class="text-gray-600 text-lg max-w-2xl">${config.subtitle}</p>` : ''}
+                                </div>
+                                ${config.view_more === 'yes' ? `<a href="materi.html" class="inline-flex items-center text-blue-600 font-bold hover:text-blue-800 transition">Lihat Semua Materi <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>` : ''}
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                                ${cards || '<p class="text-gray-500">Belum ada materi dipublikasi.</p>'}
+                            </div>
+                        </div>
+                    </section>`;
+                },
+
+                // 3. Template LIST AGENDA (Dengan Klik Link Location)
+                list_agenda: (config, data) => {
+                    let cards = data.map((item, index) => {
+                        const bgColor = index % 2 === 0 ? 'bg-blue-600 group-hover:bg-blue-700' : 'bg-gray-800 group-hover:bg-gray-900';
+                        const textColor = index % 2 === 0 ? 'text-blue-200' : 'text-gray-300';
+                        
+                        const tgl = new Date(item.agenda_date);
+                        const bulan = tgl.toLocaleString('id-ID', { month: 'short' });
+                        const tanggal = String(tgl.getDate()).padStart(2, '0');
+                        const tahun = tgl.getFullYear();
+
+                        return `
+                        <div class="flex flex-col sm:flex-row bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden hover:border-blue-300 hover:shadow-lg transition-all group">
+                            <div class="${bgColor} text-white p-6 flex flex-col justify-center items-center min-w-[120px] transition">
+                                <span class="text-sm font-bold uppercase tracking-wider mb-1">${bulan}</span>
+                                <span class="text-4xl font-extrabold leading-none mb-1">${tanggal}</span>
+                                <span class="text-xs font-medium ${textColor}">${tahun}</span>
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col justify-center">
+                                <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition">${item.agenda_name}</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">${item.agenda_desc}</p>
+                                <div class="flex items-center gap-4 text-xs font-semibold text-gray-500 mt-auto">
+                                    <span class="flex items-center gap-1.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> ${item.agenda_time}</span>
+                                    <a href="${item.agenda_location_url || '#'}" target="_blank" class="flex items-center gap-1.5 hover:text-blue-600 transition cursor-pointer">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> 
+                                        ${item.agenda_location_name}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>`;
+                    }).join('');
+
+                    return `
+                    <section id="${config.section_id}" class="py-20 bg-white border-y border-gray-100">
+                        <div class="max-w-7xl mx-auto px-4">
+                            <div class="text-center mb-16">
+                                <h2 class="text-3xl font-extrabold text-gray-900 mb-4">${config.title}</h2>
+                                <div class="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                                ${cards}
+                            </div>
+                            ${config.view_more === 'yes' ? `
+                            <div class="text-center mt-10">
+                                <a href="agenda.html" class="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-gray-200 rounded-lg text-gray-700 font-bold hover:bg-gray-50 hover:border-gray-300 transition">Lihat Kalender Lengkap</a>
+                            </div>` : ''}
+                        </div>
+                    </section>`;
+                },
+
+                // 4. Template GRID PROFIL PENGURUS
+                grid_profile: (config, data) => {
+                    let cards = data.map(item => {
+                        let img = getDirectImageUrl(item.foto) || `https://ui-avatars.com/api/?name=${encodeURIComponent(item.nama)}&background=random`;
+                        return `
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover-lift flex flex-col items-center text-center">
+                            <img src="${img}" alt="${item.nama}" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-gray-50">
+                            <h3 class="text-lg font-bold text-gray-900 w-full">${item.nama}</h3>
+                            <p class="text-sm font-semibold text-blue-600 mb-3 w-full">${item.jabatan}</p>
+                            <p class="text-sm text-gray-500 w-full">${item.instansi}</p>
+                        </div>`;
+                    }).join('');
+
+                    return `
+                    <section id="${config.section_id}" class="py-20 bg-gray-50 border-y border-gray-100">
+                        <div class="max-w-7xl mx-auto px-4 text-center">
+                            <h2 class="text-3xl font-extrabold text-gray-900 mb-4">${config.title}</h2>
+                            ${config.subtitle ? `<p class="text-gray-600 text-lg max-w-2xl mx-auto mb-16">${config.subtitle}</p>` : ''}
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-5xl mx-auto">
+                                ${cards}
+                            </div>
+                        </div>
+                    </section>`;
+                }
+            };
+
+            // --- FUNGSI RENDER (DIPISAH AGAR BISA DIPANGGIL CACHE & SERVER) ---
+            function renderLayar(result) {
+                // 1. Eksekusi Variabel Global
+                const globalData = {};
+                result.data.global.forEach(item => Object.assign(globalData, item));
+
+                document.getElementById('header-site-name').innerText = globalData.site_name || 'MGMP';
+                document.getElementById('header-tagline').innerText = globalData.site_tagline || '';
+                document.getElementById('footer-site-name').innerText = globalData.site_name || '';
+                document.getElementById('footer-site-tagline').innerText = globalData.site_tagline || '';
+                document.getElementById('footer-desc').innerText = globalData.footer_desc || '';
+                
+                const emailEl = document.getElementById('footer-email');
+                emailEl.innerText = globalData.email || '';
+                emailEl.href = `mailto:${globalData.email}`;
+
+                // 2. Eksekusi Halaman Dinamis
+                mainContainer.innerHTML = ''; // Hapus indikator loading
+                
+                result.data.homepage.forEach(section => {
+                    if (!section.status || section.status.toLowerCase() !== 'publish') return;
+
+                    const sourceKey = section.data_source ? section.data_source.toLowerCase() : null;
+                    let masterData = [];
+
+                    if (sourceKey && result.data[sourceKey]) {
+                        masterData = result.data[sourceKey].filter(item => {
+                            if(!item.status) return true;
+                            const st = item.status.toLowerCase();
+                            return st === 'aktif' || st === 'publish';
+                        });
+
+                        if (section.qty && section.qty.toString().toUpperCase() !== "ALL") {
+                            masterData = masterData.slice(0, parseInt(section.qty));
+                        }
+                    }
+
+                    if (Templates[section.layout_type]) {
+                        const sectionHTML = Templates[section.layout_type](section, masterData);
+                        mainContainer.insertAdjacentHTML('beforeend', sectionHTML);
+                    }
+                });
+            }
+
+            // --- EKSEKUTOR UTAMA (DENGAN CACHING LOCALSTORAGE & ANTI-GAGAL) ---
+            async function buildApplication() {
+                const CACHE_KEY = 'mgmp_data_homepage';
+                
+                // LANGKAH 1: Ambil data dari Cache (Memori Lokal Browser) untuk tampilan instan
+                const cachedData = localStorage.getItem(CACHE_KEY);
+                if (cachedData) {
+                    try {
+                        const parsedCache = JSON.parse(cachedData);
+                        renderLayar(parsedCache); 
+                    } catch (e) {
+                        console.log("Cache error, dibersihkan.");
+                        localStorage.removeItem(CACHE_KEY);
+                    }
+                }
+
+                // LANGKAH 2: Fetch data terbaru ke server Google secara asinkron
+                try {
+                    // Trik Cache-Busting: Tambahkan timestamp agar URL selalu unik tiap milidetik
+                    const timeStamp = new Date().getTime();
+                    const fetchUrl = `${scriptUrl}?v=${timeStamp}`;
+
+                    // Lakukan fetch TANPA custom headers agar tidak memicu error CORS Preflight Google
+                    const response = await fetch(fetchUrl, {
+                        method: 'GET',
+                        redirect: 'follow'
+                    });
+                    
+                    const result = await response.json();
+
+                    if (result.status === 'success') {
+                        // Perbarui data cache dengan yang terbaru dari Google Sheets
+                        localStorage.setItem(CACHE_KEY, JSON.stringify(result));
+                        
+                        // Timpa layar dengan data terbaru
+                        renderLayar(result);
+                    } else {
+                        throw new Error(result.message);
+                    }
+                } catch (error) {
+                    console.error('Koneksi Fetch Gagal:', error);
+                    
+                    // Munculkan peringatan hanya jika pengguna belum punya cache sama sekali (kunjungan pertama)
+                    if (!cachedData) {
+                        mainContainer.innerHTML = `<div class="w-full text-center py-24"><div class="bg-red-50 text-red-600 inline-block px-6 py-4 rounded-lg font-bold border border-red-200 shadow-sm">Koneksi jaringan terputus atau Google API gagal merespons.<br>Silakan coba muat ulang (refresh) halaman.</div></div>`;
+                    }
+                }
+            }
+
+            // Mulai Mesin
+            buildApplication();
+        });
+    </script>
+</body>
+</html>

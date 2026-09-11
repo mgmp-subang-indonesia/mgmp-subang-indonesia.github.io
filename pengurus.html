@@ -73,7 +73,7 @@
     <div id="dynamic-hero"></div>
 
     <!-- WADAH HALAMAN DINAMIS -->
-    <main class="flex-grow w-full relative z-10 bg-gray-50 pb-24 pt-16">
+    <main class="flex-grow w-full relative z-10 bg-gray-50 pb-24">
         <div id="dynamic-content" class="max-w-7xl mx-auto px-4">
             <!-- Tampilan Loading -->
             <div id="loading-indicator" class="flex items-center justify-center min-h-[40vh]">
@@ -199,7 +199,7 @@
                     if (heroPengurus) {
                         const bgUrl = getDirectImageUrl(heroPengurus.foto) || 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1920&q=80';
                         heroContainer.innerHTML = `
-                        <section class="relative min-h-[50vh] md:min-h-[70vh] flex items-center pt-24 overflow-hidden">
+                        <section class="relative min-h-[50vh] md:min-h-[65vh] flex items-center py-24 overflow-hidden">
                             <div class="absolute inset-0 z-0 bg-gray-900">
                                 <img src="${bgUrl}" class="w-full h-full object-cover opacity-30">
                                 <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"></div>

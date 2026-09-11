@@ -8,148 +8,100 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-
-        .materi-card {
-            transition: opacity 0.3s ease-in-out, transform 0.2s ease;
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
+        body { font-family: 'Inter', sans-serif; }
+        .materi-card { transition: opacity 0.3s ease-in-out, transform 0.2s ease; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
         /* Animasi Modal */
-        #youtubeModal {
-            transition: opacity 0.3s ease;
-        }
-
-        .modal-active {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
-
-        .modal-inactive {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
+        #youtubeModal { transition: opacity 0.3s ease; }
+        .modal-active { opacity: 1; visibility: visible; pointer-events: auto; }
+        .modal-inactive { opacity: 0; visibility: hidden; pointer-events: none; }
     </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800 relative flex flex-col min-h-screen">
 
     <div class="relative bg-gray-900">
-        <!-- Header -->
-        <header
-            class="absolute top-0 inset-x-0 z-40 border-b border-white/20 bg-gradient-to-b from-black/60 to-transparent">
+        <!-- HEADER TRANSPARAN DIPERBAIKI (DROPDOWN AMAN DARI POTONGAN) -->
+        <header class="absolute top-0 inset-x-0 z-40 border-b border-white/20 bg-gradient-to-b from-black/60 to-transparent">
             <div class="max-w-7xl mx-auto px-4 h-24 flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <div
-                        class="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center text-white shadow-lg">
+                    <div class="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center text-white shadow-lg">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
-                            </path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                         </svg>
                     </div>
                     <div class="flex flex-col justify-center">
-                        <span class="font-extrabold text-lg text-white tracking-wide leading-tight">MGMP BAHASA
-                            INDONESIA</span>
-                        <span class="text-xs text-blue-200 font-semibold uppercase tracking-widest mt-0.5">Tingkat SMP -
-                            Kab. Subang</span>
+                        <span id="header-site-name" class="font-extrabold text-lg text-white tracking-wide leading-tight">MGMP BAHASA INDONESIA</span>
+                        <span id="header-tagline" class="text-xs text-blue-200 font-semibold uppercase tracking-widest mt-0.5">Tingkat SMP - Kab. Subang</span>
                     </div>
                 </div>
 
                 <nav class="hidden md:flex h-full text-sm font-medium text-white/90 items-center space-x-2">
-                    <a href="index.html"
-                        class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md transition">Beranda</a>
-                    <a href="profil.html"
-                        class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md transition">Profil</a>
+                    <a href="index.html" class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md transition">Beranda</a>
+                    
                     <div class="relative group h-full flex items-center">
-                        <button
-                            class="px-4 py-2 text-white bg-white/30 rounded-md flex items-center gap-1 focus:outline-none transition font-semibold">
-                            Perangkat Ajar
-                            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 9l-7 7-7-7"></path>
-                            </svg>
+                        <button class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md flex items-center gap-1 focus:outline-none transition">
+                            Profil
+                            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div
-                            class="absolute top-[calc(100%-15px)] left-0 mt-0 w-56 bg-white border border-gray-100 shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden transform origin-top-left group-hover:scale-100 scale-95">
-                            <a href="materi.html#modul"
-                                class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Modul
-                                Ajar</a>
-                            <a href="materi.html#buku"
-                                class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Buku
-                                Teks</a>
-                            <a href="materi.html#media"
-                                class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">Media
-                                Pembelajaran</a>
+                        <div class="absolute top-full left-0 w-56 pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <div class="bg-white border border-gray-100 shadow-xl rounded-lg overflow-hidden flex flex-col">
+                                <a href="pengurus.html" class="px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Pengurus</a>
+                                <a href="visi-misi.html" class="px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">Visi dan Misi</a>
+                            </div>
                         </div>
                     </div>
-                    <a href="karya.html"
-                        class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md transition">Karya</a>
+
+                    <div class="relative group h-full flex items-center">
+                        <button class="px-4 py-2 text-white bg-white/30 rounded-md flex items-center gap-1 focus:outline-none transition font-semibold">
+                            Perangkat Ajar
+                            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="absolute top-full left-0 w-56 pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <div class="bg-white border border-gray-100 shadow-xl rounded-lg overflow-hidden flex flex-col">
+                                <a href="#modul" class="px-4 py-3 text-sm text-blue-700 bg-blue-50 font-semibold border-b border-gray-50">Modul Ajar</a>
+                                <a href="#buku" class="px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Buku Teks</a>
+                                <a href="#media" class="px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">Media Pembelajaran</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="karya.html" class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md transition">Karya</a>
                 </nav>
 
                 <div class="hidden md:flex items-center gap-4">
-                    <button
-                        class="bg-blue-600 text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-700 transition shadow-lg border border-blue-500">
-                        Kirim Karya
-                    </button>
+                    <button class="bg-blue-600 text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-700 transition shadow-lg border border-blue-500">Kirim Karya</button>
                 </div>
             </div>
         </header>
 
-        <!-- Hero Section -->
+        <!-- HERO SECTION KHUSUS MATERI (Menyatu dengan Search) -->
         <section class="relative pt-36 pb-24 md:pt-44 md:pb-32 overflow-hidden">
             <div class="absolute inset-0 z-0 bg-blue-950">
-                <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1920&q=80"
-                    alt="Hero Literasi" class="w-full h-full object-cover opacity-50">
-                <div
-                    class="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/60 to-transparent mix-blend-multiply">
-                </div>
+                <img id="hero-bg" src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1920&q=80" alt="Hero Literasi" class="w-full h-full object-cover opacity-50">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/60 to-transparent mix-blend-multiply"></div>
             </div>
 
             <div class="relative z-10 max-w-7xl mx-auto px-4 flex flex-col items-start md:items-center md:text-center">
-                <h1
-                    class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 max-w-4xl text-white drop-shadow-lg">
+                <h1 id="hero-title" class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 max-w-4xl text-white drop-shadow-lg">
                     Pusat Sumber Daya Literasi<br>Guru Bahasa Indonesia SMP
                 </h1>
-                <p class="text-lg md:text-xl text-blue-50 mb-10 max-w-2xl drop-shadow-md font-medium">
-                    Temukan, unduh, dan bagikan perangkat ajar Kurikulum Merdeka berkualitas khusus untuk pendidik di
-                    Kabupaten Subang.
+                <p id="hero-subtitle" class="text-lg md:text-xl text-blue-50 mb-10 max-w-2xl drop-shadow-md font-medium">
+                    Temukan, unduh, dan bagikan perangkat ajar Kurikulum Merdeka berkualitas khusus untuk pendidik di Kabupaten Subang.
                 </p>
 
-                <div
-                    class="w-full max-w-3xl bg-white/95 backdrop-blur-sm rounded-xl p-2 flex shadow-2xl items-center focus-within:ring-4 focus-within:ring-blue-500/30 transition-all border border-white/40">
+                <div class="w-full max-w-3xl bg-white/95 backdrop-blur-sm rounded-xl p-2 flex shadow-2xl items-center focus-within:ring-4 focus-within:ring-blue-500/30 transition-all border border-white/40">
                     <div class="flex-grow flex items-center px-4">
                         <svg class="w-6 h-6 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
                         <input type="text" id="searchInput" placeholder="Cari modul ajar, cerpen, atau materi teks..."
                             class="w-full py-3 text-gray-800 bg-transparent text-base md:text-lg focus:outline-none placeholder-gray-400 font-medium">
                     </div>
-                    <button onclick="applyFilters()"
-                        class="bg-blue-600 text-white px-6 md:px-8 py-3.5 rounded-lg font-bold hover:bg-blue-700 transition shadow-md whitespace-nowrap">
+                    <button onclick="applyFilters()" class="bg-blue-600 text-white px-6 md:px-8 py-3.5 rounded-lg font-bold hover:bg-blue-700 transition shadow-md whitespace-nowrap">
                         Cari Materi
                     </button>
                 </div>
@@ -157,23 +109,20 @@
         </section>
     </div>
 
+    <!-- AREA KONTEN DAN FILTER -->
     <section class="max-w-7xl mx-auto px-4 py-12 flex flex-col md:flex-row gap-8 relative z-20 flex-grow w-full">
 
         <!-- Sidebar Filter -->
         <aside class="w-full md:w-72 flex-shrink-0">
-            <div
-                class="bg-white p-6 rounded-xl shadow-lg shadow-gray-200/50 border border-gray-100 md:sticky top-16 transition-all">
+            <div class="bg-white p-6 rounded-xl shadow-lg shadow-gray-200/50 border border-gray-100 md:sticky top-16 transition-all">
                 <div class="flex items-center justify-between mb-6 border-b border-gray-100 pb-4">
                     <h2 class="text-lg font-bold text-gray-900 flex items-center gap-2">
                         <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z">
-                            </path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
                         </svg>
                         Filter Materi
                     </h2>
-                    <button onclick="resetFilters()"
-                        class="text-xs font-semibold text-blue-600 hover:text-blue-800 bg-blue-50 px-2 py-1 rounded">Reset</button>
+                    <button onclick="resetFilters()" class="text-xs font-semibold text-blue-600 hover:text-blue-800 bg-blue-50 px-2 py-1 rounded">Reset</button>
                 </div>
 
                 <div class="space-y-6">
@@ -192,28 +141,16 @@
                         <label class="block text-sm font-semibold text-gray-700 mb-3">Jenis Materi</label>
                         <div class="space-y-3">
                             <label class="flex items-center group cursor-pointer">
-                                <input type="checkbox" value="modul"
-                                    class="filter-jenis w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                                    checked onchange="applyFilters()">
-                                <span
-                                    class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Modul
-                                    Ajar</span>
+                                <input type="checkbox" value="modul" class="filter-jenis w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" checked onchange="applyFilters()">
+                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Modul Ajar</span>
                             </label>
                             <label class="flex items-center group cursor-pointer">
-                                <input type="checkbox" value="buku"
-                                    class="filter-jenis w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                                    checked onchange="applyFilters()">
-                                <span
-                                    class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Buku
-                                    Teks</span>
+                                <input type="checkbox" value="buku" class="filter-jenis w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" checked onchange="applyFilters()">
+                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Buku Teks</span>
                             </label>
                             <label class="flex items-center group cursor-pointer">
-                                <input type="checkbox" value="video"
-                                    class="filter-jenis w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                                    checked onchange="applyFilters()">
-                                <span
-                                    class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Media
-                                    Pembelajaran</span>
+                                <input type="checkbox" value="video" class="filter-jenis w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" checked onchange="applyFilters()">
+                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Media Pembelajaran / Video</span>
                             </label>
                         </div>
                     </div>
@@ -221,372 +158,46 @@
             </div>
         </aside>
 
-        <!-- Area Konten Utama - Menggunakan min-h-[800px] dan flex-col agar area tidak collaps saat data sedikit -->
+        <!-- Area Konten Utama -->
         <div class="flex-grow flex flex-col min-h-[800px]">
-
-            <div
-                class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
                 <div>
                     <h2 class="text-lg font-bold text-gray-900">Katalog Materi</h2>
-                    <p class="text-sm text-gray-500 font-medium mt-0.5" id="resultCount">Ditemukan 8 materi</p>
+                    <p class="text-sm text-gray-500 font-medium mt-0.5" id="resultCount">Memuat materi...</p>
                 </div>
-
-                <!-- Select Filter dengan ID dan Trigger Sorting -->
-                <select id="sortOption" onchange="applyFilters()"
-                    class="border-gray-200 rounded-lg text-sm bg-gray-50 p-2.5 border focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium text-gray-700">
+                <select id="sortOption" onchange="applyFilters()" class="border-gray-200 rounded-lg text-sm bg-gray-50 p-2.5 border focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium text-gray-700">
                     <option value="terbaru">Urutkan: Terbaru</option>
                     <option value="populer">Urutkan: Populer</option>
                     <option value="abjad">Urutkan: Abjad (A-Z)</option>
                 </select>
             </div>
 
-            <!-- Ditambahkan class content-start agar grid tidak melar ke bawah jika item kurang -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 content-start flex-grow"
-                id="materiContainer">
-
-                <!-- Tambahan data-date dan data-views untuk fitur sorting -->
-                <div class="materi-card item-data bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition flex flex-col group"
-                    data-kelas="7" data-jenis="modul" data-judul="Modul Ajar Teks Deskripsi Kelas 7"
-                    data-date="2026-09-02" data-views="840">
-                    <div class="relative aspect-[4/3] bg-gray-100 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80"
-                            alt="Cover"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div
-                            class="absolute top-3 left-3 bg-white/95 backdrop-blur text-red-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-red-100">
-                            MODUL</div>
-                    </div>
-                    <div class="p-5 flex-grow flex flex-col">
-                        <h3
-                            class="text-base font-bold text-gray-900 mb-1 leading-tight group-hover:text-blue-600 transition">
-                            Modul Ajar Teks Deskripsi</h3>
-                        <p class="text-xs text-blue-600 font-semibold mb-3">Kelas 7</p>
-
-                        <div class="mt-auto">
-                            <!-- Informasi View & Date -->
-                            <div
-                                class="flex items-center gap-3 text-[11px] text-gray-500 mb-3 border-b border-gray-100 pb-3">
-                                <span class="flex items-center gap-1">👁️ 840 Akses</span>
-                                <span class="flex items-center gap-1">📅 2 Sep 2026</span>
-                            </div>
-                            <div class="flex items-center text-xs text-gray-600 font-medium mb-4">
-                                <div
-                                    class="w-6 h-6 rounded-full bg-gray-100 mr-2 flex items-center justify-center font-bold text-gray-500 border border-gray-200">
-                                    BS</div>
-                                Budi Santoso, M.Pd.
-                            </div>
-                            <a href="https://drive.google.com/file/d/1O4cIMxvDQcbD2HvDCxqxAX5Gzox4vy89/view"
-                                target="_blank"
-                                class="w-full flex items-center justify-center gap-2 bg-gray-50 text-gray-700 border border-gray-200 font-semibold py-2.5 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition text-sm">
-                                Unduh Dokumen
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="materi-card item-data bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition flex flex-col group"
-                    data-kelas="semua" data-jenis="buku" data-judul="Antologi Puisi Siswa SMP Subang"
-                    data-date="2026-08-15" data-views="1200">
-                    <div
-                        class="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-blue-500 to-indigo-700 flex flex-col items-center justify-center text-white group-hover:from-blue-600 group-hover:to-indigo-800 transition-colors">
-                        <svg class="w-16 h-16 mb-2 opacity-80 group-hover:scale-110 transition-transform duration-500"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                            </path>
+            <!-- Container Kartu Materi Dinamis -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 content-start flex-grow" id="materiContainer">
+                <!-- Tampilan Loading Awal -->
+                <div class="col-span-full flex justify-center py-20">
+                    <div class="text-center">
+                        <svg class="animate-spin h-10 w-10 text-blue-600 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
-                        <span class="font-bold tracking-wider text-sm opacity-90">DOKUMEN BUKU TEKS</span>
-                        <div
-                            class="absolute top-3 left-3 bg-white/95 backdrop-blur text-blue-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-blue-100">
-                            BUKU</div>
-                    </div>
-                    <div class="p-5 flex-grow flex flex-col">
-                        <h3
-                            class="text-base font-bold text-gray-900 mb-1 leading-tight group-hover:text-blue-600 transition">
-                            Antologi Puisi Siswa SMP</h3>
-                        <p class="text-xs text-blue-600 font-semibold mb-3">Karya Sastra Umum</p>
-                        <div class="mt-auto">
-                            <div
-                                class="flex items-center gap-3 text-[11px] text-gray-500 mb-3 border-b border-gray-100 pb-3">
-                                <span class="flex items-center gap-1">👁️ 1.2k Akses</span>
-                                <span class="flex items-center gap-1">📅 15 Ags 2026</span>
-                            </div>
-                            <div class="flex items-center text-xs text-gray-600 font-medium mb-4">
-                                <div
-                                    class="w-6 h-6 rounded-full bg-blue-50 mr-2 flex items-center justify-center font-bold text-blue-600 border border-blue-100">
-                                    TM</div>
-                                Tim MGMP Subang
-                            </div>
-                            <a href="https://drive.google.com/file/d/1O4cIMxvDQcbD2HvDCxqxAX5Gzox4vy89/view"
-                                target="_blank"
-                                class="w-full flex items-center justify-center gap-2 bg-gray-50 text-gray-700 border border-gray-200 font-semibold py-2.5 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition text-sm">
-                                Unduh Dokumen
-                            </a>
-                        </div>
+                        <p class="text-gray-500 font-medium">Sinkronisasi data Google Sheets...</p>
                     </div>
                 </div>
-
-                <div class="materi-card item-data bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition flex flex-col group"
-                    data-kelas="8" data-jenis="video" data-format="youtube" data-judul="Media Interaktif Teks Berita"
-                    data-date="2026-08-25" data-views="2450">
-                    <div class="relative aspect-[4/3] bg-gray-900 cursor-pointer overflow-hidden"
-                        onclick="openVideo('APKd8FU48Eg')">
-                        <img src="https://img.youtube.com/vi/APKd8FU48Eg/maxresdefault.jpg" alt="Thumbnail"
-                            class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div
-                                class="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:bg-red-700 group-hover:scale-110 transition-all">
-                                <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div
-                            class="absolute top-3 left-3 bg-white/95 backdrop-blur text-red-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-red-100">
-                            VIDEO</div>
-                    </div>
-                    <div class="p-5 flex-grow flex flex-col">
-                        <h3
-                            class="text-base font-bold text-gray-900 mb-1 leading-tight group-hover:text-red-600 transition">
-                            Media Interaktif Teks Berita</h3>
-                        <p class="text-xs text-red-600 font-semibold mb-3">Kelas 8</p>
-                        <div class="mt-auto">
-                            <div
-                                class="flex items-center gap-3 text-[11px] text-gray-500 mb-3 border-b border-gray-100 pb-3">
-                                <span class="flex items-center gap-1">👁️ 2.4k Akses</span>
-                                <span class="flex items-center gap-1">📅 25 Ags 2026</span>
-                            </div>
-                            <div class="flex items-center text-xs text-gray-600 font-medium mb-4">
-                                <div
-                                    class="w-6 h-6 rounded-full bg-red-50 mr-2 flex items-center justify-center font-bold text-red-600 border border-red-100">
-                                    RA</div>
-                                Rina Amelia, S.Pd.
-                            </div>
-                            <button onclick="openVideo('APKd8FU48Eg')"
-                                class="w-full flex items-center justify-center gap-2 bg-red-50 text-red-700 border border-red-200 font-semibold py-2.5 rounded-lg hover:bg-red-600 hover:text-white transition text-sm">
-                                Putar Video
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="materi-card item-data bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition flex flex-col group"
-                    data-kelas="9" data-jenis="modul" data-judul="Modul Teks Tanggapan Kritis" data-date="2026-07-20"
-                    data-views="415">
-                    <div
-                        class="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-red-500 to-rose-700 flex flex-col items-center justify-center text-white group-hover:from-red-600 group-hover:to-rose-800 transition-colors">
-                        <svg class="w-16 h-16 mb-2 opacity-80 group-hover:scale-110 transition-transform duration-500"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z">
-                            </path>
-                        </svg>
-                        <span class="font-bold tracking-wider text-sm opacity-90">DOKUMEN MODUL AJAR</span>
-                        <div
-                            class="absolute top-3 left-3 bg-white/95 backdrop-blur text-red-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-red-100">
-                            MODUL</div>
-                    </div>
-                    <div class="p-5 flex-grow flex flex-col">
-                        <h3
-                            class="text-base font-bold text-gray-900 mb-1 leading-tight group-hover:text-blue-600 transition">
-                            Modul Teks Tanggapan</h3>
-                        <p class="text-xs text-blue-600 font-semibold mb-3">Kelas 9</p>
-                        <div class="mt-auto">
-                            <div
-                                class="flex items-center gap-3 text-[11px] text-gray-500 mb-3 border-b border-gray-100 pb-3">
-                                <span class="flex items-center gap-1">👁️ 415 Akses</span>
-                                <span class="flex items-center gap-1">📅 20 Jul 2026</span>
-                            </div>
-                            <div class="flex items-center text-xs text-gray-600 font-medium mb-4">
-                                <div
-                                    class="w-6 h-6 rounded-full bg-gray-100 mr-2 flex items-center justify-center font-bold text-gray-500 border border-gray-200">
-                                    AS</div>
-                                Ahmad Syamsuri, M.Pd.
-                            </div>
-                            <a href="#"
-                                class="w-full flex items-center justify-center gap-2 bg-gray-50 text-gray-700 border border-gray-200 font-semibold py-2.5 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition text-sm">
-                                Unduh Dokumen
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="materi-card item-data bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition flex flex-col group"
-                    data-kelas="8" data-jenis="modul" data-judul="LKPD Teks Ulasan" data-date="2026-09-01"
-                    data-views="950">
-                    <div class="relative aspect-[4/3] bg-gray-100 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80"
-                            alt="Cover LKPD"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div
-                            class="absolute top-3 left-3 bg-white/95 backdrop-blur text-blue-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-blue-100">
-                            MODUL</div>
-                    </div>
-                    <div class="p-5 flex-grow flex flex-col">
-                        <h3
-                            class="text-base font-bold text-gray-900 mb-1 leading-tight group-hover:text-blue-600 transition">
-                            LKPD Teks Ulasan Karya</h3>
-                        <p class="text-xs text-blue-600 font-semibold mb-3">Kelas 8</p>
-                        <div class="mt-auto">
-                            <div
-                                class="flex items-center gap-3 text-[11px] text-gray-500 mb-3 border-b border-gray-100 pb-3">
-                                <span class="flex items-center gap-1">👁️ 950 Akses</span>
-                                <span class="flex items-center gap-1">📅 1 Sep 2026</span>
-                            </div>
-                            <div class="flex items-center text-xs text-gray-600 font-medium mb-4">
-                                <div
-                                    class="w-6 h-6 rounded-full bg-gray-100 mr-2 flex items-center justify-center font-bold text-gray-500 border border-gray-200">
-                                    SN</div>
-                                Siti Nurbaya, S.Pd.
-                            </div>
-                            <a href="#"
-                                class="w-full flex items-center justify-center gap-2 bg-gray-50 text-gray-700 border border-gray-200 font-semibold py-2.5 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition text-sm">
-                                Unduh Dokumen
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="materi-card item-data bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition flex flex-col group"
-                    data-kelas="7" data-jenis="buku" data-judul="Cerita Fantasi Nusantara" data-date="2026-06-10"
-                    data-views="3100">
-                    <div
-                        class="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-teal-500 to-emerald-700 flex flex-col items-center justify-center text-white group-hover:from-teal-600 group-hover:to-emerald-800 transition-colors">
-                        <svg class="w-16 h-16 mb-2 opacity-80 group-hover:scale-110 transition-transform duration-500"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
-                            </path>
-                        </svg>
-                        <span class="font-bold tracking-wider text-sm opacity-90">BUKU / MODUL</span>
-                        <div
-                            class="absolute top-3 left-3 bg-white/95 backdrop-blur text-red-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-red-100">
-                            BUKU</div>
-                    </div>
-                    <div class="p-5 flex-grow flex flex-col">
-                        <h3
-                            class="text-base font-bold text-gray-900 mb-1 leading-tight group-hover:text-teal-600 transition">
-                            Buku Cerita Fantasi Nusantara</h3>
-                        <p class="text-xs text-teal-600 font-semibold mb-3">Kelas 7</p>
-                        <div class="mt-auto">
-                            <div
-                                class="flex items-center gap-3 text-[11px] text-gray-500 mb-3 border-b border-gray-100 pb-3">
-                                <span class="flex items-center gap-1">👁️ 3.1k Akses</span>
-                                <span class="flex items-center gap-1">📅 10 Jun 2026</span>
-                            </div>
-                            <div class="flex items-center text-xs text-gray-600 font-medium mb-4">
-                                <div
-                                    class="w-6 h-6 rounded-full bg-teal-50 mr-2 flex items-center justify-center font-bold text-teal-600 border border-teal-100">
-                                    MG</div>
-                                MGMP Rayon 1
-                            </div>
-                            <a href="#"
-                                class="w-full flex items-center justify-center gap-2 bg-gray-50 text-gray-700 border border-gray-200 font-semibold py-2.5 rounded-lg hover:bg-teal-600 hover:text-white hover:border-teal-600 transition text-sm">
-                                Unduh Dokumen
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="materi-card item-data bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition flex flex-col group"
-                    data-kelas="9" data-jenis="buku" data-judul="Kajian Buku Fiksi dan Nonfiksi" data-date="2026-05-15"
-                    data-views="620">
-                    <div class="relative aspect-[4/3] bg-gray-100 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1474366521946-c3d4b507abf2?auto=format&fit=crop&w=600&q=80"
-                            alt="Cover"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div
-                            class="absolute top-3 left-3 bg-white/95 backdrop-blur text-red-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-red-100">
-                            BUKU</div>
-                    </div>
-                    <div class="p-5 flex-grow flex flex-col">
-                        <h3
-                            class="text-base font-bold text-gray-900 mb-1 leading-tight group-hover:text-blue-600 transition">
-                            Kajian Buku Fiksi & Nonfiksi</h3>
-                        <p class="text-xs text-blue-600 font-semibold mb-3">Kelas 9</p>
-                        <div class="mt-auto">
-                            <div
-                                class="flex items-center gap-3 text-[11px] text-gray-500 mb-3 border-b border-gray-100 pb-3">
-                                <span class="flex items-center gap-1">👁️ 620 Akses</span>
-                                <span class="flex items-center gap-1">📅 15 Mei 2026</span>
-                            </div>
-                            <div class="flex items-center text-xs text-gray-600 font-medium mb-4">
-                                <div
-                                    class="w-6 h-6 rounded-full bg-gray-100 mr-2 flex items-center justify-center font-bold text-gray-500 border border-gray-200">
-                                    DR</div>
-                                Drs. Hendra, M.Si.
-                            </div>
-                            <a href="#"
-                                class="w-full flex items-center justify-center gap-2 bg-gray-50 text-gray-700 border border-gray-200 font-semibold py-2.5 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition text-sm">
-                                Unduh Dokumen
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="materi-card item-data bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition flex flex-col group"
-                    data-kelas="9" data-jenis="video" data-format="youtube" data-judul="Teks Pidato Persuasif"
-                    data-date="2026-08-05" data-views="1850">
-                    <div class="relative aspect-[4/3] bg-gray-900 cursor-pointer overflow-hidden"
-                        onclick="openVideo('ScMzIvxBSi4')">
-                        <img src="https://img.youtube.com/vi/ScMzIvxBSi4/maxresdefault.jpg" alt="Thumbnail"
-                            onerror="this.src='https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=600&q=80'"
-                            class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div
-                                class="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:bg-red-700 group-hover:scale-110 transition-all">
-                                <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div
-                            class="absolute top-3 left-3 bg-white/95 backdrop-blur text-red-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-red-100">
-                            VIDEO</div>
-                    </div>
-                    <div class="p-5 flex-grow flex flex-col">
-                        <h3
-                            class="text-base font-bold text-gray-900 mb-1 leading-tight group-hover:text-red-600 transition">
-                            Cara Menyusun Pidato Persuasif</h3>
-                        <p class="text-xs text-red-600 font-semibold mb-3">Kelas 9</p>
-                        <div class="mt-auto">
-                            <div
-                                class="flex items-center gap-3 text-[11px] text-gray-500 mb-3 border-b border-gray-100 pb-3">
-                                <span class="flex items-center gap-1">👁️ 1.8k Akses</span>
-                                <span class="flex items-center gap-1">📅 5 Ags 2026</span>
-                            </div>
-                            <div class="flex items-center text-xs text-gray-600 font-medium mb-4">
-                                <div
-                                    class="w-6 h-6 rounded-full bg-red-50 mr-2 flex items-center justify-center font-bold text-red-600 border border-red-100">
-                                    KS</div>
-                                Karya Siswa SMPN 1
-                            </div>
-                            <button onclick="openVideo('ScMzIvxBSi4')"
-                                class="w-full flex items-center justify-center gap-2 bg-red-50 text-red-700 border border-red-200 font-semibold py-2.5 rounded-lg hover:bg-red-600 hover:text-white transition text-sm">
-                                Putar Video
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
             <!-- State Kosong -->
-            <div id="emptyState" class="hidden text-center py-16 bg-white rounded-xl border border-gray-100 shadow-sm">
+            <div id="emptyState" class="hidden text-center py-16 bg-white rounded-xl border border-gray-100 shadow-sm mt-4">
                 <svg class="mx-auto h-16 w-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                        d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
                 <h3 class="mt-4 text-base font-semibold text-gray-900">Materi tidak ditemukan</h3>
                 <p class="mt-2 text-sm text-gray-500">Coba ubah filter atau kata kunci pencarian Anda.</p>
-                <button onclick="resetFilters()"
-                    class="mt-6 text-blue-600 font-semibold hover:underline text-sm bg-blue-50 px-4 py-2 rounded-lg">Reset
-                    Semua Filter</button>
+                <button onclick="resetFilters()" class="mt-6 text-blue-600 font-semibold hover:underline text-sm bg-blue-50 px-4 py-2 rounded-lg">Reset Semua Filter</button>
             </div>
 
-            <!-- Pagination selalu ditarik ke bawah (mt-auto) agar memecah blocking area yang menyusut -->
-            <div class="mt-auto pt-10 flex justify-center w-full" id="paginationContainer">
-            </div>
+            <!-- Pagination -->
+            <div class="mt-auto pt-10 flex justify-center w-full" id="paginationContainer"></div>
         </div>
     </section>
 
@@ -596,88 +207,54 @@
             <div>
                 <div class="flex items-center gap-3 mb-4">
                     <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
-                            </path>
-                        </svg>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                     </div>
-                    <span class="font-bold text-white text-lg">MGMP Bindo SMP</span>
+                    <span id="footer-site-name" class="font-bold text-white text-lg">MGMP BAHASA INDONESIA</span>
                 </div>
-                <p class="text-sm text-gray-400 mb-4 leading-relaxed">
-                    Wadah kolaborasi dan pengembangan keprofesionalan berkelanjutan bagi pendidik mata pelajaran Bahasa
-                    Indonesia tingkat SMP di Kabupaten Subang.
-                </p>
+                <p id="footer-desc" class="text-sm text-gray-400 mb-4 leading-relaxed">Memuat deskripsi...</p>
             </div>
-
             <div class="md:ml-auto">
                 <h4 class="text-white font-bold mb-4">Tautan Cepat</h4>
                 <ul class="space-y-2 text-sm text-gray-400">
-                    <li><a href="#" class="hover:text-blue-400 transition">Tentang MGMP</a></li>
-                    <li><a href="#" class="hover:text-blue-400 transition">Pengurus Rayon</a></li>
-                    <li><a href="#" class="hover:text-blue-400 transition">Agenda Kegiatan</a></li>
-                    <li><a href="#" class="hover:text-blue-400 transition">Kebijakan Privasi</a></li>
+                    <li><a href="index.html" class="hover:text-blue-400 transition">Beranda</a></li>
+                    <li><a href="profil.html" class="hover:text-blue-400 transition">Profil</a></li>
+                    <li><a href="karya.html" class="hover:text-blue-400 transition">Karya</a></li>
                 </ul>
             </div>
-
             <div class="md:ml-auto">
                 <h4 class="text-white font-bold mb-4">Hubungi Kami</h4>
                 <ul class="space-y-3 text-sm text-gray-400">
-                    <li class="flex items-start gap-2">
-                        <svg class="w-5 h-5 text-gray-500 shrink-0" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                            </path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                        <span>Dinas Pendidikan Kab. Subang<br>Jl. Arief Rahman Hakim No. 12</span>
-                    </li>
                     <li class="flex items-center gap-2">
-                        <svg class="w-5 h-5 text-gray-500 shrink-0" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                            </path>
-                        </svg>
-                        <a href="mailto:info@mgmpbindo-subang.id"
-                            class="hover:text-blue-400 transition">info@mgmpbindo-subang.id</a>
+                        <svg class="w-5 h-5 text-gray-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <a id="footer-email" href="#" class="hover:text-blue-400 transition">Memuat...</a>
                     </li>
                 </ul>
             </div>
         </div>
-        <div
-            class="max-w-7xl mx-auto px-4 mt-8 pt-8 border-t border-gray-800 text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center">
-            <p>&copy; 2026 MGMP Bahasa Indonesia SMP Kabupaten Subang. Hak cipta dilindungi.</p>
+        <div class="max-w-7xl mx-auto px-4 mt-8 pt-8 border-t border-gray-800 text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center">
+            <p>&copy; 2026 Hak cipta dilindungi.</p>
         </div>
     </footer>
 
     <!-- Video Modal -->
-    <div id="youtubeModal"
-        class="fixed inset-0 z-[60] modal-inactive bg-gray-900/95 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
-        <div
-            class="relative w-full max-w-5xl bg-black rounded-xl overflow-hidden shadow-2xl border border-gray-700 aspect-video">
-            <button onclick="closeVideo()"
-                class="absolute top-4 right-4 z-10 bg-black/60 text-white rounded-full p-2 hover:bg-red-600 transition focus:outline-none border border-white/20">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                    </path>
-                </svg>
+    <div id="youtubeModal" class="fixed inset-0 z-[60] modal-inactive bg-gray-900/95 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
+        <div class="relative w-full max-w-5xl bg-black rounded-xl overflow-hidden shadow-2xl border border-gray-700 aspect-video">
+            <button onclick="closeVideo()" class="absolute top-4 right-4 z-10 bg-black/60 text-white rounded-full p-2 hover:bg-red-600 transition focus:outline-none border border-white/20">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
-            <iframe id="ytIframe" class="w-full h-full" src="" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+            <iframe id="ytIframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
 
-    <!-- Script Utama -->
+    <!-- Script Utama (Dinamic Render + Cache + Logic Lanjutan) -->
     <script>
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbxDMXD1-aGnc9p4A_4IWWIOdEVgWOp02dyX2IQYZAGSrEC9g3DbQsNeCyDkEG1dUC2I/exec'; 
+
         const itemsPerPage = 6;
         let currentPage = 1;
         let filteredItems = [];
+        let allItems = []; // Akan diisi elemen HTML asli hasil render
 
-        // Caching element DOM untuk performa
         const domElements = {
             searchInput: document.getElementById('searchInput'),
             filterKelas: document.getElementById('filterKelas'),
@@ -685,12 +262,173 @@
             resultCount: document.getElementById('resultCount'),
             emptyState: document.getElementById('emptyState'),
             paginationContainer: document.getElementById('paginationContainer'),
-            materiContainer: document.getElementById('materiContainer')
+            materiContainer: document.getElementById('materiContainer'),
+            heroBg: document.getElementById('hero-bg'),
+            heroTitle: document.getElementById('hero-title'),
+            heroSubtitle: document.getElementById('hero-subtitle')
         };
 
-        const allItems = Array.from(document.querySelectorAll('.item-data'));
+        // Bantuan URL Drive
+        function getDirectImageUrl(url) {
+            if (!url) return null;
+            if (url.includes('drive.google.com')) {
+                const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                if (match && match[1]) return `https://lh3.googleusercontent.com/d/${match[1]}`;
+            }
+            return url; 
+        }
 
+        // Pembangun Kartu Dinamis dari Data JSON
+        // Pembangun Kartu Dinamis dari Data JSON
+        function buildMateriCardHTML(item) {
+            let jenis = (item.jenis || 'modul').toLowerCase().trim();
+            let kelas = (item.kelas || 'semua').toString().toLowerCase();
+            let teksKelas = (kelas === 'semua' || kelas === 'umum') ? 'Umum' : `Kelas ${item.kelas}`;
+            
+            // PERBAIKAN 1: Membaca item.tanggal_publish dari JSON Anda
+            let dateObj = new Date(item.tanggal_publish || item.tanggal || item.date || new Date());
+            let dateStr = isNaN(dateObj.getTime()) ? '-' : dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+            let isoDate = isNaN(dateObj.getTime()) ? '' : dateObj.toISOString();
+            
+            let views = item.views || 0;
+            let img = getDirectImageUrl(item.img_cover) || '';
+            let inisial = item.penulis_inisial || '?';
+            let namaPenulis = item.penulis_nama || 'Anonim';
+            
+            // PERBAIKAN 2: Membaca item.action_url dari JSON Anda
+            let linkAksi = item.action_url || item.file_url || '#';
+
+            let visualBlock = '';
+            let actionButton = '';
+            let themeColor = 'blue'; 
+
+            if (jenis === 'video' || item.youtube_id) {
+                themeColor = 'red';
+                let ytId = item.youtube_id || '';
+                let ytThumb = ytId ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg` : 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=600&q=80';
+                
+                visualBlock = `
+                <div class="relative aspect-[4/3] bg-gray-900 cursor-pointer overflow-hidden" onclick="openVideo('${ytId}')">
+                    <img src="${ytThumb}" alt="Thumbnail" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:bg-red-700 group-hover:scale-110 transition-all">
+                            <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                        </div>
+                    </div>
+                    <div class="absolute top-3 left-3 bg-white/95 backdrop-blur text-red-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-red-100 uppercase">${jenis}</div>
+                </div>`;
+                // Tombol aksi jika Video
+                actionButton = `<button onclick="openVideo('${ytId}')" class="w-full flex items-center justify-center gap-2 bg-red-50 text-red-700 border border-red-200 font-semibold py-2.5 rounded-lg hover:bg-red-600 hover:text-white transition text-sm">Putar Video</button>`;
+            } 
+            else if (jenis === 'buku' && !img) {
+                themeColor = 'indigo';
+                visualBlock = `
+                <div class="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-blue-500 to-indigo-700 flex flex-col items-center justify-center text-white group-hover:from-blue-600 group-hover:to-indigo-800 transition-colors">
+                    <svg class="w-16 h-16 mb-2 opacity-80 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <span class="font-bold tracking-wider text-sm opacity-90">DOKUMEN ${jenis.toUpperCase()}</span>
+                    <div class="absolute top-3 left-3 bg-white/95 backdrop-blur text-indigo-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-indigo-100 uppercase">${jenis}</div>
+                </div>`;
+                // Tombol aksi menggunakan linkAksi
+                actionButton = `<a href="${linkAksi}" target="_blank" class="w-full flex items-center justify-center gap-2 bg-gray-50 text-gray-700 border border-gray-200 font-semibold py-2.5 rounded-lg hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition text-sm">Unduh Dokumen</a>`;
+            } 
+            else {
+                themeColor = 'blue';
+                let fallbackImg = 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80';
+                visualBlock = `
+                <div class="relative aspect-[4/3] bg-gray-100 overflow-hidden">
+                    <img src="${img || fallbackImg}" onerror="this.src='${fallbackImg}'" alt="Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute top-3 left-3 bg-white/95 backdrop-blur text-blue-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-blue-100 uppercase">${jenis}</div>
+                </div>`;
+                // Tombol aksi menggunakan linkAksi
+                actionButton = `<a href="${linkAksi}" target="_blank" class="w-full flex items-center justify-center gap-2 bg-gray-50 text-gray-700 border border-gray-200 font-semibold py-2.5 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition text-sm">Unduh Dokumen</a>`;
+            }
+
+            const wrapper = document.createElement('div');
+            wrapper.className = "materi-card item-data bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition flex flex-col group";
+            wrapper.setAttribute('data-kelas', kelas);
+            wrapper.setAttribute('data-jenis', jenis);
+            wrapper.setAttribute('data-judul', item.judul || '');
+            wrapper.setAttribute('data-date', isoDate);
+            wrapper.setAttribute('data-views', views);
+
+            wrapper.innerHTML = `
+                ${visualBlock}
+                <div class="p-5 flex-grow flex flex-col">
+                    <h3 class="text-base font-bold text-gray-900 mb-1 leading-tight group-hover:text-${themeColor}-600 transition">${item.judul}</h3>
+                    <p class="text-xs text-${themeColor}-600 font-semibold mb-3">${teksKelas}</p>
+                    <div class="mt-auto">
+                        <div class="flex items-center gap-3 text-[11px] text-gray-500 mb-3 border-b border-gray-100 pb-3">
+                            <span class="flex items-center gap-1">👁️ ${views} Akses</span>
+                            <span class="flex items-center gap-1">📅 ${dateStr}</span>
+                        </div>
+                        <div class="flex items-center text-xs text-gray-600 font-medium mb-4">
+                            <div class="w-6 h-6 rounded-full bg-gray-100 mr-2 flex items-center justify-center font-bold text-gray-500 border border-gray-200">${inisial}</div>
+                            ${namaPenulis}
+                        </div>
+                        ${actionButton}
+                    </div>
+                </div>`;
+            return wrapper;
+        }
+        
+        // Pembangun Render Utama
+        function renderLayar(result) {
+            // Global
+            if (result.data.global) {
+                const g = {};
+                result.data.global.forEach(item => Object.assign(g, item));
+                document.getElementById('header-site-name').innerText = g.site_name || 'MGMP';
+                document.getElementById('header-tagline').innerText = g.site_tagline || '';
+                document.getElementById('footer-site-name').innerText = g.site_name || '';
+                document.getElementById('footer-desc').innerText = g.footer_desc || '';
+                if(document.getElementById('footer-email')){
+                    document.getElementById('footer-email').innerText = g.email || '';
+                    document.getElementById('footer-email').href = `mailto:${g.email}`;
+                }
+            }
+
+            // Hero
+            if (result.data.t_heroimage) {
+                const hero = result.data.t_heroimage.find(x => x.status && x.status.toLowerCase() === 'aktif' && x.halaman && x.halaman.toLowerCase() === 'materi');
+                if (hero) {
+                    domElements.heroBg.src = getDirectImageUrl(hero.foto) || domElements.heroBg.src;
+                    
+                    let titleHTML = hero.hero_first_title || 'Pusat Sumber Daya Literasi';
+                    if(hero.hero_second_title) titleHTML += `<br>${hero.hero_second_title}`;
+                    domElements.heroTitle.innerHTML = titleHTML;
+                    
+                    if(hero.hero_subtitle) domElements.heroSubtitle.innerText = hero.hero_subtitle;
+                }
+            }
+
+            // Materi Data Injector
+            domElements.materiContainer.innerHTML = ''; // Hapus loading
+            allItems = []; // Reset Array HTML
+
+            let materiData = result.data.t_materi || [];
+            let activeMateri = materiData.filter(item => item.status && item.status.toLowerCase() === 'aktif');
+
+            activeMateri.forEach(item => {
+                const cardDOM = buildMateriCardHTML(item);
+                domElements.materiContainer.appendChild(cardDOM);
+                allItems.push(cardDOM);
+            });
+
+            // Jalankan Filter & Sorting bawaan setelah data masuk semua
+            applyFilters();
+        }
+
+        // --- CORE LOGIC JS ASLI DARI USER ---
         function applyFilters() {
+            if(allItems.length === 0) {
+                domElements.resultCount.innerText = `Ditemukan 0 materi`;
+                domElements.emptyState.classList.remove('hidden');
+                domElements.paginationContainer.innerHTML = '';
+                return;
+            }
+
             const searchInput = domElements.searchInput.value.toLowerCase();
             const filterKelas = domElements.filterKelas.value;
             const sortOption = domElements.sortOption.value;
@@ -698,7 +436,7 @@
             const checkboxesJenis = document.querySelectorAll('.filter-jenis:checked');
             const checkedJenis = Array.from(checkboxesJenis).map(cb => cb.value);
 
-            // 1. Filtering
+            // Filtering
             filteredItems = allItems.filter(card => {
                 const cardKelas = card.getAttribute('data-kelas');
                 const cardJenis = card.getAttribute('data-jenis');
@@ -711,48 +449,37 @@
                 return matchSearch && matchKelas && matchJenis;
             });
 
-            // 2. Sorting
+            // Sorting
             filteredItems.sort((a, b) => {
                 if (sortOption === 'terbaru') {
-                    // Sorting tanggal terbaru (Descending)
                     return new Date(b.getAttribute('data-date')) - new Date(a.getAttribute('data-date'));
                 } else if (sortOption === 'populer') {
-                    // Sorting views terbanyak (Descending)
                     return parseInt(b.getAttribute('data-views')) - parseInt(a.getAttribute('data-views'));
                 } else if (sortOption === 'abjad') {
-                    // Sorting Abjad A-Z (Ascending)
                     return a.getAttribute('data-judul').localeCompare(b.getAttribute('data-judul'));
                 }
                 return 0;
             });
 
-            // KUNCI PERBAIKAN: Pindahkan posisi elemen HTML di dalam DOM 
-            // agar urutannya sama persis dengan hasil array yang sudah di-sort
-            filteredItems.forEach(item => {
-                domElements.materiContainer.appendChild(item);
-            });
+            // Susun Ulang DOM
+            filteredItems.forEach(item => domElements.materiContainer.appendChild(item));
 
             currentPage = 1;
             renderPage();
         }
 
         function renderPage() {
-            // Sembunyikan semua item terlebih dahulu
             allItems.forEach(item => item.classList.add('hidden'));
 
             const totalItems = filteredItems.length;
-
-            // Sesuaikan teks dengan struktur HTML yang baru
             domElements.resultCount.innerText = `Ditemukan ${totalItems} materi`;
 
             if (totalItems === 0) {
-                // Munculkan Empty State
                 domElements.emptyState.classList.remove('hidden');
                 domElements.materiContainer.classList.add('hidden');
                 domElements.paginationContainer.innerHTML = '';
                 return;
             } else {
-                // Sembunyikan Empty State
                 domElements.emptyState.classList.add('hidden');
                 domElements.materiContainer.classList.remove('hidden');
             }
@@ -761,9 +488,7 @@
             const endIndex = startIndex + itemsPerPage;
             const itemsToShow = filteredItems.slice(startIndex, endIndex);
 
-            // Tampilkan item spesifik untuk page ini
             itemsToShow.forEach(item => item.classList.remove('hidden'));
-
             renderPaginationControls(totalItems);
         }
 
@@ -777,12 +502,12 @@
 
             let html = `<nav class="inline-flex rounded-lg shadow-sm gap-1 bg-white p-1.5 border border-gray-100">`;
 
-            // Tombol Prev
+            // Prev
             html += `<button onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''} class="inline-flex items-center px-3 py-2 rounded-md text-sm font-medium ${currentPage === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:bg-gray-50 hover:text-blue-600'} transition">
                         <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
                     </button>`;
 
-            // Tombol Angka
+            // Angka
             for (let i = 1; i <= totalPages; i++) {
                 if (i === currentPage) {
                     html += `<button class="bg-blue-600 text-white inline-flex items-center px-4 py-2 rounded-md text-sm font-bold shadow-sm">${i}</button>`;
@@ -791,7 +516,7 @@
                 }
             }
 
-            // Tombol Next
+            // Next
             html += `<button onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''} class="inline-flex items-center px-3 py-2 rounded-md text-sm font-medium ${currentPage === totalPages ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:bg-gray-50 hover:text-blue-600'} transition">
                         <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
                     </button></nav>`;
@@ -813,7 +538,7 @@
             applyFilters();
         }
 
-        // --- Video Modal Logic ---
+        // Modal Video
         const modal = document.getElementById('youtubeModal');
         const iframe = document.getElementById('ytIframe');
 
@@ -832,25 +557,49 @@
         }
 
         modal.addEventListener('click', function (e) {
-            if (e.target === modal) {
-                closeVideo();
-            }
+            if (e.target === modal) closeVideo();
         });
 
-        // Event Listener tambahan
-        // domElements.searchInput.addEventListener('input', applyFilters);
-
-        // Event Listener: Jalankan pencarian hanya saat tombol Enter ditekan
         domElements.searchInput.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
-                e.preventDefault(); // Mencegah reload jika berada di dalam tag form
+                e.preventDefault();
                 applyFilters();
             }
         });
 
-        // Inisialisasi awal
-        applyFilters(); 
+        // --- BOOTSTRAPPING / PEMANGGILAN DATA SERVER ---
+        async function fetchData() {
+            const CACHE_KEY = 'mgmp_data_homepage';
+            
+            const cachedData = localStorage.getItem(CACHE_KEY);
+            if (cachedData) {
+                try {
+                    renderLayar(JSON.parse(cachedData)); 
+                } catch (e) {
+                    localStorage.removeItem(CACHE_KEY);
+                }
+            }
+
+            try {
+                const fetchUrl = `${scriptUrl}?v=${new Date().getTime()}`;
+                const response = await fetch(fetchUrl, { method: 'GET', redirect: 'follow' });
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    localStorage.setItem(CACHE_KEY, JSON.stringify(result));
+                    renderLayar(result);
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+                if (!cachedData) {
+                    domElements.materiContainer.innerHTML = `<div class="col-span-full text-center py-24"><div class="bg-red-50 text-red-600 inline-block px-6 py-4 rounded-lg font-bold border border-red-200 shadow-sm">Gagal menghubungkan ke server.<br>Silakan muat ulang halaman.</div></div>`;
+                }
+            }
+        }
+
+        // Inisialisasi
+        fetchData();
+        
     </script>
 </body>
-
 </html>

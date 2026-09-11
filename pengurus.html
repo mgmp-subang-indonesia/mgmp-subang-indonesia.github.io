@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Susunan Pengurus | MGMP Indonesia - SMP Subang</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 10px 15px -5px rgba(0, 0, 0, 0.05);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 relative flex flex-col min-h-screen">
+
+    <header class="absolute top-0 inset-x-0 z-50 border-b border-white/20 bg-gradient-to-b from-black/70 to-transparent">
+        <div class="max-w-7xl mx-auto px-4 h-24 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center text-white shadow-lg">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <span id="header-site-name" class="font-extrabold text-lg text-white tracking-wide leading-tight">MGMP BAHASA INDONESIA</span>
+                    <span id="header-tagline" class="text-xs text-blue-200 font-semibold uppercase tracking-widest mt-0.5">Tingkat SMP - Kab. Subang</span>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex h-full text-sm font-medium text-white/90 items-center space-x-2">
+                <a href="index.html" class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md transition">Beranda</a>
+                
+                <!-- DROPDOWN PROFIL -->
+                <div class="relative group h-full flex items-center">
+                    <button class="px-4 py-2 text-white bg-white/30 font-semibold rounded-md flex items-center gap-1 focus:outline-none transition">
+                        Profil
+                        <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="overflow-hidden absolute top-[calc(100%-15px)] left-0 mt-0 w-56 bg-white border border-gray-100 shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="pengurus.html" class="block px-4 py-3 text-sm text-blue-700 bg-blue-50 font-semibold">Pengurus</a>
+                        <a href="visi-misi.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Visi dan Misi</a>
+                    </div>
+                </div>
+
+                <!-- DROPDOWN PERANGKAT AJAR -->
+                <div class="relative group h-full flex items-center">
+                    <button class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md flex items-center gap-1 focus:outline-none transition">
+                        Perangkat Ajar
+                        <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="overflow-hidden absolute top-[calc(100%-15px)] left-0 mt-0 w-56 bg-white border border-gray-100 shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="materi.html#modul" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Modul Ajar</a>
+                        <a href="materi.html#buku" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Buku Teks</a>
+                        <a href="materi.html#media" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">Media Pembelajaran</a>
+                    </div>
+                </div>
+                <a href="karya.html" class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md transition">Karya</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- WADAH HERO IMAGE DINAMIS -->
+    <div id="dynamic-hero"></div>
+
+    <!-- WADAH HALAMAN DINAMIS -->
+    <main class="flex-grow w-full relative z-10 bg-gray-50 pb-24 pt-16">
+        <div id="dynamic-content" class="max-w-7xl mx-auto px-4">
+            <!-- Tampilan Loading -->
+            <div id="loading-indicator" class="flex items-center justify-center min-h-[40vh]">
+                <div class="text-center">
+                    <svg class="animate-spin h-10 w-10 text-blue-600 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <p class="text-gray-500 font-medium">Memuat data pengurus...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <p>
+                        <span id="footer-site-name" class="font-bold text-white text-lg">MGMP BAHASA INDONESIA</span>
+                        <br/>
+                        <span id="footer-site-tagline" class="text-sm text-gray-400">Tingkat SMP - Kab. Subang</span>
+                    </p>
+                </div>
+                <p id="footer-desc" class="text-sm text-gray-400 mb-4 leading-relaxed">Memuat deskripsi...</p>
+            </div>
+            <div class="md:ml-auto">
+                <h4 class="text-white font-bold mb-4">Tautan Cepat</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="index.html" class="hover:text-blue-400 transition">Beranda</a></li>
+                    <li><a href="materi.html" class="hover:text-blue-400 transition">Gudang Digital</a></li>
+                    <li><a href="visi-misi.html" class="hover:text-blue-400 transition">Visi Misi</a></li>
+                </ul>
+            </div>
+            <div class="md:ml-auto">
+                <h4 class="text-white font-bold mb-4">Hubungi Kami</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li class="flex items-center gap-2">
+                        <svg class="w-5 h-5 text-gray-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <a id="footer-email" href="#" class="hover:text-blue-400 transition">Memuat...</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 mt-8 pt-8 border-t border-gray-800 text-sm text-gray-500 text-center md:text-left">
+            <p>&copy; 2026 Hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbxDMXD1-aGnc9p4A_4IWWIOdEVgWOp02dyX2IQYZAGSrEC9g3DbQsNeCyDkEG1dUC2I/exec'; 
+            const mainContainer = document.getElementById('dynamic-content');
+            const heroContainer = document.getElementById('dynamic-hero');
+
+            function getDirectImageUrl(url) {
+                if (!url) return null;
+                if (url.includes('drive.google.com')) {
+                    const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                    if (match && match[1]) return `https://lh3.googleusercontent.com/d/${match[1]}`;
+                }
+                return url; 
+            }
+
+            // Membangun Kartu dengan Logika Teks Jabatan Diperbarui
+            function buildProfileCard(item, type = 'default') {
+                const img = getDirectImageUrl(item.foto) || `https://ui-avatars.com/api/?name=${encodeURIComponent(item.nama)}&background=random`;
+                const teksJabatan = item.display_jabatan || item.jabatan || 'Anggota';
+                
+                let cardClass = "bg-white p-3 md:p-6 rounded-2xl shadow-sm border border-gray-100 hover-lift flex flex-col items-center text-center w-full";
+                let avatarClass = "w-24 h-24";
+                let nameClass = "text-lg text-gray-900";
+                
+                if (type === 'ketua') {
+                    cardClass = "bg-gradient-to-b from-blue-600 to-blue-800 p-8 rounded-3xl shadow-xl hover-lift flex flex-col items-center text-center w-full";
+                    avatarClass = "w-32 h-32 border-4 border-blue-200/50";
+                    nameClass = "text-2xl text-white";
+                } else if (type === 'inti') {
+                    cardClass = "bg-white p-3 md:p-6 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-blue-500 hover-lift flex flex-col items-center text-center w-full";
+                    avatarClass = "w-24 h-24"; 
+                    nameClass = "text-lg text-gray-900";
+                } else if (type === 'anggota') {
+                    avatarClass = "w-16 h-16 border-2 border-gray-50";
+                    nameClass = "text-base text-gray-900";
+                }
+
+                // Kondisi: Sembunyikan label jabatan jika tipenya bidang atau anggota
+                const hideJabatan = (type === 'bidang' || type === 'anggota');
+
+                return `
+                <div class="${cardClass}">
+                    <img src="${img}" alt="${item.nama}" class="${avatarClass} rounded-full mx-auto mb-4 object-cover shadow-sm">
+                    <h3 class="${nameClass} font-bold leading-tight ${hideJabatan ? 'mb-2' : 'mb-1'}">${item.nama}</h3>
+                    ${hideJabatan ? '' : `<p class="text-sm font-semibold ${type === 'ketua' ? 'text-blue-200' : 'text-blue-600'} mb-2">${teksJabatan}</p>`}
+                    <p class="text-xs ${type === 'ketua' ? 'text-white/70' : 'text-gray-500'} mt-auto pt-1">${item.instansi || ''}</p>
+                </div>`;
+            }
+
+            function renderLayar(result) {
+                // Render Config Global
+                const globalData = {};
+                if (result.data.global) {
+                    result.data.global.forEach(item => Object.assign(globalData, item));
+                    document.getElementById('header-site-name').innerText = globalData.site_name || 'MGMP';
+                    document.getElementById('header-tagline').innerText = globalData.site_tagline || '';
+                    document.getElementById('footer-site-name').innerText = globalData.site_name || '';
+                    document.getElementById('footer-site-tagline').innerText = globalData.site_tagline || '';
+                    document.getElementById('footer-desc').innerText = globalData.footer_desc || '';
+                    const emailEl = document.getElementById('footer-email');
+                    if(emailEl) {
+                        emailEl.innerText = globalData.email || '';
+                        emailEl.href = `mailto:${globalData.email}`;
+                    }
+                }
+
+                // Render Hero Image
+                if (result.data.t_heroimage) {
+                    const heroPengurus = result.data.t_heroimage.find(x => x.status && x.status.toLowerCase() === 'aktif' && x.halaman && x.halaman.toLowerCase() === 'pengurus');
+                    if (heroPengurus) {
+                        const bgUrl = getDirectImageUrl(heroPengurus.foto) || 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1920&q=80';
+                        heroContainer.innerHTML = `
+                        <section class="relative min-h-[50vh] md:min-h-[55vh] flex items-center pt-24 overflow-hidden border-b border-gray-200">
+                            <div class="absolute inset-0 z-0 bg-gray-900">
+                                <img src="${bgUrl}" class="w-full h-full object-cover opacity-30">
+                                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"></div>
+                            </div>
+                            <div class="relative z-10 max-w-7xl mx-auto px-4 w-full text-center">
+                                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 drop-shadow-lg tracking-tight">
+                                    ${heroPengurus.hero_first_title || 'Susunan Pengurus'} 
+                                    ${heroPengurus.hero_second_title ? `<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">${heroPengurus.hero_second_title}</span>` : ''}
+                                </h1>
+                                ${heroPengurus.hero_subtitle ? `<p class="text-lg text-gray-300 max-w-2xl mx-auto font-medium leading-relaxed">${heroPengurus.hero_subtitle}</p>` : ''}
+                            </div>
+                        </section>`;
+                    }
+                }
+
+                let pengurusData = result.data.t_pengurus || [];
+                let activePengurus = pengurusData.filter(item => item.status && item.status.toLowerCase() === 'aktif');
+
+                let tierKetua = [];
+                let tierInti = []; 
+                let tierBidang = {}; 
+                let tierAnggotaUmum = [];
+
+                activePengurus.forEach(item => {
+                    const jabatan = (item.jabatan || '').trim();
+                    const jLower = jabatan.toLowerCase();
+                    
+                    if (jLower.includes('ketua')) {
+                        tierKetua.push(item);
+                    } else if (jLower.includes('sekretaris') || jLower.includes('bendahara')) {
+                        tierInti.push(item);
+                    } else if (jLower === 'anggota') {
+                        tierAnggotaUmum.push(item);
+                    } else {
+                        // Pola pencarian "Bidang..."
+                        let namaKelompok = jabatan; 
+                        const match = jabatan.match(/(bidang\s+.*)/i);
+                        if (match) {
+                            namaKelompok = match[1].replace(/\b\w/g, l => l.toUpperCase());
+                        }
+
+                        if (!tierBidang[namaKelompok]) tierBidang[namaKelompok] = [];
+                        tierBidang[namaKelompok].push(item);
+                    }
+                });
+
+                let htmlOutput = `<div class="flex flex-col items-center w-full gap-16 mt-8">`;
+
+                // CLUSTER 1: Ketua
+                if (tierKetua.length > 0) {
+                    let cards = tierKetua.map(item => buildProfileCard(item, 'ketua')).join('');
+                    htmlOutput += `
+                    <div class="w-full max-w-sm mx-auto">
+                        ${cards}
+                    </div>`;
+                }
+
+                // CLUSTER 2: Pengurus Inti (Sekre/Bendahara)
+                if (tierInti.length > 0) {
+                    let cards = tierInti.map(item => buildProfileCard(item, 'inti')).join('');
+                    htmlOutput += `
+                    <div class="w-full max-w-6xl mx-auto">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                            ${cards}
+                        </div>
+                    </div>`;
+                }
+
+                // CLUSTER 3: Bidang-Bidang 
+                const listBidangKeys = Object.keys(tierBidang);
+                if (listBidangKeys.length > 0) {
+                    htmlOutput += `<div class="w-full max-w-6xl mx-auto flex flex-col gap-12">`;
+                    
+                    listBidangKeys.forEach(namaBidang => {
+                        let members = tierBidang[namaBidang];
+                        
+                        let cards = members.map(item => buildProfileCard(item, 'bidang')).join('');
+                        
+                        htmlOutput += `
+                        <div class="bg-white rounded-3xl p-4 md:p-10 shadow-sm border border-gray-100">
+                            <div class="flex items-center gap-4 mb-8 border-b border-gray-100 pb-4">
+                                <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                                </div>
+                                <div>
+                                    <h2 class="text-lg md:text-2xl font-bold text-gray-900">${namaBidang}</h2>
+                                    <p class="text-sm text-gray-500">${members.length} Pengurus</p>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                                ${cards}
+                            </div>
+                        </div>`;
+                    });
+                    
+                    htmlOutput += `</div>`;
+                }
+
+                // CLUSTER 4: Anggota Umum
+                if (tierAnggotaUmum.length > 0) {
+                    let cards = tierAnggotaUmum.map(item => buildProfileCard(item, 'anggota')).join('');
+                    htmlOutput += `
+                    <div class="w-full max-w-7xl mx-auto px-4 mt-8">
+                        <div class="text-center mb-10">
+                            <h2 class="text-3xl font-extrabold text-gray-900">Anggota</h2>
+                            <div class="w-16 h-1 bg-blue-600 mx-auto rounded-full mt-4"></div>
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
+                            ${cards}
+                        </div>
+                    </div>`;
+                }
+
+                htmlOutput += `</div>`; 
+
+                if (activePengurus.length === 0) {
+                    htmlOutput = `<div class="text-center text-gray-500 py-20 bg-white rounded-2xl border border-gray-100 max-w-3xl mx-auto mt-10">Data susunan pengurus belum tersedia.</div>`;
+                }
+
+                mainContainer.innerHTML = htmlOutput;
+            }
+
+            async function fetchData() {
+                const CACHE_KEY = 'mgmp_data_homepage';
+                
+                const cachedData = localStorage.getItem(CACHE_KEY);
+                if (cachedData) {
+                    try {
+                        renderLayar(JSON.parse(cachedData)); 
+                    } catch (e) {
+                        localStorage.removeItem(CACHE_KEY);
+                    }
+                }
+
+                try {
+                    const fetchUrl = `${scriptUrl}?v=${new Date().getTime()}`;
+                    const response = await fetch(fetchUrl, { method: 'GET', redirect: 'follow' });
+                    const result = await response.json();
+
+                    if (result.status === 'success') {
+                        localStorage.setItem(CACHE_KEY, JSON.stringify(result));
+                        renderLayar(result);
+                    }
+                } catch (error) {
+                    console.error('Fetch error:', error);
+                    if (!cachedData) {
+                        mainContainer.innerHTML = `<div class="text-center py-24"><div class="bg-red-50 text-red-600 inline-block px-6 py-4 rounded-lg font-bold border border-red-200 shadow-sm">Gagal menghubungkan ke data server.<br>Silakan muat ulang halaman.</div></div>`;
+                    }
+                }
+            }
+
+            fetchData();
+        });
+    </script>
+</body>
+</html>

@@ -41,7 +41,20 @@
 
             <nav class="hidden md:flex h-full text-sm font-medium text-white/90 items-center space-x-2">
                 <a href="#" class="px-4 py-2 text-white bg-white/30 rounded-md transition font-semibold">Beranda</a>
-                <a href="profil.html" class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md transition">Profil</a>
+                
+                <!-- DROPDOWN PROFIL -->
+                <div class="relative group h-full flex items-center">
+                    <button class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md flex items-center gap-1 focus:outline-none transition">
+                        Profil
+                        <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="absolute top-[calc(100%-15px)] left-0 mt-0 w-56 bg-white border border-gray-100 shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="profil.html#pengurus" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Pengurus</a>
+                        <a href="profil.html#visi-misi" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">Visi dan Misi</a>
+                    </div>
+                </div>
+
+                <!-- DROPDOWN PERANGKAT AJAR -->
                 <div class="relative group h-full flex items-center">
                     <button class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md flex items-center gap-1 focus:outline-none transition">
                         Perangkat Ajar
@@ -55,10 +68,9 @@
                 </div>
                 <a href="karya.html" class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md transition">Karya</a>
             </nav>
-
-            <div class="hidden md:flex items-center gap-4">
-                <button class="bg-blue-600 text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-700 transition shadow-lg border border-blue-500">Masuk</button>
-            </div>
+            
+            <!-- Tombol "Masuk" telah dihapus dari area ini -->
+            
         </div>
     </header>
 

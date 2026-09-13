@@ -282,7 +282,13 @@
         async function fetchPengurusData(forceRefresh = false) {
             const cacheKey = 'cms_pengurus_cache';
             const cacheTimeKey = 'cms_pengurus_cache_time';
-            const CACHE_TTL = 300000;
+            const CACHE_TTL = 300000; // 5 menit
+
+            if (forceRefresh) {
+                localStorage.removeItem(cacheKey);
+                localStorage.removeItem(cacheTimeKey);
+                showToast('Menyegarkan data dari server...', 'success');
+            }
 
             const cachedData = localStorage.getItem(cacheKey);
             const cachedTime = localStorage.getItem(cacheTimeKey);
@@ -299,7 +305,12 @@
             }
 
             try {
-                const response = await fetch(`${scriptUrl}?sheet=pengurus&limit=0&v=${Date.now()}`);
+                // Tambahkan parameter redirect: 'follow' untuk menangani pengalihan URL Google Apps Script dengan stabil
+                const response = await fetch(`${scriptUrl}?sheet=pengurus&limit=0&v=${Date.now()}`, {
+                    method: 'GET',
+                    redirect: 'follow'
+                });
+                
                 const rawText = await response.text();
                 let result;
                 try {
@@ -327,6 +338,9 @@
                     localStorage.setItem(cacheTimeKey, Date.now().toString());
 
                     renderTable();
+                    if (forceRefresh) {
+                        showToast('Data berhasil disinkronkan!', 'success');
+                    }
                 } else {
                     document.getElementById('tableBody').innerHTML = `<tr><td colspan="6" class="text-center py-12 text-red-500 font-semibold">${result.message || 'Gagal memuat data dari server.'}</td></tr>`;
                 }
@@ -335,10 +349,10 @@
                 localStorage.removeItem(cacheKey);
                 localStorage.removeItem(cacheTimeKey);
                 
-                document.getElementById('tableBody').innerHTML = `<tr><td colspan="6" class="text-center py-12 text-red-500 font-semibold">Kesalahan koneksi jaringan atau URL Web App.</td></tr>`;
+                document.getElementById('tableBody').innerHTML = `<tr><td colspan="6" class="text-center py-12 text-red-500 font-semibold">Gagal memuat data. Silakan klik tombol segarkan sekali lagi.</td></tr>`;
             }
         }
-        
+
         function filterTable() {
             const keyword = document.getElementById('searchTable').value.toLowerCase();
             const jabatanFilter = document.getElementById('filterJabatan').value.toLowerCase();

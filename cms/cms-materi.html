@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Materi | CMS Gudang Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 flex h-screen overflow-hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-gray-900 text-white flex flex-col h-full flex-shrink-0 transition-all duration-300">
+        <div class="h-16 flex items-center px-6 border-b border-gray-800 bg-gray-950">
+            <h1 class="font-extrabold text-lg tracking-wide">CMS MGMP</h1>
+        </div>
+        
+        <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+            <p class="px-3 text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 mt-4">Menu Utama</p>
+            
+            <!-- Menu Materi (Aktif) -->
+            <a href="cms-materi.html" class="flex items-center gap-3 px-3 py-2.5 bg-blue-600 text-white rounded-lg font-medium shadow-sm">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Kelola Materi
+            </a>
+            
+            <!-- Menu Lainnya (Non-aktif, bisa dibuatkan file html nya nanti) -->
+            <a href="cms-pengurus.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg font-medium transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                Susunan Pengurus
+            </a>
+            
+            <a href="cms-agenda.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg font-medium transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                Agenda Kegiatan
+            </a>
+
+            <p class="px-3 text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 mt-6">Sistem</p>
+            <a href="cms-pengaturan.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg font-medium transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                Pengaturan Web
+            </a>
+        </nav>
+        
+        <!-- Timer Sesi & Tombol Logout -->
+        <div class="p-4 border-t border-gray-800 bg-gray-950">
+            <div class="flex items-center justify-between mb-3 px-2">
+                <span class="text-xs text-gray-400 font-semibold">Sisa Sesi:</span>
+                <span id="sessionTimer" class="text-xs text-green-400 font-bold bg-green-400/10 px-2 py-1 rounded">60:00</span>
+            </div>
+            <button onclick="logout()" class="w-full flex items-center justify-center gap-2 bg-red-600/10 text-red-500 hover:bg-red-600 hover:text-white font-semibold py-2 rounded-lg transition text-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                Keluar Sistem
+            </button>
+        </div>
+    </aside>
+
+    <!-- AREA KONTEN UTAMA -->
+    <main class="flex-1 flex flex-col h-full bg-gray-50 relative">
+        <!-- Topbar -->
+        <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shrink-0 shadow-sm z-10">
+            <h2 class="text-lg font-bold text-gray-800">Unggah Materi Baru</h2>
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center font-bold text-sm">A</div>
+                <span class="text-sm font-semibold text-gray-600">Admin MGMP</span>
+            </div>
+        </header>
+
+        <!-- Area Form (Bisa di-scroll) -->
+        <div class="flex-1 overflow-y-auto p-6 md:p-8">
+            <div class="max-w-4xl mx-auto">
+                
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <form id="uploadForm" class="space-y-8">
+                            
+                            <!-- Bagian 1: Data Teks -->
+                            <div>
+                                <h3 class="text-base font-bold text-gray-900 border-b border-gray-100 pb-2 mb-4">Informasi Dasar</h3>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                    <div class="sm:col-span-2">
+                                        <label class="block text-sm font-semibold text-gray-700 mb-1.5">Judul Materi <span class="text-red-500">*</span></label>
+                                        <input type="text" id="judul" required placeholder="Cth: Modul Ajar Teks Deskripsi Semester 1" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm transition">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-700 mb-1.5">Peruntukan Kelas <span class="text-red-500">*</span></label>
+                                        <select id="kelas" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm font-medium text-gray-700 bg-gray-50">
+                                            <option value="umum">Umum (Semua Kelas)</option>
+                                            <option value="7">Kelas 7</option>
+                                            <option value="8">Kelas 8</option>
+                                            <option value="9">Kelas 9</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-700 mb-1.5">Jenis Materi <span class="text-red-500">*</span></label>
+                                        <select id="jenis" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm font-medium text-gray-700 bg-gray-50">
+                                            <option value="modul">Modul Ajar</option>
+                                            <option value="buku">Buku Teks</option>
+                                            <option value="video">Media Pembelajaran / Video</option>
+                                        </select>
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <label class="block text-sm font-semibold text-gray-700 mb-1.5">Nama Penulis / Penyusun <span class="text-red-500">*</span></label>
+                                        <input type="text" id="penulis" required class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm transition" placeholder="Cth: Budi Santoso, M.Pd.">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bagian 2: Unggah Berkas -->
+                            <div>
+                                <h3 class="text-base font-bold text-gray-900 border-b border-gray-100 pb-2 mb-4">Berkas Lampiran</h3>
+                                <div class="space-y-6">
+                                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 border-dashed">
+                                        <label class="block text-sm font-semibold text-gray-700 mb-2">Cover Materi (Opsional)</label>
+                                        <p class="text-xs text-gray-500 mb-3">Format JPG/PNG. Digunakan sebagai gambar depan (thumbnail).</p>
+                                        <input type="file" id="coverFile" accept="image/*" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-bold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 file:cursor-pointer cursor-pointer">
+                                    </div>
+                                    
+                                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 border-dashed">
+                                        <label class="block text-sm font-semibold text-gray-700 mb-2">Dokumen Materi (PDF/Word)</label>
+                                        <p class="text-xs text-gray-500 mb-3">Tidak wajib diisi jika Jenis Materi adalah Video Pembelajaran.</p>
+                                        <input type="file" id="dokumenFile" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-bold file:bg-indigo-100 file:text-indigo-700 hover:file:bg-indigo-200 file:cursor-pointer cursor-pointer">
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-700 mb-1.5">ID Video Youtube (Opsional)</label>
+                                        <input type="text" id="youtubeId" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none text-sm transition" placeholder="Cth: dQw4w9WgXcQ">
+                                        <p class="text-xs text-gray-500 mt-1.5 font-medium">Hanya diisi jika jenis materi berupa Video Youtube. Masukkan ID videonya saja.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Notifikasi Status -->
+                            <div id="statusMsg" class="hidden text-sm p-4 rounded-lg font-semibold flex items-center gap-2"></div>
+
+                            <!-- Tombol Aksi -->
+                            <div class="pt-4 border-t border-gray-100">
+                                <button type="submit" id="btnSubmit" class="w-full md:w-auto px-8 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition shadow-md flex items-center justify-center gap-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                                    Simpan dan Unggah ke Drive
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Footer Konten -->
+                <p class="text-center text-xs text-gray-400 mt-8 font-medium">&copy; 2026 MGMP Bahasa Indonesia - Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // ==========================================================
+        // GANTI URL DI BAWAH INI DENGAN URL WEB APP (.gs) ANDA
+        // ==========================================================
+                const scriptUrl = 'https://script.google.com/macros/s/AKfycbzD18vvYDhC2s9EyuhJlKQqhCwkOty5sYkUSu4dTwJKff4Yf4r317ZRijGWFTR287Fi/exec'; 
+        const SESSION_DURATION = 3600000; // 1 Jam dalam milidetik
+
+        // 1. Logika Keamanan Sesi (Session Check)
+        function checkSession() {
+            const token = localStorage.getItem('cms_token');
+            const loginTime = localStorage.getItem('cms_timestamp');
+
+            if (!token || !loginTime) {
+                forceLogout();
+                return;
+            }
+
+            const timeElapsed = Date.now() - parseInt(loginTime);
+            if (timeElapsed > SESSION_DURATION) {
+                alert('Sesi Anda telah berakhir demi keamanan. Silakan login kembali.');
+                forceLogout();
+            } else {
+                updateTimer(SESSION_DURATION - timeElapsed);
+            }
+        }
+
+        function forceLogout() {
+            localStorage.removeItem('cms_token');
+            localStorage.removeItem('cms_timestamp');
+            window.location.href = 'login.html'; // Pastikan file login.html satu folder
+        }
+        
+        function logout() {
+            forceLogout();
+        }
+
+        function updateTimer(remaining) {
+            const timerElement = document.getElementById('sessionTimer');
+            setInterval(() => {
+                remaining -= 1000;
+                if (remaining <= 0) forceLogout();
+                
+                const minutes = Math.floor(remaining / 60000);
+                const seconds = Math.floor((remaining % 60000) / 1000);
+                
+                // Ubah warna menjadi merah jambu/merah jika sisa < 5 menit
+                if(remaining < 300000) {
+                    timerElement.classList.replace('text-green-400', 'text-red-400');
+                    timerElement.classList.replace('bg-green-400/10', 'bg-red-400/10');
+                }
+                
+                timerElement.innerText = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        // Eksekusi Pengecekan Sesi saat halaman dimuat
+        checkSession();
+
+        // 2. Utilitas Konversi File fisik ke Base64 String
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    // Hapus metadata "data:image/jpeg;base64," agar aman dikirim ke GAS
+                    const base64String = reader.result.split(',')[1];
+                    resolve(base64String);
+                };
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        // 3. Penanganan Formulir Unggah (Upload)
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const btn = document.getElementById('btnSubmit');
+            const statusMsg = document.getElementById('statusMsg');
+            
+            // Ubah state tombol saat proses berjalan
+            btn.disabled = true;
+            btn.innerHTML = `<svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Memproses...`;
+            statusMsg.classList.add('hidden');
+            statusMsg.className = 'hidden text-sm p-4 rounded-lg font-semibold flex items-center gap-2 mt-4';
+
+            // Susun Payload (Paket Data)
+            const payload = {
+                action: 'upload',
+                judul: document.getElementById('judul').value,
+                kelas: document.getElementById('kelas').value,
+                jenis: document.getElementById('jenis').value,
+                penulis: document.getElementById('penulis').value,
+                youtubeId: document.getElementById('youtubeId').value,
+            };
+
+            try {
+                // Konversi file gambar Cover (jika ada yang dipilih)
+                const coverInput = document.getElementById('coverFile').files[0];
+                if (coverInput) {
+                    payload.coverData = await fileToBase64(coverInput);
+                    payload.coverMime = coverInput.type;
+                    payload.coverName = coverInput.name;
+                }
+
+                // Konversi file Dokumen Materi (jika ada yang dipilih)
+                const dokumenInput = document.getElementById('dokumenFile').files[0];
+                if (dokumenInput) {
+                    payload.fileData = await fileToBase64(dokumenInput);
+                    payload.fileMime = dokumenInput.type;
+                    payload.fileName = dokumenInput.name;
+                }
+
+                // Kirim request ke Google Apps Script via POST
+                // Format dikirim sebagai raw text (string) untuk menghindari trigger preflight OPTIONS CORS
+                const response = await fetch(scriptUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const result = await response.json();
+                
+                statusMsg.classList.remove('hidden');
+                if (result.status === 'success') {
+                    // Sukses Style
+                    statusMsg.classList.add('bg-green-50', 'text-green-700', 'border', 'border-green-200');
+                    statusMsg.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> ${result.message}`;
+                    
+                    // Reset formulir input
+                    document.getElementById('uploadForm').reset();
+                } else {
+                    // Error Style dari Server
+                    statusMsg.classList.add('bg-red-50', 'text-red-700', 'border', 'border-red-200');
+                    statusMsg.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg> ${result.message}`;
+                }
+
+            } catch (error) {
+                // Error saat mengirim request (Fetch failed)
+                statusMsg.classList.remove('hidden');
+                statusMsg.classList.add('bg-red-50', 'text-red-700', 'border', 'border-red-200');
+                statusMsg.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg> Terjadi kesalahan sistem atau koneksi terputus.`;
+                console.error(error);
+            } finally {
+                // Kembalikan state tombol ke semula
+                btn.disabled = false;
+                btn.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg> Simpan dan Unggah ke Drive`;
+            }
+        });
+    </script>
+</body>
+</html>

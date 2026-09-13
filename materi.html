@@ -303,8 +303,13 @@
         function getDirectImageUrl(url) {
             if (!url) return null;
             if (url.includes('drive.google.com')) {
-                const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                // Cek format 1: /d/ID (biasanya dari share link manual)
+                let match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
                 if (match && match[1]) return `https://lh3.googleusercontent.com/d/${match[1]}`;
+                
+                // Cek format 2: uc?id=ID (hasil generate otomatis dari CMS GAS)
+                let matchUc = url.match(/id=([a-zA-Z0-9_-]+)/);
+                if (matchUc && matchUc[1]) return `https://lh3.googleusercontent.com/d/${matchUc[1]}`;
             }
             return url; 
         }

@@ -23,8 +23,8 @@
 
 <body class="bg-gray-50 text-gray-800 flex h-screen overflow-hidden">
 
-    <!-- TOAST NOTIFICATION CONTAINER -->
-    <div id="toastContainer" class="fixed bottom-5 right-5 z-[70] flex flex-col gap-2 pointer-events-none"></div>
+    <!-- TOAST NOTIFICATION CONTAINER (TOP CENTER) -->
+    <div id="toastContainer" class="fixed top-5 left-1/2 -translate-x-1/2 z-[70] flex flex-col items-center gap-2 pointer-events-none"></div>
 
     <!-- OVERLAY MOBILE -->
     <div id="sidebarOverlay" onclick="toggleSidebar()" class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm z-40 hidden md:hidden opacity-0 transition-opacity duration-300"></div>
@@ -84,53 +84,29 @@
 
         <!-- FLOATING WIDGET DROPDOWN -->
         <div class="absolute top-0 right-0 z-50 flex flex-col items-end group">
-            <!-- Pill/Tab -->
-            <div
-                class="flex items-center gap-4 bg-white/90 backdrop-blur-md px-6 py-3 rounded-bl-3xl shadow-lg shadow-gray-200/60 border-b border-l border-white/50 transition-all duration-300 group-hover:bg-white group-hover:shadow-xl cursor-pointer">
-                <!-- Info Teks -->
+            <div class="flex items-center gap-4 bg-white/90 backdrop-blur-md px-6 py-3 rounded-bl-3xl shadow-lg shadow-gray-200/60 border-b border-l border-white/50 transition-all duration-300 group-hover:bg-white group-hover:shadow-xl cursor-pointer">
                 <div class="text-right hidden sm:block">
-                    <p class="text-sm font-bold text-gray-900 leading-none group-hover:text-blue-700 transition-colors">
-                        Admin MGMP</p>
+                    <p class="text-sm font-bold text-gray-900 leading-none group-hover:text-blue-700 transition-colors">Admin MGMP</p>
                     <p class="text-[11px] text-gray-500 font-medium mt-1">Administrator</p>
                 </div>
-
-                <!-- Avatar -->
-                <div
-                    class="w-10 h-10 bg-gradient-to-tr from-blue-600 to-indigo-600 text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md border-2 border-white ring-4 ring-transparent group-hover:ring-blue-50 transition-all duration-300 transform group-hover:scale-105">
+                <div class="w-10 h-10 bg-gradient-to-tr from-blue-600 to-indigo-600 text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md border-2 border-white ring-4 ring-transparent group-hover:ring-blue-50 transition-all duration-300 transform group-hover:scale-105">
                     A
                 </div>
             </div>
 
-            <!-- Dropdown Menu -->
-            <div
-                class="absolute top-[105%] right-4 w-52 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-out origin-top-right">
-                <div
-                    class="bg-white rounded-xl shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden py-1.5">
-                    <a href="#profil"
-                        class="flex items-center gap-3 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors">
-                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                        </svg>
+            <div class="absolute top-[105%] right-4 w-52 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-out origin-top-right">
+                <div class="bg-white rounded-xl shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden py-1.5">
+                    <a href="#profil" class="flex items-center gap-3 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors">
+                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                         Pengaturan Profil
                     </a>
-                    <a href="#password"
-                        class="flex items-center gap-3 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors">
-                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z">
-                            </path>
-                        </svg>
+                    <a href="#password" class="flex items-center gap-3 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors">
+                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path></svg>
                         Ubah Kata Sandi
                     </a>
                     <div class="h-px bg-gray-100 my-1"></div>
-                    <button onclick="logout()"
-                        class="w-full flex items-center gap-3 px-4 py-2.5 text-sm font-bold text-red-600 hover:bg-red-50 transition-colors">
-                        <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
-                            </path>
-                        </svg>
+                    <button onclick="logout()" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm font-bold text-red-600 hover:bg-red-50 transition-colors">
+                        <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
                         Keluar Sistem
                     </button>
                 </div>
@@ -264,7 +240,7 @@
         // ==========================================================
         // GANTI URL DI BAWAH INI DENGAN URL WEB APP (.gs) ANDA
         // ==========================================================
-        const scriptUrl = 'https://script.google.com/macros/s/AKfycbweJgCtXcbQT21OlEsode2sUzFscEAqDPcEtCCZazgAcn4BBLobCRgJBwtXiKddjWWm/exec';
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbwDa7PvDzh6M0Tk2_EL1oippxy2M4QZHv-_xJUq9BeL5yYRV19GMfLbx7Ww328H2ujA/exec';
         const SESSION_DURATION = 3600000;
 
         let allData = [];
@@ -286,14 +262,14 @@
                 ? '<svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>'
                 : '<svg class="w-4 h-4 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>';
 
-            toast.className = `flex items-center gap-3 px-4 py-3 rounded-xl shadow-xl text-xs font-bold transition-all duration-300 transform translate-y-5 opacity-0 pointer-events-auto ${bgClass}`;
+            toast.className = `flex items-center gap-3 px-4 py-3 rounded-xl shadow-xl text-xs font-bold transition-all duration-300 transform -translate-y-5 opacity-0 pointer-events-auto ${bgClass}`;
             toast.innerHTML = `${iconSvg}<span>${message}</span>`;
             
             container.appendChild(toast);
-            setTimeout(() => toast.classList.remove('translate-y-5', 'opacity-0'), 10);
+            setTimeout(() => toast.classList.remove('-translate-y-5', 'opacity-0'), 10);
 
             setTimeout(() => {
-                toast.classList.add('translate-y-5', 'opacity-0');
+                toast.classList.add('-translate-y-5', 'opacity-0');
                 setTimeout(() => toast.remove(), 300);
             }, 3500);
         }
@@ -366,19 +342,25 @@
 
         async function fetchMateriData() {
             try {
-                const response = await fetch(`${scriptUrl}?sheet=materi&v=${Date.now()}`);
-                const result = await response.json();
+                const response = await fetch(`${scriptUrl}?sheet=materi&limit=0&v=${Date.now()}`);
+                const rawText = await response.text();
+                let result;
+                try {
+                    result = JSON.parse(rawText);
+                } catch (e) {
+                    throw new Error('Format respons dari server tidak valid.');
+                }
                 
-                if (result.status === 'success') {
+                if (result.status === 'success' && result.data && result.data.t_materi) {
                     allData = (result.data.t_materi || []).reverse(); 
                     filteredData = [...allData];
                     renderTable();
                 } else {
-                    document.getElementById('tableBody').innerHTML = `<tr><td colspan="6" class="text-center py-12 text-red-500 font-semibold">Gagal memuat data dari server.</td></tr>`;
+                    document.getElementById('tableBody').innerHTML = `<tr><td colspan="6" class="text-center py-12 text-red-500 font-semibold">${result.message || 'Gagal memuat data dari server.'}</td></tr>`;
                 }
             } catch (error) {
                 console.error(error);
-                document.getElementById('tableBody').innerHTML = `<tr><td colspan="6" class="text-center py-12 text-red-500 font-semibold">Kesalahan koneksi jaringan.</td></tr>`;
+                document.getElementById('tableBody').innerHTML = `<tr><td colspan="6" class="text-center py-12 text-red-500 font-semibold">Kesalahan koneksi jaringan atau URL Web App.</td></tr>`;
             }
         }
 

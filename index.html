@@ -8,81 +8,132 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .hover-lift { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hover-lift {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
         .hover-lift:hover {
             transform: translateY(-4px);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         }
+
         /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
     </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800 relative flex flex-col min-h-screen">
 
-    <!-- HEADER DIPERBARUI: fixed top-0, bg-gray-900/90, dan backdrop blur agar sticky saat di-scroll -->
-    <header class="fixed top-0 inset-x-0 z-50 border-b border-white/10 bg-gray-900/50 backdrop-blur-md shadow-lg transition-all duration-300">
+    <header
+        class="fixed top-0 inset-x-0 z-50 border-b border-white/10 bg-gray-900/50 backdrop-blur-md shadow-lg transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 h-24 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-12 h-12 flex items-center justify-center text-white shadow-lg overflow-hidden relative">
+                <!-- Wrapper Logo Header dengan ID -->
+                <div id="header-logo-wrapper"
+                    class="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center text-white shadow-lg relative">
                     <!-- LOGO DINAMIS DARI GDRIVE -->
-                    <img id="header-logo" src="" alt="Logo" class="hidden w-full h-full object-cover">
+                    <img id="header-logo" src="" alt="Logo" class="hidden w-full h-full object-contain">
                     <!-- FALLBACK SVG (Ikon Bawaan) -->
-                    <svg id="header-logo-fallback" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    <svg id="header-logo-fallback" class="w-7 h-7" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                        </path>
                     </svg>
                 </div>
                 <div class="flex flex-col justify-center">
-                    <span id="header-site-name" class="font-extrabold text-lg text-white tracking-wide leading-tight">MGMP BAHASA INDONESIA</span>
-                    <span id="header-tagline" class="text-xs text-blue-200 font-semibold uppercase tracking-widest mt-0.5">Tingkat SMP - Kab. Subang</span>
+                    <span id="header-site-name"
+                        class="font-extrabold text-lg text-white tracking-wide leading-tight">MGMP BAHASA
+                        INDONESIA</span>
+                    <span id="header-tagline"
+                        class="text-xs text-blue-200 font-semibold uppercase tracking-widest mt-0.5">Tingkat SMP - Kab.
+                        Subang</span>
                 </div>
             </div>
 
             <nav class="hidden md:flex h-full text-sm font-medium text-white/90 items-center space-x-2">
                 <a href="#" class="px-4 py-2 text-white bg-white/30 rounded-md transition font-semibold">Beranda</a>
-                
+
                 <!-- DROPDOWN PROFIL -->
                 <div class="relative group h-full flex items-center">
-                    <button class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md flex items-center gap-1 focus:outline-none transition">
+                    <button
+                        class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md flex items-center gap-1 focus:outline-none transition">
                         Profil
-                        <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
                     </button>
-                    <div class="overflow-hidden absolute top-[calc(100%-15px)] left-0 mt-0 w-56 bg-white border border-gray-100 shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                        <a href="pengurus.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Pengurus</a>
-                        <a href="visi-misi.html" class="block px-4 py-3 text-sm text-blue-700 bg-blue-50 font-semibold">Visi dan Misi</a>
+                    <div
+                        class="overflow-hidden absolute top-[calc(100%-15px)] left-0 mt-0 w-56 bg-white border border-gray-100 shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="pengurus.html"
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Pengurus</a>
+                        <a href="visi-misi.html"
+                            class="block px-4 py-3 text-sm text-blue-700 bg-blue-50 font-semibold">Visi dan Misi</a>
                     </div>
                 </div>
 
                 <!-- DROPDOWN PERANGKAT AJAR -->
                 <div class="relative group h-full flex items-center">
-                    <button class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md flex items-center gap-1 focus:outline-none transition">
+                    <button
+                        class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md flex items-center gap-1 focus:outline-none transition">
                         Perangkat Ajar
-                        <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
                     </button>
-                    <div class="overflow-hidden absolute top-[calc(100%-15px)] left-0 mt-0 w-56 bg-white border border-gray-100 shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                        <a href="materi.html#modul" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Modul Ajar</a>
-                        <a href="materi.html#buku" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Buku Teks</a>
-                        <a href="materi.html#media" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">Media Pembelajaran</a>
+                    <div
+                        class="overflow-hidden absolute top-[calc(100%-15px)] left-0 mt-0 w-56 bg-white border border-gray-100 shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="materi.html#modul"
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Modul
+                            Ajar</a>
+                        <a href="materi.html#buku"
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Buku
+                            Teks</a>
+                        <a href="materi.html#media"
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">Media
+                            Pembelajaran</a>
                     </div>
                 </div>
-                <a href="karya.html" class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md transition">Karya</a>
+                <a href="karya.html"
+                    class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md transition">Karya</a>
             </nav>
-            
+
         </div>
     </header>
 
     <!-- WADAH HALAMAN DINAMIS -->
     <main id="dynamic-homepage" class="flex flex-col flex-grow">
-        <!-- Tampilan Loading (Hanya terlihat jika tidak ada Cache sama sekali) -->
+        <!-- Tampilan Loading -->
         <div class="min-h-screen flex items-center justify-center py-24">
             <div class="text-center">
                 <svg class="animate-spin h-10 w-10 text-blue-600 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    <path class="opacity-75" fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                    </path>
                 </svg>
                 <p class="text-gray-500 font-medium">Membangun halaman...</p>
             </div>
@@ -94,12 +145,22 @@
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
                 <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    <!-- Wrapper Logo Footer dengan ID -->
+                    <div id="footer-logo-wrapper"
+                        class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white relative">
+                        <!-- LOGO DINAMIS DARI GDRIVE -->
+                        <img id="footer-logo" src="" alt="Logo" class="hidden w-full h-full object-contain">
+                        <!-- FALLBACK SVG (Ikon Bawaan) -->
+                        <svg id="footer-logo-fallback" class="w-6 h-6" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                            </path>
+                        </svg>
                     </div>
                     <p>
                         <span id="footer-site-name" class="font-bold text-white text-lg">MGMP BAHASA INDONESIA</span>
-                        <br/>
+                        <br />
                         <span id="footer-site-tagline" class="text-sm text-gray-400">Tingkat SMP - Kab. Subang</span>
                     </p>
                 </div>
@@ -109,30 +170,36 @@
                 <h4 class="text-white font-bold mb-4">Tautan Cepat</h4>
                 <ul class="space-y-2 text-sm text-gray-400">
                     <li><a href="#" class="hover:text-blue-400 transition">Beranda</a></li>
-                    <li><a href="materi.html" class="hover:text-blue-400 transition">Gudang Digital</a></li>
-                    <li><a href="#" class="hover:text-blue-400 transition">Agenda</a></li>
                     <li><a href="profil.html" class="hover:text-blue-400 transition">Profil</a></li>
+                    <li><a href="visi-misi.html" class="hover:text-blue-400 transition">Visi dan Misi</a></li>
+                    <li><a href="materi.html" class="hover:text-blue-400 transition">Gudang Digital</a></li>
                 </ul>
             </div>
             <div class="md:ml-auto">
                 <h4 class="text-white font-bold mb-4">Hubungi Kami</h4>
                 <ul class="space-y-3 text-sm text-gray-400">
                     <li class="flex items-center gap-2">
-                        <svg class="w-5 h-5 text-gray-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <svg class="w-5 h-5 text-gray-500 shrink-0" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                            </path>
+                        </svg>
                         <a id="footer-email" href="#" class="hover:text-blue-400 transition">Memuat...</a>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-4 mt-8 pt-8 border-t border-gray-800 text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center">
+        <div
+            class="max-w-7xl mx-auto px-4 mt-8 pt-8 border-t border-gray-800 text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center">
             <p>&copy; 2026 Hak cipta dilindungi.</p>
         </div>
     </footer>
 
-    <!-- SCRIPT MESIN RENDER (COMPONENT-DRIVEN + CACHING) -->
+    <!-- SCRIPT MESIN RENDER -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbyo_VhBHvPdhV-vAnKh8b-cp5Zm8lHyBwq4WyzKdt-SZQ-aBwa-x2cKpPGuAK371ZhC/exec'; 
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbyo_VhBHvPdhV-vAnKh8b-cp5Zm8lHyBwq4WyzKdt-SZQ-aBwa-x2cKpPGuAK371ZhC/exec';
             const mainContainer = document.getElementById('dynamic-homepage');
 
             // --- Fungsi Pembantu (Konversi URL GDrive) ---
@@ -142,7 +209,7 @@
                     const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
                     if (match && match[1]) return `https://lh3.googleusercontent.com/d/${match[1]}`;
                 }
-                return url; 
+                return url;
             }
 
             // --- PUSTAKA TEMPLATE LAYOUT ---
@@ -152,7 +219,7 @@
                     if (!item) return '';
 
                     const bgUrl = getDirectImageUrl(item.foto) || 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1920&q=80';
-                    
+
                     return `
                     <section id="${config.section_id}" class="relative min-h-screen md:min-h-[90vh] flex items-center pt-24 overflow-hidden">
                         <div class="absolute inset-0 z-0 bg-gray-900">
@@ -186,8 +253,7 @@
                 grid_card: (config, data) => {
                     let cards = data.map((item, index) => {
                         let imgSource = item.img_cover ? getDirectImageUrl(item.img_cover) : '';
-                        
-                        // SETTING WARNA TEMA
+
                         let jenis = item.jenis ? item.jenis.toLowerCase().trim() : 'modul';
                         let themeText = 'text-blue-600';
                         let themeHover = 'group-hover:text-blue-600';
@@ -206,11 +272,9 @@
                             avatarBorder = 'border-red-100';
                         }
 
-                        // SETTING LABEL KELAS (UMUM)
                         let labelKelasRaw = item.kelas ? item.kelas.toString().toUpperCase().trim() : '';
                         let teksKelas = (labelKelasRaw === 'UMUM') ? 'UMUM' : `KELAS ${item.kelas}`;
 
-                        // VISUAL BLOCK (Thumbnails)
                         let visualBlock = '';
                         if (jenis === 'video' && item.youtube_id) {
                             visualBlock = `
@@ -282,7 +346,7 @@
                     let cards = data.map((item, index) => {
                         const bgColor = index % 2 === 0 ? 'bg-blue-600 group-hover:bg-blue-700' : 'bg-gray-800 group-hover:bg-gray-900';
                         const textColor = index % 2 === 0 ? 'text-blue-200' : 'text-gray-300';
-                        
+
                         const tgl = new Date(item.agenda_date);
                         const bulan = tgl.toLocaleString('id-ID', { month: 'short' });
                         const tanggal = String(tgl.getDate()).padStart(2, '0');
@@ -352,9 +416,8 @@
                 }
             };
 
-            // --- FUNGSI RENDER (DIPISAH AGAR BISA DIPANGGIL CACHE & SERVER) ---
+            // --- FUNGSI RENDER ---
             function renderLayar(result) {
-                // 1. Eksekusi Variabel Global
                 const globalData = {};
                 result.data.global.forEach(item => Object.assign(globalData, item));
 
@@ -363,27 +426,39 @@
                 document.getElementById('footer-site-name').innerText = globalData.site_name || '';
                 document.getElementById('footer-site-tagline').innerText = globalData.site_tagline || '';
                 document.getElementById('footer-desc').innerText = globalData.footer_desc || '';
-                
+
                 const emailEl = document.getElementById('footer-email');
                 emailEl.innerText = globalData.email || '';
                 emailEl.href = `mailto:${globalData.email}`;
 
-                // --- INTEGRASI LOGO DARI GDrive ---
-                const logoImg = document.getElementById('header-logo');
-                const logoFallback = document.getElementById('header-logo-fallback');
-                
+                // --- INTEGRASI LOGO HEADER & FOOTER DARI GDrive ---
+                const headerLogoImg = document.getElementById('header-logo');
+                const headerLogoFallback = document.getElementById('header-logo-fallback');
+                const headerLogoWrapper = document.getElementById('header-logo-wrapper');
+
+                const footerLogoImg = document.getElementById('footer-logo');
+                const footerLogoFallback = document.getElementById('footer-logo-fallback');
+                const footerLogoWrapper = document.getElementById('footer-logo-wrapper');
+
                 if (globalData.logo) {
                     const parsedLogoUrl = getDirectImageUrl(globalData.logo);
-                    if(parsedLogoUrl) {
-                        logoImg.src = parsedLogoUrl;
-                        logoImg.classList.remove('hidden');       // Tampilkan Tag Img
-                        logoFallback.classList.add('hidden');     // Sembunyikan SVG Bawaan
+                    if (parsedLogoUrl) {
+                        // Terapkan Logo Header & Hapus Styling Box-nya
+                        headerLogoImg.src = parsedLogoUrl;
+                        headerLogoImg.classList.remove('hidden');
+                        headerLogoFallback.classList.add('hidden');
+                        headerLogoWrapper.classList.remove('bg-white/10', 'backdrop-blur-md', 'border', 'border-white/20', 'rounded-xl', 'shadow-lg');
+
+                        // Terapkan Logo Footer & Hapus Styling Box-nya
+                        footerLogoImg.src = parsedLogoUrl;
+                        footerLogoImg.classList.remove('hidden');
+                        footerLogoFallback.classList.add('hidden');
+                        footerLogoWrapper.classList.remove('bg-white/10', 'rounded-lg');
                     }
                 }
 
-                // 2. Eksekusi Halaman Dinamis
-                mainContainer.innerHTML = ''; // Hapus indikator loading
-                
+                mainContainer.innerHTML = '';
+
                 result.data.homepage.forEach(section => {
                     if (!section.status || section.status.toLowerCase() !== 'publish') return;
 
@@ -392,7 +467,7 @@
 
                     if (sourceKey && result.data[sourceKey]) {
                         masterData = result.data[sourceKey].filter(item => {
-                            if(!item.status) return true;
+                            if (!item.status) return true;
                             const st = item.status.toLowerCase();
                             return st === 'aktif' || st === 'publish';
                         });
@@ -409,58 +484,49 @@
                 });
             }
 
-            // --- EKSEKUTOR UTAMA (DENGAN CACHING LOCALSTORAGE & ANTI-GAGAL) ---
+            // --- EKSEKUTOR UTAMA ---
             async function buildApplication() {
                 const CACHE_KEY = 'mgmp_data_homepage';
-                
-                // LANGKAH 1: Ambil data dari Cache (Memori Lokal Browser) untuk tampilan instan
+
                 const cachedData = localStorage.getItem(CACHE_KEY);
                 if (cachedData) {
                     try {
                         const parsedCache = JSON.parse(cachedData);
-                        renderLayar(parsedCache); 
+                        renderLayar(parsedCache);
                     } catch (e) {
                         console.log("Cache error, dibersihkan.");
                         localStorage.removeItem(CACHE_KEY);
                     }
                 }
 
-                // LANGKAH 2: Fetch data terbaru ke server Google secara asinkron
                 try {
-                    // Trik Cache-Busting: Tambahkan timestamp agar URL selalu unik tiap milidetik
                     const timeStamp = new Date().getTime();
                     const fetchUrl = `${scriptUrl}?v=${timeStamp}`;
 
-                    // Lakukan fetch TANPA custom headers agar tidak memicu error CORS Preflight Google
                     const response = await fetch(fetchUrl, {
                         method: 'GET',
                         redirect: 'follow'
                     });
-                    
+
                     const result = await response.json();
 
                     if (result.status === 'success') {
-                        // Perbarui data cache dengan yang terbaru dari Google Sheets
                         localStorage.setItem(CACHE_KEY, JSON.stringify(result));
-                        
-                        // Timpa layar dengan data terbaru
                         renderLayar(result);
                     } else {
                         throw new Error(result.message);
                     }
                 } catch (error) {
                     console.error('Koneksi Fetch Gagal:', error);
-                    
-                    // Munculkan peringatan hanya jika pengguna belum punya cache sama sekali (kunjungan pertama)
                     if (!cachedData) {
                         mainContainer.innerHTML = `<div class="w-full text-center py-24"><div class="bg-red-50 text-red-600 inline-block px-6 py-4 rounded-lg font-bold border border-red-200 shadow-sm">Koneksi jaringan terputus atau Google API gagal merespons.<br>Silakan coba muat ulang (refresh) halaman.</div></div>`;
                     }
                 }
             }
 
-            // Mulai Mesin
             buildApplication();
         });
     </script>
 </body>
+
 </html>

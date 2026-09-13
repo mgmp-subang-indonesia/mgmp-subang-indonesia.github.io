@@ -23,17 +23,30 @@
 
 <body class="bg-gray-50 text-gray-800 relative flex flex-col min-h-screen">
 
-    <header class="absolute top-0 inset-x-0 z-50 border-b border-white/20 bg-gradient-to-b from-black/70 to-transparent">
+    <header
+        class="fixed top-0 inset-x-0 z-50 border-b border-white/10 bg-gray-900/50 backdrop-blur-md shadow-lg transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 h-24 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center text-white shadow-lg">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                <!-- Wrapper Logo Header dengan ID -->
+                <div id="header-logo-wrapper"
+                    class="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center text-white shadow-lg relative">
+                    <!-- LOGO DINAMIS DARI GDRIVE -->
+                    <img id="header-logo" src="" alt="Logo" class="hidden w-full h-full object-contain">
+                    <!-- FALLBACK SVG (Ikon Bawaan) -->
+                    <svg id="header-logo-fallback" class="w-7 h-7" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                        </path>
                     </svg>
                 </div>
                 <div class="flex flex-col justify-center">
-                    <span id="header-site-name" class="font-extrabold text-lg text-white tracking-wide leading-tight">MGMP BAHASA INDONESIA</span>
-                    <span id="header-tagline" class="text-xs text-blue-200 font-semibold uppercase tracking-widest mt-0.5">Tingkat SMP - Kab. Subang</span>
+                    <span id="header-site-name"
+                        class="font-extrabold text-lg text-white tracking-wide leading-tight">MGMP BAHASA
+                        INDONESIA</span>
+                    <span id="header-tagline"
+                        class="text-xs text-blue-200 font-semibold uppercase tracking-widest mt-0.5">Tingkat SMP - Kab.
+                        Subang</span>
                 </div>
             </div>
 
@@ -87,16 +100,26 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800 mt-auto">
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
                 <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    <!-- Wrapper Logo Footer dengan ID -->
+                    <div id="footer-logo-wrapper"
+                        class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white relative">
+                        <!-- LOGO DINAMIS DARI GDRIVE -->
+                        <img id="footer-logo" src="" alt="Logo" class="hidden w-full h-full object-contain">
+                        <!-- FALLBACK SVG (Ikon Bawaan) -->
+                        <svg id="footer-logo-fallback" class="w-6 h-6" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                            </path>
+                        </svg>
                     </div>
                     <p>
                         <span id="footer-site-name" class="font-bold text-white text-lg">MGMP BAHASA INDONESIA</span>
-                        <br/>
+                        <br />
                         <span id="footer-site-tagline" class="text-sm text-gray-400">Tingkat SMP - Kab. Subang</span>
                     </p>
                 </div>
@@ -105,22 +128,29 @@
             <div class="md:ml-auto">
                 <h4 class="text-white font-bold mb-4">Tautan Cepat</h4>
                 <ul class="space-y-2 text-sm text-gray-400">
-                    <li><a href="index.html" class="hover:text-blue-400 transition">Beranda</a></li>
-                    <li><a href="materi.html" class="hover:text-blue-400 transition">Gudang Digital</a></li>
+                    <li><a href="#" class="hover:text-blue-400 transition">Beranda</a></li>
                     <li><a href="profil.html" class="hover:text-blue-400 transition">Profil</a></li>
+                    <li><a href="visi-misi.html" class="hover:text-blue-400 transition">Visi dan Misi</a></li>
+                    <li><a href="materi.html" class="hover:text-blue-400 transition">Gudang Digital</a></li>
                 </ul>
             </div>
             <div class="md:ml-auto">
                 <h4 class="text-white font-bold mb-4">Hubungi Kami</h4>
                 <ul class="space-y-3 text-sm text-gray-400">
                     <li class="flex items-center gap-2">
-                        <svg class="w-5 h-5 text-gray-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <svg class="w-5 h-5 text-gray-500 shrink-0" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                            </path>
+                        </svg>
                         <a id="footer-email" href="#" class="hover:text-blue-400 transition">Memuat...</a>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-4 mt-8 pt-8 border-t border-gray-800 text-sm text-gray-500 text-center md:text-left">
+        <div
+            class="max-w-7xl mx-auto px-4 mt-8 pt-8 border-t border-gray-800 text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center">
             <p>&copy; 2026 Hak cipta dilindungi.</p>
         </div>
     </footer>
@@ -156,6 +186,32 @@
                     if(emailEl) {
                         emailEl.innerText = globalData.email || '';
                         emailEl.href = `mailto:${globalData.email}`;
+                    }
+
+                    // --- INTEGRASI LOGO HEADER & FOOTER DARI GDrive ---
+                    const headerLogoImg = document.getElementById('header-logo');
+                    const headerLogoFallback = document.getElementById('header-logo-fallback');
+                    const headerLogoWrapper = document.getElementById('header-logo-wrapper');
+
+                    const footerLogoImg = document.getElementById('footer-logo');
+                    const footerLogoFallback = document.getElementById('footer-logo-fallback');
+                    const footerLogoWrapper = document.getElementById('footer-logo-wrapper');
+
+                    if (globalData.logo) {
+                        const parsedLogoUrl = getDirectImageUrl(globalData.logo);
+                        if (parsedLogoUrl) {
+                            // Terapkan Logo Header & Hapus Styling Box-nya
+                            headerLogoImg.src = parsedLogoUrl;
+                            headerLogoImg.classList.remove('hidden');
+                            headerLogoFallback.classList.add('hidden');
+                            headerLogoWrapper.classList.remove('bg-white/10', 'backdrop-blur-md', 'border', 'border-white/20', 'rounded-xl', 'shadow-lg');
+
+                            // Terapkan Logo Footer & Hapus Styling Box-nya
+                            footerLogoImg.src = parsedLogoUrl;
+                            footerLogoImg.classList.remove('hidden');
+                            footerLogoFallback.classList.add('hidden');
+                            footerLogoWrapper.classList.remove('bg-white/10', 'rounded-lg');
+                        }
                     }
                 }
 

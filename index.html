@@ -24,11 +24,15 @@
 
 <body class="bg-gray-50 text-gray-800 relative flex flex-col min-h-screen">
 
-    <header class="absolute top-0 inset-x-0 z-50 border-b border-white/20 bg-gradient-to-b from-black/70 to-transparent">
+    <!-- HEADER DIPERBARUI: fixed top-0, bg-gray-900/90, dan backdrop blur agar sticky saat di-scroll -->
+    <header class="fixed top-0 inset-x-0 z-50 border-b border-white/10 bg-gray-900/50 backdrop-blur-md shadow-lg transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 h-24 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center text-white shadow-lg">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="w-12 h-12 flex items-center justify-center text-white shadow-lg overflow-hidden relative">
+                    <!-- LOGO DINAMIS DARI GDRIVE -->
+                    <img id="header-logo" src="" alt="Logo" class="hidden w-full h-full object-cover">
+                    <!-- FALLBACK SVG (Ikon Bawaan) -->
+                    <svg id="header-logo-fallback" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                     </svg>
                 </div>
@@ -67,8 +71,6 @@
                 </div>
                 <a href="karya.html" class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md transition">Karya</a>
             </nav>
-            
-            <!-- Tombol "Masuk" telah dihapus dari area ini -->
             
         </div>
     </header>
@@ -133,7 +135,7 @@
             const scriptUrl = 'https://script.google.com/macros/s/AKfycbyo_VhBHvPdhV-vAnKh8b-cp5Zm8lHyBwq4WyzKdt-SZQ-aBwa-x2cKpPGuAK371ZhC/exec'; 
             const mainContainer = document.getElementById('dynamic-homepage');
 
-            // --- Fungsi Pembantu ---
+            // --- Fungsi Pembantu (Konversi URL GDrive) ---
             function getDirectImageUrl(url) {
                 if (!url) return null;
                 if (url.includes('drive.google.com')) {
@@ -145,7 +147,6 @@
 
             // --- PUSTAKA TEMPLATE LAYOUT ---
             const Templates = {
-                // 1. Template HERO IMAGE
                 hero: (config, data) => {
                     const item = data.find(x => x.status && x.status.toLowerCase() === 'aktif' && x.halaman && x.halaman.toLowerCase() === 'homepage') || data[0];
                     if (!item) return '';
@@ -182,7 +183,6 @@
                     </section>`;
                 },
 
-                // 2. Template GRID KARTU MATERI (Dengan Color Coding & UMUM)
                 grid_card: (config, data) => {
                     let cards = data.map((item, index) => {
                         let imgSource = item.img_cover ? getDirectImageUrl(item.img_cover) : '';
@@ -278,7 +278,6 @@
                     </section>`;
                 },
 
-                // 3. Template LIST AGENDA (Dengan Klik Link Location)
                 list_agenda: (config, data) => {
                     let cards = data.map((item, index) => {
                         const bgColor = index % 2 === 0 ? 'bg-blue-600 group-hover:bg-blue-700' : 'bg-gray-800 group-hover:bg-gray-900';
@@ -328,7 +327,6 @@
                     </section>`;
                 },
 
-                // 4. Template GRID PROFIL PENGURUS
                 grid_profile: (config, data) => {
                     let cards = data.map(item => {
                         let img = getDirectImageUrl(item.foto) || `https://ui-avatars.com/api/?name=${encodeURIComponent(item.nama)}&background=random`;
@@ -369,6 +367,19 @@
                 const emailEl = document.getElementById('footer-email');
                 emailEl.innerText = globalData.email || '';
                 emailEl.href = `mailto:${globalData.email}`;
+
+                // --- INTEGRASI LOGO DARI GDrive ---
+                const logoImg = document.getElementById('header-logo');
+                const logoFallback = document.getElementById('header-logo-fallback');
+                
+                if (globalData.logo) {
+                    const parsedLogoUrl = getDirectImageUrl(globalData.logo);
+                    if(parsedLogoUrl) {
+                        logoImg.src = parsedLogoUrl;
+                        logoImg.classList.remove('hidden');       // Tampilkan Tag Img
+                        logoFallback.classList.add('hidden');     // Sembunyikan SVG Bawaan
+                    }
+                }
 
                 // 2. Eksekusi Halaman Dinamis
                 mainContainer.innerHTML = ''; // Hapus indikator loading

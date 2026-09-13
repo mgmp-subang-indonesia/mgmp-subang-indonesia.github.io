@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Susunan Pengurus | CMS MGMP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="../icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icon/favicon-16x16.png">
+    <link rel="manifest" href="../icon/site.webmanifest">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; border: 2px solid #f8fafc; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        #sidebar { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 flex h-screen overflow-hidden">
+
+    <!-- TOAST NOTIFICATION CONTAINER (TOP CENTER) -->
+    <div id="toastContainer" class="fixed top-5 left-1/2 -translate-x-1/2 z-[70] flex flex-col items-center gap-2 pointer-events-none"></div>
+
+    <!-- OVERLAY MOBILE -->
+    <div id="sidebarOverlay" onclick="toggleSidebar()" class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm z-40 hidden md:hidden opacity-0 transition-opacity duration-300"></div>
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-white text-gray-900 flex flex-col h-full flex-shrink-0 transform -translate-x-full md:relative md:translate-x-0 border-r border-gray-200 shadow-2xl md:shadow-none">
+        
+        <div class="h-16 flex items-center justify-between px-6 border-b border-gray-100 bg-white">
+            <h1 class="font-extrabold text-lg tracking-tight flex items-center gap-2.5">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-600/30">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                CMS MGMP
+            </h1>
+            <button onclick="toggleSidebar()" class="md:hidden text-gray-400 hover:text-gray-900 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-1">
+            <p class="px-2 text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-3">Menu Utama</p>
+
+            <a href="cms-materi.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-colors">
+                <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Kelola Materi
+            </a>
+            <a href="cms-pengurus.html" class="flex items-center gap-3 px-3 py-2.5 bg-blue-600 text-white rounded-xl font-semibold shadow-md shadow-blue-600/20">
+                <svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                Susunan Pengurus
+            </a>
+            <a href="cms-agenda.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-colors">
+                <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                Agenda Kegiatan
+            </a>
+
+            <p class="px-2 text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-3 mt-8">Sistem</p>
+            <a href="cms-pengaturan.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-colors">
+                <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                Pengaturan Web
+            </a>
+        </nav>
+
+        <div class="p-5 border-t border-gray-100 bg-white">
+            <div class="flex items-center justify-between mb-4 px-1">
+                <span class="text-[11px] text-gray-500 font-bold uppercase tracking-wider">Sisa Sesi</span>
+                <span id="sessionTimer" class="text-xs text-green-700 font-bold bg-green-50 px-2.5 py-1 rounded-md border border-green-200 shadow-sm">00:00</span>
+            </div>
+            <button onclick="logout()" class="w-full flex items-center justify-center gap-2 bg-white text-red-600 hover:bg-red-50 font-bold py-2.5 rounded-xl transition-all duration-200 text-sm border border-red-200 hover:border-red-300 shadow-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                Akhiri Sesi
+            </button>
+        </div>
+    </aside>
+
+    <!-- AREA KONTEN UTAMA -->
+    <main class="flex-1 flex flex-col h-full relative w-full overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-100">
+
+        <div class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-10">
+            <div class="mb-8 mt-4 sm:mt-0 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <button onclick="toggleSidebar()" class="md:hidden mb-4 p-2 -ml-2 rounded-lg bg-white shadow-sm text-gray-600 hover:bg-gray-100 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                    <h2 class="text-2xl font-extrabold text-gray-900">Susunan Pengurus</h2>
+                    <p class="text-gray-500 text-sm mt-1 font-medium">Pusat kendali data badan pengurus dan struktur organisasi MGMP.</p>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <button onclick="fetchPengurusData(true)" class="inline-flex items-center justify-center w-[52px] h-[52px] bg-white border border-gray-200 text-gray-700 font-bold rounded-xl hover:bg-gray-50 transition-all duration-200 shadow-sm" title="Segarkan Data dari Server">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                    </button>
+                    <a href="cms-pengurus-form.html" class="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-lg shadow-blue-600/30 text-sm">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+                        <span>Tambah Pengurus Baru</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card Tabel & Filter Bar -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="p-4 sm:p-6 border-b border-gray-100 flex flex-col sm:flex-row gap-4 items-center justify-between">
+                    <div class="w-full sm:w-80 relative">
+                        <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        </span>
+                        <input type="text" id="searchTable" onkeyup="filterTable()" placeholder="Cari nama, jabatan, atau instansi..." class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500">
+                    </div>
+                    <div class="w-full sm:w-auto flex items-center gap-3">
+                        <select id="filterJabatan" onchange="filterTable()" class="w-full sm:w-auto px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500">
+                            <option value="semua">Semua Jabatan</option>
+                            <option value="ketua">Ketua</option>
+                            <option value="sekretaris">Sekretaris</option>
+                            <option value="bendahara">Bendahara</option>
+                            <option value="bidang">Bidang</option>
+                            <option value="anggota">Anggota</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[800px]">
+                        <thead>
+                            <tr class="bg-gray-50/70 border-b border-gray-200 text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+                                <th class="py-4 px-6 w-16">Foto</th>
+                                <th class="py-4 px-6">Nama Lengkap</th>
+                                <th class="py-4 px-6">Jabatan</th>
+                                <th class="py-4 px-6">Instansi</th>
+                                <th class="py-4 px-6">Status</th>
+                                <th class="py-4 px-6 text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody" class="divide-y divide-gray-100 text-sm font-medium text-gray-700">
+                            <tr>
+                                <td colspan="6" class="text-center py-16 text-gray-400">
+                                    <svg class="animate-spin h-8 w-8 text-blue-600 mx-auto mb-3" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                                    Memuat data pengurus...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="p-4 sm:p-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <p class="text-xs text-gray-500 font-medium" id="tableInfo">Menampilkan 0 dari 0 data</p>
+                    <div class="flex items-center gap-1.5" id="paginationContainer"></div>
+                </div>
+            </div>
+            <p class="text-center text-xs text-gray-400 mt-8 mb-4 font-semibold tracking-wide">&copy; 2026 MGMP Bahasa Indonesia - Hak Cipta Dilindungi.</p>
+        </div>
+    </main>
+
+    <!-- ============================================== -->
+    <!-- MODAL POPUP: KONFIRMASI STATUS -->
+    <!-- ============================================== -->
+    <div id="confirmModal" class="fixed inset-0 z-[60] bg-gray-900/60 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 pointer-events-none">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 transform scale-95 transition-transform duration-300" id="confirmModalContent">
+            <div id="confirmIcon" class="flex items-center justify-center w-14 h-14 rounded-full mb-4 mx-auto"></div>
+            
+            <h3 id="confirmTitle" class="text-xl font-extrabold text-center text-gray-900 mb-2">Konfirmasi</h3>
+            <p id="confirmDesc" class="text-sm text-gray-500 text-center mb-6 font-medium">Apakah Anda yakin?</p>
+            
+            <div id="confirmAlert" class="hidden mb-4 p-3 rounded-lg text-xs font-bold text-center"></div>
+
+            <div class="flex gap-3">
+                <button onclick="closeConfirmModal()" class="flex-1 px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl transition">Batal</button>
+                <button id="confirmExecuteBtn" class="flex-1 px-4 py-2.5 font-bold rounded-xl transition flex justify-center items-center">Ya, Lanjutkan</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbw1c_sVKGzspNVtB43lW8IARX_-m3yYRbE7KxoEnct-gWauhG2VG36wxK7yeIfOorHx/exec';
+        const SESSION_DURATION = 3600000;
+
+        let allData = [];
+        let filteredData = [];
+        let currentPage = 1;
+        const rowsPerPage = 10;
+        
+        let pendingStatusId = null;
+        let pendingNewStatus = '';
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            if (!container) return;
+            const toast = document.createElement('div');
+            
+            let bgClass = type === 'success' ? 'bg-gray-900 text-white' : 'bg-red-600 text-white';
+            let iconSvg = type === 'success' 
+                ? '<svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>'
+                : '<svg class="w-4 h-4 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>';
+
+            toast.className = `flex items-center gap-3 px-4 py-3 rounded-xl shadow-xl text-xs font-bold transition-all duration-300 transform -translate-y-5 opacity-0 pointer-events-auto ${bgClass}`;
+            toast.innerHTML = `${iconSvg}<span>${message}</span>`;
+            
+            container.appendChild(toast);
+            setTimeout(() => toast.classList.remove('-translate-y-5', 'opacity-0'), 10);
+
+            setTimeout(() => {
+                toast.classList.add('-translate-y-5', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        function checkSession() {
+            const token = localStorage.getItem('cms_token');
+            let loginTime = localStorage.getItem('cms_timestamp');
+
+            if (token && !loginTime) {
+                loginTime = Date.now().toString();
+                localStorage.setItem('cms_timestamp', loginTime);
+            }
+
+            if (!token || !loginTime || (Date.now() - parseInt(loginTime) > SESSION_DURATION)) {
+                forceLogout();
+            } else {
+                setInterval(() => {
+                    const elapsed = Date.now() - parseInt(loginTime);
+                    let remaining = SESSION_DURATION - elapsed;
+
+                    if (remaining <= 0) {
+                        forceLogout();
+                        return;
+                    }
+
+                    const m = Math.floor(remaining / 60000);
+                    const s = Math.floor((remaining % 60000) / 1000);
+                    const timerEl = document.getElementById('sessionTimer');
+                    
+                    if (timerEl) {
+                        if (remaining < 300000) {
+                            timerEl.classList.replace('text-green-700', 'text-red-700');
+                            timerEl.classList.replace('bg-green-50', 'bg-red-50');
+                            timerEl.classList.replace('border-green-200', 'border-red-200');
+                        }
+                        timerEl.innerText = `${m}:${s.toString().padStart(2, '0')}`;
+                    }
+                }, 1000);
+            }
+        }
+
+        function forceLogout() {
+            localStorage.removeItem('cms_token');
+            localStorage.removeItem('cms_timestamp');
+            localStorage.removeItem('cms_pengurus_cache');
+            window.location.href = 'login.html';
+        }
+        function logout() { forceLogout(); }
+        checkSession();
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('-translate-x-full');
+            if (overlay.classList.contains('hidden')) {
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+            } else {
+                overlay.classList.add('opacity-0');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            }
+        }
+
+        function getDirectImageUrl(url) {
+            if (!url) return null;
+            if (url.includes('drive.google.com')) {
+                let match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                if (match && match[1]) return `https://lh3.googleusercontent.com/d/${match[1]}`;
+                let matchUc = url.match(/id=([a-zA-Z0-9_-]+)/);
+                if (matchUc && matchUc[1]) return `https://lh3.googleusercontent.com/d/${matchUc[1]}`;
+            }
+            return url; 
+        }
+
+        async function fetchPengurusData(forceRefresh = false) {
+            const cacheKey = 'cms_pengurus_cache';
+            const cacheTimeKey = 'cms_pengurus_cache_time';
+            const CACHE_TTL = 300000;
+
+            const cachedData = localStorage.getItem(cacheKey);
+            const cachedTime = localStorage.getItem(cacheTimeKey);
+
+            if (!forceRefresh && cachedData && cachedTime && (Date.now() - parseInt(cachedTime) < CACHE_TTL)) {
+                try {
+                    allData = JSON.parse(cachedData);
+                    filteredData = [...allData];
+                    renderTable();
+                    return;
+                } catch (e) {
+                    localStorage.removeItem(cacheKey);
+                }
+            }
+
+            try {
+                const response = await fetch(`${scriptUrl}?sheet=pengurus&limit=0&v=${Date.now()}`);
+                const rawText = await response.text();
+                let result;
+                try {
+                    result = JSON.parse(rawText);
+                } catch (e) {
+                    throw new Error('Format respons dari server tidak valid.');
+                }
+                
+                let pengurusList = [];
+                if (result.status === 'success' && result.data) {
+                    if (Array.isArray(result.data.t_pengurus)) {
+                        pengurusList = result.data.t_pengurus;
+                    } else if (Array.isArray(result.data.pengurus)) {
+                        pengurusList = result.data.pengurus;
+                    } else if (Array.isArray(result.data)) {
+                        pengurusList = result.data;
+                    }
+                }
+
+                if (result.status === 'success') {
+                    allData = pengurusList; 
+                    filteredData = [...allData];
+                    
+                    localStorage.setItem(cacheKey, JSON.stringify(allData));
+                    localStorage.setItem(cacheTimeKey, Date.now().toString());
+
+                    renderTable();
+                } else {
+                    document.getElementById('tableBody').innerHTML = `<tr><td colspan="6" class="text-center py-12 text-red-500 font-semibold">${result.message || 'Gagal memuat data dari server.'}</td></tr>`;
+                }
+            } catch (error) {
+                console.error(error);
+                localStorage.removeItem(cacheKey);
+                localStorage.removeItem(cacheTimeKey);
+                
+                document.getElementById('tableBody').innerHTML = `<tr><td colspan="6" class="text-center py-12 text-red-500 font-semibold">Kesalahan koneksi jaringan atau URL Web App.</td></tr>`;
+            }
+        }
+        
+        function filterTable() {
+            const keyword = document.getElementById('searchTable').value.toLowerCase();
+            const jabatanFilter = document.getElementById('filterJabatan').value.toLowerCase();
+
+            filteredData = allData.filter(item => {
+                const matchKeyword = (item.nama || '').toLowerCase().includes(keyword) || 
+                                     (item.jabatan || '').toLowerCase().includes(keyword) || 
+                                     (item.instansi || '').toLowerCase().includes(keyword);
+                
+                let matchJabatan = true;
+                if (jabatanFilter !== 'semua') {
+                    matchJabatan = (item.jabatan || '').toLowerCase().includes(jabatanFilter);
+                }
+
+                return matchKeyword && matchJabatan;
+            });
+
+            currentPage = 1;
+            renderTable();
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+
+            if (filteredData.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="text-center py-16 text-gray-400 font-medium"><div class="text-4xl mb-3">📭</div>Tidak ada data pengurus yang ditemukan.</td></tr>`;
+                document.getElementById('tableInfo').innerText = `Menampilkan 0 dari 0 data`;
+                document.getElementById('paginationContainer').innerHTML = '';
+                return;
+            }
+
+            const start = (currentPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const paginatedItems = filteredData.slice(start, end);
+
+            paginatedItems.forEach(item => {
+                let fallbackImg = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80';
+                let thumbUrl = item.foto ? (getDirectImageUrl(item.foto) || fallbackImg) : fallbackImg;
+
+                let isAktif = (!item.status || item.status.toLowerCase() === 'aktif');
+                let statusBadge = isAktif 
+                    ? '<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-bold bg-green-50 text-green-700 border border-green-200"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Aktif</span>' 
+                    : '<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-bold bg-gray-100 text-gray-500 border border-gray-200"><span class="w-1.5 h-1.5 rounded-full bg-gray-400"></span> Tidak Aktif</span>';
+
+                const tr = document.createElement('tr');
+                tr.id = `row-${item.id}`;
+                tr.className = "hover:bg-blue-50/30 transition-colors";
+                tr.innerHTML = `
+                    <td class="py-3 px-6">
+                        <img src="${thumbUrl}" onerror="this.src='${fallbackImg}'" class="w-10 h-10 object-cover rounded-full border border-gray-200 shadow-sm" alt="Foto Pengurus">
+                    </td>
+                    <td class="py-3 px-6 font-bold text-gray-900">${item.nama || '-'}</td>
+                    <td class="py-3 px-6 text-gray-700 font-medium"><span class="px-2.5 py-1 bg-blue-50 text-blue-700 border border-blue-100 rounded-lg text-xs font-semibold">${item.jabatan || '-'}</span></td>
+                    <td class="py-3 px-6 text-gray-600">${item.instansi || '-'}</td>
+                    <td class="py-3 px-6" id="status-cell-${item.id}">${statusBadge}</td>
+                    <td class="py-3 px-6 text-center">
+                        <div class="flex items-center justify-center gap-1.5" id="action-cell-${item.id}">
+                            <button onclick="editPengurus('${item.id}')" class="p-2 bg-white border border-gray-200 hover:border-amber-300 shadow-sm hover:bg-amber-50 hover:text-amber-600 rounded-lg text-gray-500 transition-all" title="Edit Data">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                            </button>
+                            <button onclick="openConfirmModal('${item.id}', '${item.status}')" class="p-2 bg-white border border-gray-200 hover:border-red-300 shadow-sm hover:bg-red-50 hover:text-red-600 rounded-lg text-gray-500 transition-all" title="${isAktif ? 'Nonaktifkan' : 'Aktifkan'}">
+                                ${isAktif 
+                                    ? '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>' 
+                                    : '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>'}
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('tableInfo').innerText = `Menampilkan ${start + 1} - ${Math.min(end, filteredData.length)} dari total ${filteredData.length} data`;
+            renderPagination();
+        }
+
+        function renderPagination() {
+            const container = document.getElementById('paginationContainer');
+            container.innerHTML = '';
+            const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+
+            if (totalPages <= 1) return;
+
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.innerText = i;
+                btn.className = `px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${i === currentPage ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20' : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-100 hover:text-gray-900'}`;
+                btn.onclick = () => {
+                    currentPage = i;
+                    renderTable();
+                };
+                container.appendChild(btn);
+            }
+        }
+
+        function editPengurus(id) {
+            window.location.href = `cms-pengurus-form.html?edit=${id}`;
+        }
+
+        function openConfirmModal(id, currentStatus) {
+            pendingStatusId = id;
+            let isAktif = (!currentStatus || currentStatus === 'Aktif');
+            pendingNewStatus = isAktif ? 'Tidak Aktif' : 'Aktif';
+
+            const title = document.getElementById('confirmTitle');
+            const desc = document.getElementById('confirmDesc');
+            const btn = document.getElementById('confirmExecuteBtn');
+            const icon = document.getElementById('confirmIcon');
+            const alertBox = document.getElementById('confirmAlert');
+            
+            alertBox.classList.add('hidden');
+            
+            if (isAktif) { 
+                title.innerText = 'Nonaktifkan Pengurus?';
+                desc.innerText = 'Pengurus ini akan disembunyikan dari daftar struktur organisasi publik.';
+                btn.className = 'flex-1 px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition shadow-md shadow-red-600/20';
+                btn.innerText = 'Ya, Nonaktifkan';
+                icon.className = 'flex items-center justify-center w-14 h-14 rounded-full bg-red-100 text-red-600 mb-4 mx-auto';
+                icon.innerHTML = `<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>`;
+            } else { 
+                title.innerText = 'Aktifkan Kembali?';
+                desc.innerText = 'Pengurus ini akan kembali ditampilkan pada struktur organisasi publik.';
+                btn.className = 'flex-1 px-4 py-2.5 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl transition shadow-md shadow-green-600/20';
+                btn.innerText = 'Ya, Aktifkan';
+                icon.className = 'flex items-center justify-center w-14 h-14 rounded-full bg-green-100 text-green-600 mb-4 mx-auto';
+                icon.innerHTML = `<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>`;
+            }
+
+            const modal = document.getElementById('confirmModal');
+            modal.classList.remove('pointer-events-none');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                document.getElementById('confirmModalContent').classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeConfirmModal() {
+            const modal = document.getElementById('confirmModal');
+            document.getElementById('confirmModalContent').classList.add('scale-95');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('pointer-events-none');
+            }, 300);
+            document.getElementById('confirmExecuteBtn').disabled = false;
+        }
+
+        document.getElementById('confirmExecuteBtn').addEventListener('click', async () => {
+            const btn = document.getElementById('confirmExecuteBtn');
+            const alertBox = document.getElementById('confirmAlert');
+            const originalBtnText = btn.innerText;
+
+            btn.disabled = true;
+            btn.innerText = 'Memproses...';
+            alertBox.classList.add('hidden');
+
+            const statusCell = document.getElementById(`status-cell-${pendingStatusId}`);
+            const actionCell = document.getElementById(`action-cell-${pendingStatusId}`);
+            const rowElement = document.getElementById(`row-${pendingStatusId}`);
+
+            if (statusCell) {
+                statusCell.innerHTML = `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-bold bg-blue-50 text-blue-600 border border-blue-200"><svg class="animate-spin h-3 w-3 text-blue-600" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Menyimpan...</span>`;
+            }
+            if (actionCell) {
+                actionCell.style.opacity = '0.4';
+                actionCell.style.pointerEvents = 'none';
+            }
+            if (rowElement) {
+                rowElement.classList.add('bg-blue-50/50');
+            }
+
+            try {
+                const response = await fetch(scriptUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({ action: 'updatePengurusStatus', id: pendingStatusId, status: pendingNewStatus })
+                });
+
+                const rawText = await response.text();
+                let result;
+                try {
+                    result = JSON.parse(rawText);
+                } catch (e) {
+                    throw new Error('Format respons dari server tidak valid (bukan JSON).');
+                }
+                
+                if (result.status === 'success') {
+                    closeConfirmModal();
+                    showToast('Status pengurus berhasil diperbarui!', 'success');
+                    
+                    // Hapus cache lokal agar data terbaru langsung ditarik dari server
+                    localStorage.removeItem('cms_pengurus_cache');
+                    localStorage.removeItem('cms_pengurus_cache_time');
+
+                    await fetchPengurusData(true);
+                } else {
+                    if (rowElement) rowElement.classList.remove('bg-blue-50/50');
+                    alertBox.innerText = 'Gagal memperbarui status: ' + (result.message || 'Kesalahan tidak diketahui');
+                    alertBox.classList.remove('hidden');
+                    alertBox.classList.add('bg-red-50', 'text-red-600');
+                    btn.disabled = false;
+                    btn.innerText = originalBtnText;
+                    await fetchPengurusData(true);
+                }
+            } catch (error) {
+                console.error(error);
+                if (rowElement) rowElement.classList.remove('bg-blue-50/50');
+                alertBox.innerText = 'Gagal menghubungi server. Pastikan deployment script .gs aktif.';
+                alertBox.classList.add('bg-red-50', 'text-red-600');
+                btn.disabled = false;
+                btn.innerText = originalBtnText;
+                await fetchPengurusData(true);
+            }
+        });
+
+        fetchPengurusData();
+    </script>
+</body>
+</html>

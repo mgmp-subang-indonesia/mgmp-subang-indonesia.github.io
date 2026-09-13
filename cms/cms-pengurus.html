@@ -176,7 +176,7 @@
     </div>
 
     <script>
-        const scriptUrl = 'https://script.google.com/macros/s/AKfycbw1c_sVKGzspNVtB43lW8IARX_-m3yYRbE7KxoEnct-gWauhG2VG36wxK7yeIfOorHx/exec';
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycby1lj6AocanI1gcnkHra_5EBQX0s1I9OkZYAcMLPJV9XJnsFwiKHdh7sdKdRcj8baL1/exec';
         const SESSION_DURATION = 3600000;
 
         let allData = [];
@@ -376,7 +376,7 @@
             const paginatedItems = filteredData.slice(start, end);
 
             paginatedItems.forEach(item => {
-                let fallbackImg = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80';
+                let fallbackImg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2394a3b8'%3E%3Cpath fill-rule='evenodd' d='M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.75 20.165c0-4.142 3.358-7.5 7.5-7.5h1.5c4.142 0 7.5 3.358 7.5 7.5 0 .414-.336.75-.75.75h-15c-.414 0-.75-.336-.75-.75Z' clip-rule='evenodd' /%3E%3C/svg%3E";
                 let thumbUrl = item.foto ? (getDirectImageUrl(item.foto) || fallbackImg) : fallbackImg;
 
                 let isAktif = (!item.status || item.status.toLowerCase() === 'aktif');
@@ -389,10 +389,10 @@
                 tr.className = "hover:bg-blue-50/30 transition-colors";
                 tr.innerHTML = `
                     <td class="py-3 px-6">
-                        <img src="${thumbUrl}" onerror="this.src='${fallbackImg}'" class="w-10 h-10 object-cover rounded-full border border-gray-200 shadow-sm" alt="Foto Pengurus">
+                        <img src="${thumbUrl}" onerror="this.src='${fallbackImg}'" class="p-0.5 w-10 h-10 min-w-[40px] h-10 object-cover rounded-full border border-gray-200 shadow-sm shrink-0" alt="Foto Pengurus">
                     </td>
                     <td class="py-3 px-6 font-bold text-gray-900">${item.nama || '-'}</td>
-                    <td class="py-3 px-6 text-gray-700 font-medium"><span class="px-2.5 py-1 bg-blue-50 text-blue-700 border border-blue-100 rounded-lg text-xs font-semibold">${item.jabatan || '-'}</span></td>
+                    <td class="py-3 px-6 text-gray-700 font-medium"><span>${item.jabatan || '-'}</span></td>
                     <td class="py-3 px-6 text-gray-600">${item.instansi || '-'}</td>
                     <td class="py-3 px-6" id="status-cell-${item.id}">${statusBadge}</td>
                     <td class="py-3 px-6 text-center">

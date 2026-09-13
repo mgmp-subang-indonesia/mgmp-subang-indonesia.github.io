@@ -176,25 +176,28 @@
                 return url; 
             }
 
-            // Membangun Kartu dengan Logika Teks Jabatan Diperbarui
+            // Membangun Kartu dengan default avatar
             function buildProfileCard(item, type = 'default') {
-                const img = getDirectImageUrl(item.foto) || `https://ui-avatars.com/api/?name=${encodeURIComponent(item.nama)}&background=random`;
+                // Ikon siluet wajah SVG generik sebagai fallback
+                const genericAvatar = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2394a3b8'%3E%3Cpath fill-rule='evenodd' d='M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.75 20.165c0-4.142 3.358-7.5 7.5-7.5h1.5c4.142 0 7.5 3.358 7.5 7.5 0 .414-.336.75-.75.75h-15c-.414 0-.75-.336-.75-.75Z' clip-rule='evenodd' /%3E%3C/svg%3E";
+                
+                const img = getDirectImageUrl(item.foto) || genericAvatar;
                 const teksJabatan = item.display_jabatan || item.jabatan || 'Anggota';
                 
-                let cardClass = "bg-white p-3 md:p-6 rounded-2xl shadow-sm border border-gray-100 hover-lift flex flex-col items-center text-center w-full";
-                let avatarClass = "w-24 h-24";
+                let cardClass = "bg-white p-3 md:p-4 rounded-2xl shadow-sm border border-gray-100 hover-lift flex flex-col items-center text-center w-full";
+                let avatarClass = "w-24 h-24 min-w-[96px]";
                 let nameClass = "text-lg text-gray-900";
                 
                 if (type === 'ketua') {
                     cardClass = "bg-gradient-to-b from-blue-600 to-blue-800 p-8 rounded-3xl shadow-xl hover-lift flex flex-col items-center text-center w-full";
-                    avatarClass = "w-32 h-32 border-4 border-blue-200/50";
+                    avatarClass = "w-32 h-32 min-w-[128px] border-4 border-blue-200/50 bg-blue-50/20";
                     nameClass = "text-2xl text-white";
                 } else if (type === 'inti') {
                     cardClass = "bg-white p-3 md:p-6 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-blue-500 hover-lift flex flex-col items-center text-center w-full";
-                    avatarClass = "w-24 h-24"; 
+                    avatarClass = "w-24 h-24 min-w-[96px]"; 
                     nameClass = "text-lg text-gray-900";
                 } else if (type === 'anggota') {
-                    avatarClass = "w-16 h-16 border-2 border-gray-50";
+                    avatarClass = "w-16 h-16 min-w-[64px] border-2 border-gray-50";
                     nameClass = "text-base text-gray-900";
                 }
 
@@ -203,9 +206,11 @@
 
                 return `
                 <div class="${cardClass}">
-                    <img src="${img}" alt="${item.nama}" class="${avatarClass} rounded-full mx-auto mb-4 object-cover shadow-sm">
+                    <div class="${avatarClass} rounded-full mx-auto mb-4 overflow-hidden bg-gray-100 flex items-center justify-center shrink-0 shadow-sm border border-gray-200">
+                        <img src="${img}" alt="${item.nama}" class="p-0.5 w-full h-full object-cover" onerror="this.src='${genericAvatar}'">
+                    </div>
                     <h3 class="${nameClass} font-bold leading-tight ${hideJabatan ? 'mb-2' : 'mb-1'}">${item.nama}</h3>
-                    ${hideJabatan ? '' : `<p class="text-sm font-semibold ${type === 'ketua' ? 'text-blue-200' : 'text-blue-600'} mb-2">${teksJabatan}</p>`}
+                    ${hideJabatan ? '' : `<p class="text-sm font-semibold ${type === 'ketua' ? 'text-yellow-200' : 'text-yellow-600'} mb-2">${teksJabatan}</p>`}
                     <p class="text-xs ${type === 'ketua' ? 'text-white/70' : 'text-gray-500'} mt-auto pt-1">${item.instansi || ''}</p>
                 </div>`;
             }

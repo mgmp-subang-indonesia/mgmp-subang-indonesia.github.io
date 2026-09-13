@@ -367,7 +367,7 @@
                                 <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition">${item.agenda_name}</h3>
                                 <p class="text-gray-600 mb-4 text-sm leading-relaxed">${item.agenda_desc}</p>
                                 <div class="flex items-center gap-4 text-xs font-semibold text-gray-500 mt-auto">
-                                    <span class="flex items-center gap-1.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> ${item.agenda_time}</span>
+                                    <span class="flex items-center gap-1.5 md:min-w-[130px]"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> ${item.agenda_time}</span>
                                     <a href="${item.agenda_location_url || '#'}" target="_blank" class="flex items-center gap-1.5 hover:text-blue-600 transition cursor-pointer">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> 
                                         ${item.agenda_location_name}
@@ -384,7 +384,7 @@
                                 <h2 class="text-3xl font-extrabold text-gray-900 mb-4">${config.title}</h2>
                                 <div class="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
                             </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
                                 ${cards}
                             </div>
                             ${config.view_more === 'yes' ? `

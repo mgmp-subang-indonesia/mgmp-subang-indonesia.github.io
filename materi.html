@@ -63,11 +63,9 @@
                         Profil
                         <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div class="absolute top-full left-0 w-56 pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                        <div class="bg-white border border-gray-100 shadow-xl rounded-lg overflow-hidden flex flex-col">
-                            <a href="pengurus.html" class="px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Pengurus</a>
-                            <a href="visi-misi.html" class="px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">Visi dan Misi</a>
-                        </div>
+                    <div class="overflow-hidden absolute top-[calc(100%-15px)] left-0 mt-0 w-56 bg-white border border-gray-100 shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="pengurus.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Pengurus</a>
+                        <a href="visi-misi.html" class="block px-4 py-3 text-sm text-blue-700 bg-blue-50 font-semibold">Visi dan Misi</a>
                     </div>
                 </div>
 
@@ -76,12 +74,10 @@
                         Perangkat Ajar
                         <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div class="absolute top-full left-0 w-56 pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                        <div class="bg-white border border-gray-100 shadow-xl rounded-lg overflow-hidden flex flex-col">
-                            <a href="#modul" class="px-4 py-3 text-sm text-blue-700 bg-blue-50 font-semibold border-b border-gray-50">Modul Ajar</a>
-                            <a href="#buku" class="px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Buku Teks</a>
-                            <a href="#media" class="px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">Media Pembelajaran</a>
-                        </div>
+                    <div class="overflow-hidden absolute top-[calc(100%-15px)] left-0 mt-0 w-56 bg-white border border-gray-100 shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="materi.html#modul" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Modul Ajar</a>
+                        <a href="materi.html#buku" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Buku Teks</a>
+                        <a href="materi.html#media" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">Media Pembelajaran</a>
                     </div>
                 </div>
                 <a href="karya.html" class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md transition">Karya</a>
@@ -90,7 +86,7 @@
     </header>
 
     <!-- HERO SECTION KHUSUS MATERI (Menyatu dengan Search) -->
-    <section class="relative pt-36 pb-24 md:pt-44 md:pb-32 overflow-hidden">
+    <section class="relative py-28 md:py-40 overflow-hidden">
         <div class="absolute inset-0 z-0 bg-blue-950">
             <img id="hero-bg" src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1920&q=80" alt="Hero Literasi" class="w-full h-full object-cover opacity-50">
             <div class="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/60 to-transparent mix-blend-multiply"></div>
@@ -98,7 +94,8 @@
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 flex flex-col items-start md:items-center md:text-center">
             <h1 id="hero-title" class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 max-w-4xl text-white drop-shadow-lg">
-                Pusat Sumber Daya Literasi<br>Guru Bahasa Indonesia SMP
+                Pusat Sumber Daya Literasi
+                <br>Guru Bahasa Indonesia
             </h1>
             <p id="hero-subtitle" class="text-lg md:text-xl text-blue-50 mb-10 max-w-2xl drop-shadow-md font-medium">
                 Temukan, unduh, dan bagikan perangkat ajar Kurikulum Merdeka berkualitas khusus untuk pendidik di Kabupaten Subang.
@@ -116,6 +113,12 @@
                     Cari Materi
                 </button>
             </div>
+        </div>
+        
+        <div class="absolute bottom-0 inset-x-0">
+            <svg class="w-full h-auto text-gray-50 drop-shadow-sm" viewBox="0 0 1440 120" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,42.7C1120,32,1280,32,1360,32L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
+            </svg>
         </div>
     </section>
 

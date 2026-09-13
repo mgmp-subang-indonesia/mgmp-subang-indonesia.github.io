@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Visi & Misi | CMS MGMP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="../icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icon/favicon-16x16.png">
+    <link rel="manifest" href="../icon/site.webmanifest">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+            border: 2px solid #f8fafc;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        #sidebar {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 flex h-screen overflow-hidden">
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toastContainer"
+        class="fixed top-5 left-1/2 -translate-x-1/2 z-[70] flex flex-col items-center gap-2 pointer-events-none"></div>
+
+    <!-- OVERLAY MOBILE -->
+    <div id="sidebarOverlay" onclick="toggleSidebar()"
+        class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm z-40 hidden md:hidden opacity-0 transition-opacity duration-300">
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar"
+        class="fixed inset-y-0 left-0 z-50 w-64 bg-white text-gray-900 flex flex-col h-full flex-shrink-0 transform -translate-x-full md:relative md:translate-x-0 border-r border-gray-200 shadow-2xl md:shadow-none">
+        <div class="h-16 flex items-center justify-between px-6 border-b border-gray-100 bg-white">
+            <h1 class="font-extrabold text-lg tracking-tight flex items-center gap-2.5">
+                <div
+                    class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-600/30">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                CMS MGMP
+            </h1>
+            <button onclick="toggleSidebar()" class="md:hidden text-gray-400 hover:text-gray-900 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
+            <div class="flex flex-col space-y-1">
+                <p class="px-2 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Sistem</p>
+                <a href="welcome.html"
+                    class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-colors">
+                    <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                        </path>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="cms-pengaturan.html"
+                    class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-colors">
+                    <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+                        </path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    Pengaturan Web
+                </a>
+            </div>
+            <div class="flex flex-col space-y-2">
+                <p class="px-2 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Menu Utama</p>
+                <a href="cms-materi.html"
+                    class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-colors">
+                    <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                        </path>
+                    </svg>
+                    Kelola Materi
+                </a>
+                <a href="cms-pengurus.html"
+                    class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-colors">
+                    <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                        </path>
+                    </svg>
+                    Susunan Pengurus
+                </a>
+                <a href="cms-visimisi.html"
+                    class="flex items-center gap-3 px-3 py-2.5 bg-blue-600 text-white rounded-xl font-semibold shadow-md shadow-blue-600/20">
+                    <svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                        </path>
+                    </svg>
+                    Visi & Misi
+                </a>
+                <a href="cms-agenda.html"
+                    class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-colors">
+                    <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    Agenda Kegiatan
+                </a>
+            </div>
+        </nav>
+
+        <div class="p-5 border-t border-gray-100 bg-white">
+            <div class="flex items-center justify-between mb-4 px-1">
+                <span class="text-[11px] text-gray-500 font-bold uppercase tracking-wider">Sisa Sesi</span>
+                <span id="sessionTimer"
+                    class="text-xs text-green-700 font-bold bg-green-50 px-2.5 py-1 rounded-md border border-green-200 shadow-sm">00:00</span>
+            </div>
+            <button onclick="logout()"
+                class="w-full flex items-center justify-center gap-2 bg-white text-red-600 hover:bg-red-50 font-bold py-2.5 rounded-xl transition-all duration-200 text-sm border border-red-200 hover:border-red-300 shadow-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                    </path>
+                </svg>
+                Akhiri Sesi
+            </button>
+        </div>
+    </aside>
+
+    <!-- AREA KONTEN UTAMA -->
+    <main
+        class="flex-1 flex flex-col h-full relative w-full overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-100">
+        <div class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-10">
+            <div class="mb-8 mt-4 sm:mt-0 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <button onclick="toggleSidebar()"
+                        class="md:hidden mb-4 p-2 -ml-2 rounded-lg bg-white shadow-sm text-gray-600 hover:bg-gray-100 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    <h2 class="text-2xl font-extrabold text-gray-900">Visi & Misi</h2>
+                    <p class="text-gray-500 text-sm mt-1 font-medium">Pusat kendali pernyataan visi dan daftar poin misi
+                        organisasi MGMP.</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button onclick="fetchVisiMisiData(true)"
+                        class="inline-flex items-center justify-center w-[52px] h-[52px] bg-white border border-gray-200 text-gray-700 font-bold rounded-xl hover:bg-gray-50 transition-all duration-200 shadow-sm"
+                        title="Segarkan Data dari Server">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                            </path>
+                        </svg>
+                    </button>
+                    <button onclick="openFormModal('tambah', 'misi')"
+                        class="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-lg shadow-blue-600/30 text-sm">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4">
+                            </path>
+                        </svg>
+                        <span>Tambah Poin Misi</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- GRID 2 CARD TERPISAH (VISI & MISI) -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- CARD 1: VISI -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+                    <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-blue-50/40">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center font-extrabold">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-extrabold text-gray-900 text-base">Pernyataan Visi</h3>
+                                <p class="text-xs text-gray-500 font-medium">Tujuan utama jangka panjang</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between" id="visiContainer">
+                        <div class="text-center py-12 text-gray-400">
+                            <svg class="animate-spin h-8 w-8 text-blue-600 mx-auto mb-3" fill="none"
+                                viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                </path>
+                            </svg>
+                            Memuat data visi...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2: MISI -->
+                <div
+                    class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col lg:col-span-2">
+                    <div
+                        class="p-5 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-indigo-50/40">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center font-extrabold">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012-2m-6 9l2 2 4-4" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-extrabold text-gray-900 text-base">Poin-Poin Misi</h3>
+                                <p class="text-xs text-gray-500 font-medium">Langkah strategis pencapaian visi</p>
+                            </div>
+                        </div>
+                        <div class="w-full sm:w-64 relative">
+                            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </span>
+                            <input type="text" id="searchTable" onkeyup="filterMisiTable()" placeholder="Cari misi..."
+                                class="w-full pl-9 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-xs font-medium focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500">
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto flex-1">
+                        <table class="w-full text-left border-collapse min-w-[600px]">
+                            <thead>
+                                <tr
+                                    class="bg-gray-50/70 border-b border-gray-200 text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+                                    <th class="py-3 px-4 w-16 text-center">No</th>
+                                    <th class="py-3 px-4">Pernyataan Misi</th>
+                                    <th class="py-3 px-4 w-32">Status</th>
+                                    <th class="py-3 px-4 text-center w-28">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="misiTableBody"
+                                class="divide-y divide-gray-100 text-sm font-medium text-gray-700">
+                                <tr>
+                                    <td colspan="4" class="text-center py-16 text-gray-400">
+                                        <svg class="animate-spin h-8 w-8 text-blue-600 mx-auto mb-3" fill="none"
+                                            viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                                stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor"
+                                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                            </path>
+                                        </svg>
+                                        Memuat data misi...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="p-4 sm:p-5 border-t border-gray-100 flex items-center justify-between">
+                        <p class="text-xs text-gray-500 font-medium" id="tableInfo">Menampilkan 0 dari 0 misi</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-center text-xs text-gray-400 mt-8 mb-4 font-semibold tracking-wide">&copy; 2026 MGMP Bahasa
+                Indonesia - Hak Cipta Dilindungi.</p>
+        </div>
+    </main>
+
+    <!-- MODAL FORM TAMBAH / EDIT (VISI & MISI) -->
+    <div id="formModal"
+        class="fixed inset-0 z-[65] bg-gray-900/60 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 pointer-events-none">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 sm:p-8 transform scale-95 transition-transform duration-300"
+            id="formModalContent">
+            <div class="flex items-center justify-between mb-5 pb-3 border-b border-gray-100">
+                <h3 id="formModalTitle" class="text-lg font-extrabold text-gray-900">Tambah Data</h3>
+                <button onclick="closeFormModal()"
+                    class="text-gray-400 hover:text-gray-600 focus:outline-none p-1 rounded-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <form id="visimisiForm" class="space-y-4" onsubmit="submitForm(event)">
+                <input type="hidden" id="formId">
+                <input type="hidden" id="formKategori">
+
+                <div>
+                    <label id="formLabelTeks"
+                        class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">Pernyataan
+                        Misi</label>
+                    <textarea id="formTeks" rows="4"
+                        class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500"
+                        placeholder="Tuliskan isi teks di sini..." required></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Status
+                        Publikasi</label>
+                    <div class="grid grid-cols-2 gap-2 p-1 bg-gray-100 rounded-xl border border-gray-200">
+                        <label
+                            class="relative flex items-center justify-center py-2.5 px-3 rounded-lg text-xs font-bold cursor-pointer transition-all has-[:checked]:bg-white has-[:checked]:text-blue-600 has-[:checked]:shadow-sm text-gray-500 hover:text-gray-900">
+                            <input type="radio" name="formStatusRadio" value="Aktif" class="sr-only" checked>
+                            <span>Aktif</span>
+                        </label>
+                        <label
+                            class="relative flex items-center justify-center py-2.5 px-3 rounded-lg text-xs font-bold cursor-pointer transition-all has-[:checked]:bg-white has-[:checked]:text-blue-600 has-[:checked]:shadow-sm text-gray-500 hover:text-gray-900">
+                            <input type="radio" name="formStatusRadio" value="Tidak Aktif" class="sr-only">
+                            <span>Tidak Aktif</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="formAlert" class="hidden p-3 rounded-lg text-xs font-bold text-center"></div>
+
+                <div class="flex gap-3 pt-2">
+                    <button type="button" onclick="closeFormModal()"
+                        class="flex-1 px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl transition text-sm">Batal</button>
+                    <button type="submit" id="formSubmitBtn"
+                        class="flex-1 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition text-sm shadow-md shadow-blue-600/20 flex justify-center items-center">Simpan
+                        Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL POPUP: KONFIRMASI STATUS -->
+    <div id="confirmModal"
+        class="fixed inset-0 z-[60] bg-gray-900/60 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 pointer-events-none">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 transform scale-95 transition-transform duration-300"
+            id="confirmModalContent">
+            <div id="confirmIcon" class="flex items-center justify-center w-14 h-14 rounded-full mb-4 mx-auto"></div>
+            <h3 id="confirmTitle" class="text-xl font-extrabold text-center text-gray-900 mb-2">Konfirmasi</h3>
+            <p id="confirmDesc" class="text-sm text-gray-500 text-center mb-6 font-medium">Apakah Anda yakin?</p>
+            <div id="confirmAlert" class="hidden mb-4 p-3 rounded-lg text-xs font-bold text-center"></div>
+            <div class="flex gap-3">
+                <button onclick="closeConfirmModal()"
+                    class="flex-1 px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl transition">Batal</button>
+                <button id="confirmExecuteBtn"
+                    class="flex-1 px-4 py-2.5 font-bold rounded-xl transition flex justify-center items-center">Ya,
+                    Lanjutkan</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbznjaGwoAukzIMEnCalKmZe1xwX1yy6xWEyoZYhHgyr9t9vld1JCzotRtonho0s1AXC/exec';
+        const SESSION_DURATION = 3600000;
+
+        let allVisiData = [];
+        let allMisiData = [];
+        let filteredMisiData = [];
+
+        let pendingStatusId = null;
+        let pendingType = '';
+        let pendingNewStatus = '';
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            if (!container) return;
+            const toast = document.createElement('div');
+            let bgClass = type === 'success' ? 'bg-gray-900 text-white' : 'bg-red-600 text-white';
+            let iconSvg = type === 'success'
+                ? '<svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>'
+                : '<svg class="w-4 h-4 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>';
+
+            toast.className = `flex items-center gap-3 px-4 py-3 rounded-xl shadow-xl text-xs font-bold transition-all duration-300 transform -translate-y-5 opacity-0 pointer-events-auto ${bgClass}`;
+            toast.innerHTML = `${iconSvg}<span>${message}</span>`;
+
+            container.appendChild(toast);
+            setTimeout(() => toast.classList.remove('-translate-y-5', 'opacity-0'), 10);
+            setTimeout(() => {
+                toast.classList.add('-translate-y-5', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        function checkSession() {
+            const token = localStorage.getItem('cms_token');
+            let loginTime = localStorage.getItem('cms_timestamp');
+
+            if (token && !loginTime) {
+                loginTime = Date.now().toString();
+                localStorage.setItem('cms_timestamp', loginTime);
+            }
+
+            if (!token || !loginTime || (Date.now() - parseInt(loginTime) > SESSION_DURATION)) {
+                forceLogout();
+            } else {
+                setInterval(() => {
+                    const elapsed = Date.now() - parseInt(loginTime);
+                    let remaining = SESSION_DURATION - elapsed;
+
+                    if (remaining <= 0) {
+                        forceLogout();
+                        return;
+                    }
+
+                    const m = Math.floor(remaining / 60000);
+                    const s = Math.floor((remaining % 60000) / 1000);
+                    const timerEl = document.getElementById('sessionTimer');
+
+                    if (timerEl) {
+                        if (remaining < 300000) {
+                            timerEl.classList.replace('text-green-700', 'text-red-700');
+                            timerEl.classList.replace('bg-green-50', 'bg-red-50');
+                            timerEl.classList.replace('border-green-200', 'border-red-200');
+                        }
+                        timerEl.innerText = `${m}:${s.toString().padStart(2, '0')}`;
+                    }
+                }, 1000);
+            }
+        }
+
+        function forceLogout() {
+            localStorage.removeItem('cms_token');
+            localStorage.removeItem('cms_timestamp');
+            localStorage.removeItem('cms_visimisi_cache');
+            window.location.href = 'login.html';
+        }
+        function logout() { forceLogout(); }
+        checkSession();
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('-translate-x-full');
+            if (overlay.classList.contains('hidden')) {
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+            } else {
+                overlay.classList.add('opacity-0');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            }
+        }
+
+        async function fetchVisiMisiData(forceRefresh = false) {
+            const cacheKey = 'cms_visimisi_cache';
+            const cacheTimeKey = 'cms_visimisi_cache_time';
+            const CACHE_TTL = 300000;
+
+            if (forceRefresh) {
+                localStorage.removeItem(cacheKey);
+                localStorage.removeItem(cacheTimeKey);
+                showToast('Menyegarkan data dari server...', 'success');
+            }
+
+            const cachedData = localStorage.getItem(cacheKey);
+            const cachedTime = localStorage.getItem(cacheTimeKey);
+
+            if (!forceRefresh && cachedData && cachedTime && (Date.now() - parseInt(cachedTime) < CACHE_TTL)) {
+                try {
+                    const parsed = JSON.parse(cachedData);
+                    allVisiData = parsed.visi || [];
+                    allMisiData = parsed.misi || [];
+                    filteredMisiData = [...allMisiData];
+                    renderVisi();
+                    renderMisiTable();
+                    return;
+                } catch (e) {
+                    localStorage.removeItem(cacheKey);
+                }
+            }
+
+            try {
+                const response = await fetch(`${scriptUrl}?sheet=visimisi&limit=0&v=${Date.now()}`, {
+                    method: 'GET',
+                    redirect: 'follow'
+                });
+
+                const rawText = await response.text();
+                let result;
+                try {
+                    result = JSON.parse(rawText);
+                } catch (e) {
+                    throw new Error('Format respons dari server tidak valid.');
+                }
+
+                let rawList = [];
+                if (result.status === 'success' && result.data) {
+                    if (Array.isArray(result.data.t_visimisi)) rawList = result.data.t_visimisi;
+                    else if (Array.isArray(result.data.visimisi)) rawList = result.data.visimisi;
+                    else if (Array.isArray(result.data)) rawList = result.data;
+                }
+
+                if (result.status === 'success') {
+                    allVisiData = rawList.filter(item => (item.kategori || item.tipe || '').toLowerCase() === 'visi');
+                    allMisiData = rawList.filter(item => (item.kategori || item.tipe || '').toLowerCase() === 'misi');
+                    filteredMisiData = [...allMisiData];
+
+                    localStorage.setItem(cacheKey, JSON.stringify({ visi: allVisiData, misi: allMisiData }));
+                    localStorage.setItem(cacheTimeKey, Date.now().toString());
+
+                    renderVisi();
+                    renderMisiTable();
+                    if (forceRefresh) {
+                        showToast('Data berhasil disinkronkan!', 'success');
+                    }
+                } else {
+                    document.getElementById('visiContainer').innerHTML = `<p class="text-red-500 text-xs font-semibold text-center py-6">${result.message || 'Gagal memuat data.'}</p>`;
+                    document.getElementById('misiTableBody').innerHTML = `<tr><td colspan="4" class="text-center py-12 text-red-500 font-semibold">${result.message || 'Gagal memuat data.'}</td></tr>`;
+                }
+            } catch (error) {
+                console.error(error);
+                localStorage.removeItem(cacheKey);
+                localStorage.removeItem(cacheTimeKey);
+
+                document.getElementById('visiContainer').innerHTML = `<p class="text-red-500 text-xs font-semibold text-center py-6">Gagal memuat data visi.</p>`;
+                document.getElementById('misiTableBody').innerHTML = `<tr><td colspan="4" class="text-center py-12 text-red-500 font-semibold">Kesalahan jaringan. Silakan segarkan kembali.</td></tr>`;
+            }
+        }
+
+        function renderVisi() {
+            const container = document.getElementById('visiContainer');
+            container.innerHTML = '';
+
+            if (allVisiData.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-gray-400">
+                        <p class="text-xs font-medium mb-4">Belum ada pernyataan Visi yang diatur.</p>
+                        <button onclick="openFormModal('tambah', 'visi')" class="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 text-white font-bold rounded-xl text-xs hover:bg-blue-700 transition">Tambah Visi</button>
+                    </div>
+                `;
+                return;
+            }
+
+            allVisiData.forEach(item => {
+                let isAktif = (!item.status || item.status.toLowerCase() === 'aktif');
+                let statusBadge = isAktif
+                    ? '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-green-50 text-green-700 border border-green-200">Aktif</span>'
+                    : '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-gray-100 text-gray-500 border border-gray-200">Tidak Aktif</span>';
+
+                const div = document.createElement('div');
+                div.className = "flex flex-col justify-between h-full space-y-4";
+                div.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-100">Pernyataan Utama</span>
+                            ${statusBadge}
+                        </div>
+                        <p class="text-gray-800 font-semibold text-base leading-relaxed bg-gray-50/80 p-4 rounded-xl border border-gray-100 shadow-inner">
+                            "${item.teks || item.deskripsi || item.konten || '-'}"
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-end gap-2" id="action-cell-${item.id}">
+                        <button onclick="openFormModal('edit', 'visi', '${item.id}')" class="px-3.5 py-2 bg-white border border-gray-200 hover:border-amber-300 shadow-sm hover:bg-amber-50 hover:text-amber-600 rounded-xl text-xs font-bold text-gray-700 transition-all flex items-center gap-1.5">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                            Edit Visi
+                        </button>
+                        <button onclick="openConfirmModal('${item.id}', 'visi', '${item.status}')" class="px-3.5 py-2 bg-white border border-gray-200 hover:border-red-300 shadow-sm hover:bg-red-50 hover:text-red-600 rounded-xl text-xs font-bold text-gray-700 transition-all">
+                            ${isAktif ? 'Sembunyikan' : 'Tampilkan'}
+                        </button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function filterMisiTable() {
+            const keyword = document.getElementById('searchTable').value.toLowerCase();
+            filteredMisiData = allMisiData.filter(item => {
+                return (item.teks || item.deskripsi || item.konten || '').toLowerCase().includes(keyword);
+            });
+            renderMisiTable();
+        }
+
+        function renderMisiTable() {
+            const tbody = document.getElementById('misiTableBody');
+            tbody.innerHTML = '';
+
+            if (filteredMisiData.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="text-center py-16 text-gray-400 font-medium"><div class="text-3xl mb-2">📭</div>Belum ada poin misi yang ditambahkan.</td></tr>`;
+                document.getElementById('tableInfo').innerText = `Menampilkan 0 dari 0 misi`;
+                return;
+            }
+
+            filteredMisiData.forEach((item, index) => {
+                let isAktif = (!item.status || item.status.toLowerCase() === 'aktif');
+                let statusBadge = isAktif
+                    ? '<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-bold bg-green-50 text-green-700 border border-green-200"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Aktif</span>'
+                    : '<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-bold bg-gray-100 text-gray-500 border border-gray-200"><span class="w-1.5 h-1.5 rounded-full bg-gray-400"></span> Tidak Aktif</span>';
+
+                const tr = document.createElement('tr');
+                tr.id = `row-${item.id}`;
+                tr.className = "hover:bg-blue-50/30 transition-colors";
+                tr.innerHTML = `
+                    <td class="py-3 px-4 text-center font-bold text-gray-400 w-16">${index + 1}</td>
+                    <td class="py-3 px-4 font-semibold text-gray-900">${item.teks || item.deskripsi || item.konten || '-'}</td>
+                    <td class="py-3 px-4" id="status-cell-${item.id}">${statusBadge}</td>
+                    <td class="py-3 px-4 text-center">
+                        <div class="flex items-center justify-center gap-1.5" id="action-cell-${item.id}">
+                            <button onclick="openFormModal('edit', 'misi', '${item.id}')" class="p-2 bg-white border border-gray-200 hover:border-amber-300 shadow-sm hover:bg-amber-50 hover:text-amber-600 rounded-lg text-gray-500 transition-all" title="Edit Misi">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                            </button>
+                            <button onclick="openConfirmModal('${item.id}', 'misi', '${item.status}')" class="p-2 bg-white border border-gray-200 hover:border-red-300 shadow-sm hover:bg-red-50 hover:text-red-600 rounded-lg text-gray-500 transition-all" title="${isAktif ? 'Sembunyikan' : 'Tampilkan'}">
+                                ${isAktif
+                        ? '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>'
+                        : '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>'}
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('tableInfo').innerText = `Menampilkan total ${filteredMisiData.length} poin misi`;
+        }
+
+        // --- MODAL FORM HANDLER ---
+        function openFormModal(mode, kategori, id = null) {
+            const modal = document.getElementById('formModal');
+            const titleEl = document.getElementById('formModalTitle');
+            const labelTeks = document.getElementById('formLabelTeks');
+            const inputId = document.getElementById('formId');
+            const inputKategori = document.getElementById('formKategori');
+            const inputTeks = document.getElementById('formTeks');
+            const alertBox = document.getElementById('formAlert');
+
+            alertBox.classList.add('hidden');
+            inputKategori.value = kategori;
+
+            if (kategori === 'visi') {
+                labelTeks.innerText = 'Pernyataan Visi';
+                inputTeks.placeholder = 'Tuliskan pernyataan visi organisasi...';
+            } else {
+                labelTeks.innerText = 'Pernyataan Misi';
+                inputTeks.placeholder = 'Tuliskan poin langkah strategis misi...';
+            }
+
+            let defaultStatus = 'Aktif';
+
+            if (mode === 'tambah') {
+                titleEl.innerText = kategori === 'visi' ? 'Tambah Visi Baru' : 'Tambah Poin Misi Baru';
+                inputId.value = '';
+                inputTeks.value = '';
+            } else {
+                titleEl.innerText = kategori === 'visi' ? 'Edit Visi' : 'Edit Poin Misi';
+                inputId.value = id;
+                let foundItem = null;
+                if (kategori === 'visi') {
+                    foundItem = allVisiData.find(item => String(item.id) === String(id));
+                } else {
+                    foundItem = allMisiData.find(item => String(item.id) === String(id));
+                }
+
+                if (foundItem) {
+                    inputTeks.value = foundItem.teks || foundItem.deskripsi || foundItem.konten || '';
+                    defaultStatus = foundItem.status || 'Aktif';
+                }
+            }
+
+            const radios = document.querySelectorAll('input[name="formStatusRadio"]');
+            radios.forEach(radio => {
+                radio.checked = (radio.value === defaultStatus);
+            });
+
+            modal.classList.remove('pointer-events-none');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                document.getElementById('formModalContent').classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeFormModal() {
+            const modal = document.getElementById('formModal');
+            document.getElementById('formModalContent').classList.add('scale-95');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('pointer-events-none');
+            }, 300);
+        }
+
+        async function submitForm(e) {
+            e.preventDefault();
+            const btn = document.getElementById('formSubmitBtn');
+            const alertBox = document.getElementById('formAlert');
+            const originalText = btn.innerText;
+
+            btn.disabled = true;
+            btn.innerText = 'Menyimpan...';
+            alertBox.classList.add('hidden');
+
+            const editId = document.getElementById('formId').value;
+            const kategoriVal = document.getElementById('formKategori').value;
+            const teksVal = document.getElementById('formTeks').value;
+            const selectedStatusRadio = document.querySelector('input[name="formStatusRadio"]:checked');
+            const statusValue = selectedStatusRadio ? selectedStatusRadio.value : 'Aktif';
+
+            const payload = {
+                action: editId ? 'updateVisiMisi' : 'addVisiMisi',
+                id: editId,
+                kategori: kategoriVal,
+                teks: teksVal,
+                status: statusValue
+            };
+
+            try {
+                const response = await fetch(scriptUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(payload)
+                });
+
+                const rawText = await response.text();
+                let result = JSON.parse(rawText);
+
+                if (result.status === 'success') {
+                    closeFormModal();
+                    showToast('Data berhasil disimpan!', 'success');
+
+                    // OPTIMISTIC UI UPDATE (Update lokal instan tanpa fetch ulang)
+                    if (kategoriVal === 'visi') {
+                        if (editId) {
+                            let target = allVisiData.find(item => String(item.id) === String(editId));
+                            if (target) {
+                                target.teks = teksVal;
+                                target.status = statusValue;
+                            }
+                        } else {
+                            // Jika tambah baru
+                            allVisiData.push({ id: result.id || ('VM-' + Date.now()), kategori: 'visi', teks: teksVal, status: statusValue });
+                        }
+                        renderVisi();
+                    } else {
+                        if (editId) {
+                            let target = allMisiData.find(item => String(item.id) === String(editId));
+                            if (target) {
+                                target.teks = teksVal;
+                                target.status = statusValue;
+                            }
+                        } else {
+                            allMisiData.push({ id: result.id || ('VM-' + Date.now()), kategori: 'misi', teks: teksVal, status: statusValue });
+                        }
+                        filteredMisiData = [...allMisiData];
+                        renderMisiTable();
+                    }
+
+                    // Perbarui cache browser agar tetap sinkron
+                    localStorage.setItem('cms_visimisi_cache', JSON.stringify({ visi: allVisiData, misi: allMisiData }));
+                    localStorage.setItem('cms_visimisi_cache_time', Date.now().toString());
+
+                } else {
+                    alertBox.innerText = 'Gagal menyimpan: ' + (result.message || 'Kesalahan tidak diketahui');
+                    alertBox.classList.remove('hidden');
+                    alertBox.classList.add('bg-red-50', 'text-red-600');
+                }
+            } catch (error) {
+                console.error(error);
+                alertBox.innerText = 'Gagal menghubungi server.';
+                alertBox.classList.remove('hidden');
+                alertBox.classList.add('bg-red-50', 'text-red-600');
+            } finally {
+                btn.disabled = false;
+                btn.innerText = originalText;
+            }
+        }
+
+        // --- MODAL KONFIRMASI STATUS ---
+        function openConfirmModal(id, type, currentStatus) {
+            pendingStatusId = id;
+            pendingType = type;
+            let isAktif = (!currentStatus || currentStatus === 'Aktif');
+            pendingNewStatus = isAktif ? 'Tidak Aktif' : 'Aktif';
+
+            const title = document.getElementById('confirmTitle');
+            const desc = document.getElementById('confirmDesc');
+            const btn = document.getElementById('confirmExecuteBtn');
+            const icon = document.getElementById('confirmIcon');
+            const alertBox = document.getElementById('confirmAlert');
+
+            alertBox.classList.add('hidden');
+
+            if (isAktif) {
+                title.innerText = `Sembunyikan ${type === 'visi' ? 'Visi' : 'Misi'}?`;
+                desc.innerText = 'Data ini akan disembunyikan dari halaman publik.';
+                btn.className = 'flex-1 px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition shadow-md shadow-red-600/20';
+                btn.innerText = 'Ya, Sembunyikan';
+                icon.className = 'flex items-center justify-center w-14 h-14 rounded-full bg-red-100 text-red-600 mb-4 mx-auto';
+                icon.innerHTML = `<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>`;
+            } else {
+                title.innerText = `Tampilkan ${type === 'visi' ? 'Visi' : 'Misi'}?`;
+                desc.innerText = 'Data ini akan kembali ditampilkan pada halaman publik.';
+                btn.className = 'flex-1 px-4 py-2.5 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl transition shadow-md shadow-green-600/20';
+                btn.innerText = 'Ya, Tampilkan';
+                icon.className = 'flex items-center justify-center w-14 h-14 rounded-full bg-green-100 text-green-600 mb-4 mx-auto';
+                icon.innerHTML = `<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>`;
+            }
+
+            const modal = document.getElementById('confirmModal');
+            modal.classList.remove('pointer-events-none');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                document.getElementById('confirmModalContent').classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeConfirmModal() {
+            const modal = document.getElementById('confirmModal');
+            document.getElementById('confirmModalContent').classList.add('scale-95');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('pointer-events-none');
+            }, 300);
+            document.getElementById('confirmExecuteBtn').disabled = false;
+        }
+
+        document.getElementById('confirmExecuteBtn').addEventListener('click', async () => {
+            const btn = document.getElementById('confirmExecuteBtn');
+            const alertBox = document.getElementById('confirmAlert');
+            const originalBtnText = btn.innerText;
+
+            btn.disabled = true;
+            btn.innerText = 'Memproses...';
+            alertBox.classList.add('hidden');
+
+            try {
+                const response = await fetch(scriptUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({ action: 'updateVisiMisiStatus', id: pendingStatusId, status: pendingNewStatus })
+                });
+
+                const rawText = await response.text();
+                let result = JSON.parse(rawText);
+
+                if (result.status === 'success') {
+                    closeConfirmModal();
+                    showToast('Status berhasil diperbarui!', 'success');
+
+                    // OPTIMISTIC UI UPDATE UNTUK STATUS TOGGLE
+                    if (pendingType === 'visi') {
+                        let target = allVisiData.find(item => String(item.id) === String(pendingStatusId));
+                        if (target) target.status = pendingNewStatus;
+                        renderVisi();
+                    } else {
+                        let target = allMisiData.find(item => String(item.id) === String(pendingStatusId));
+                        if (target) target.status = pendingNewStatus;
+                        filteredMisiData = [...allMisiData];
+                        renderMisiTable();
+                    }
+
+                    localStorage.setItem('cms_visimisi_cache', JSON.stringify({ visi: allVisiData, misi: allMisiData }));
+                    localStorage.setItem('cms_visimisi_cache_time', Date.now().toString());
+
+                } else {
+                    alertBox.innerText = 'Gagal memperbarui status: ' + (result.message || 'Kesalahan tidak diketahui');
+                    alertBox.classList.remove('hidden');
+                    alertBox.classList.add('bg-red-50', 'text-red-600');
+                    btn.disabled = false;
+                    btn.innerText = originalBtnText;
+                }
+            } catch (error) {
+                console.error(error);
+                alertBox.innerText = 'Gagal menghubungi server.';
+                alertBox.classList.add('hidden');
+                alertBox.classList.add('bg-red-50', 'text-red-600');
+                btn.disabled = false;
+                btn.innerText = originalBtnText;
+            }
+        });
+
+        fetchVisiMisiData();
+    </script>
+</body>
+
+</html>

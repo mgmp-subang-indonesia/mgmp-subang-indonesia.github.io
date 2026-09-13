@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,196 +12,298 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../icon/favicon-16x16.png">
     <link rel="manifest" href="../icon/site.webmanifest">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: #f8fafc; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; border: 2px solid #f8fafc; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-        /* Transisi halus untuk sidebar mobile */
-        #sidebar { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+            border: 2px solid #f8fafc;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        #sidebar {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
     </style>
 </head>
+
 <body class="bg-gray-50 text-gray-800 flex h-screen overflow-hidden">
 
-    <!-- OVERLAY MOBILE (Gelap transparan saat menu terbuka) -->
-    <div id="sidebarOverlay" onclick="toggleSidebar()" class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm z-40 hidden md:hidden opacity-0 transition-opacity duration-300"></div>
+    <!-- OVERLAY MOBILE -->
+    <div id="sidebarOverlay" onclick="toggleSidebar()"
+        class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm z-40 hidden md:hidden opacity-0 transition-opacity duration-300">
+    </div>
 
-    <!-- SIDEBAR -->
-    <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 text-white flex flex-col h-full flex-shrink-0 transform -translate-x-full md:relative md:translate-x-0 border-r border-gray-800 shadow-2xl md:shadow-none">
-        
-        <!-- Header Sidebar -->
-        <div class="h-16 flex items-center justify-between px-6 border-b border-gray-800 bg-gray-950">
-            <h1 class="font-extrabold text-lg tracking-wide flex items-center gap-2">
-                <div class="w-7 h-7 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-600/30">
-                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+    <!-- SIDEBAR (DIUBAH MENJADI LIGHT THEME) -->
+    <aside id="sidebar"
+        class="fixed inset-y-0 left-0 z-50 w-64 bg-white text-gray-900 flex flex-col h-full flex-shrink-0 transform -translate-x-full md:relative md:translate-x-0 border-r border-gray-200 shadow-2xl md:shadow-none">
+
+        <div class="h-16 flex items-center justify-between px-6 border-b border-gray-100 bg-white">
+            <h1 class="font-extrabold text-lg tracking-tight flex items-center gap-2.5">
+                <div
+                    class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-600/30">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
                 </div>
                 CMS MGMP
             </h1>
-            <button onclick="toggleSidebar()" class="md:hidden text-gray-400 hover:text-white focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            <button onclick="toggleSidebar()" class="md:hidden text-gray-400 hover:text-gray-900 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
             </button>
         </div>
-        
-        <!-- Menu Navigasi -->
+
         <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-1">
-            <p class="px-2 text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-3">Menu Utama</p>
-            
-            <!-- Menu Materi (Aktif) -->
-            <a href="cms-materi.html" class="flex items-center gap-3 px-3 py-2.5 bg-blue-600 text-white rounded-xl font-semibold shadow-lg shadow-blue-600/20">
-                <svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            <p class="px-2 text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-3">Menu Utama</p>
+
+            <a href="cms-materi.html"
+                class="flex items-center gap-3 px-3 py-2.5 bg-blue-600 text-white rounded-xl font-semibold shadow-md shadow-blue-600/20">
+                <svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                    </path>
+                </svg>
                 Kelola Materi
             </a>
-            
-            <!-- Menu Lainnya -->
-            <a href="cms-pengurus.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-400 hover:bg-gray-800 hover:text-white rounded-xl font-medium transition-colors">
-                <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+
+            <a href="cms-pengurus.html"
+                class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-colors">
+                <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                    </path>
+                </svg>
                 Susunan Pengurus
             </a>
-            
-            <a href="cms-agenda.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-400 hover:bg-gray-800 hover:text-white rounded-xl font-medium transition-colors">
-                <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+
+            <a href="cms-agenda.html"
+                class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-colors">
+                <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                    </path>
+                </svg>
                 Agenda Kegiatan
             </a>
 
-            <p class="px-2 text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-3 mt-8">Sistem</p>
-            <a href="cms-pengaturan.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-400 hover:bg-gray-800 hover:text-white rounded-xl font-medium transition-colors">
-                <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+            <p class="px-2 text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-3 mt-8">Sistem</p>
+            <a href="cms-pengaturan.html"
+                class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-colors">
+                <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+                    </path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
                 Pengaturan Web
             </a>
         </nav>
-        
-        <!-- Timer Sesi & Tombol Logout -->
-        <div class="p-5 border-t border-gray-800 bg-gray-950">
+
+        <div class="p-5 border-t border-gray-100 bg-white">
             <div class="flex items-center justify-between mb-4 px-1">
-                <span class="text-[11px] text-gray-400 font-bold uppercase tracking-wider">Sisa Sesi</span>
-                <span id="sessionTimer" class="text-xs text-green-400 font-bold bg-green-400/10 px-2.5 py-1 rounded-md border border-green-400/20">60:00</span>
+                <span class="text-[11px] text-gray-500 font-bold uppercase tracking-wider">Sisa Sesi</span>
+                <span id="sessionTimer"
+                    class="text-xs text-green-700 font-bold bg-green-50 px-2.5 py-1 rounded-md border border-green-200 shadow-sm">60:00</span>
             </div>
-            <button onclick="logout()" class="w-full flex items-center justify-center gap-2 bg-gray-800 text-gray-300 hover:bg-red-600 hover:text-white font-bold py-2.5 rounded-xl transition-all duration-200 text-sm border border-gray-700 hover:border-red-500">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+            <button onclick="logout()"
+                class="w-full flex items-center justify-center gap-2 bg-white text-red-600 hover:bg-red-50 font-bold py-2.5 rounded-xl transition-all duration-200 text-sm border border-red-200 hover:border-red-300 shadow-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                    </path>
+                </svg>
                 Akhiri Sesi
             </button>
         </div>
     </aside>
 
-    <!-- AREA KONTEN UTAMA -->
-    <main class="flex-1 flex flex-col h-full relative w-full overflow-hidden">
-        
-        <!-- Topbar -->
-        <header class="h-16 bg-white/80 backdrop-blur-md border-b border-gray-200 flex items-center justify-between px-4 sm:px-8 shrink-0 z-10 sticky top-0">
-            <div class="flex items-center gap-3">
-                <!-- Tombol Hamburger Mobile -->
-                <button onclick="toggleSidebar()" class="md:hidden p-2 -ml-2 rounded-lg text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                </button>
-                <h2 class="text-lg font-extrabold text-gray-900 tracking-tight">Data Materi</h2>
-            </div>
-            
-            <div class="flex items-center gap-3">
-                <div class="text-right hidden sm:block">
-                    <p class="text-sm font-bold text-gray-900 leading-none">Admin MGMP</p>
-                    <p class="text-[11px] text-gray-500 font-medium mt-1">Administrator</p>
-                </div>
-                <div class="w-9 h-9 bg-gradient-to-tr from-blue-600 to-indigo-600 text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md border-2 border-white">
-                    A
-                </div>
-            </div>
-        </header>
+    <!-- AREA KONTEN UTAMA (DIUBAH BACKGROUNDNYA AGAR MATCH DENGAN LOGIN) -->
+    <main
+        class="flex-1 flex flex-col h-full relative w-full overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-100">
 
-        <!-- Area Form (Bisa di-scroll) -->
+        <div
+            class="absolute top-0 right-0 z-50 flex items-center gap-4 bg-white/90 backdrop-blur-md px-6 py-3 rounded-bl-3xl shadow-lg shadow-gray-200/60 border-b border-l border-white/50 transition-all duration-300 hover:bg-white hover:shadow-xl cursor-default group">
+            <!-- Info Teks -->
+            <div class="text-right hidden sm:block">
+                <p class="text-sm font-bold text-gray-900 leading-none group-hover:text-blue-700 transition-colors">
+                    Admin MGMP</p>
+                <p class="text-[11px] text-gray-500 font-medium mt-1">Administrator</p>
+            </div>
+
+            <!-- Avatar -->
+            <div
+                class="w-10 h-10 bg-gradient-to-tr from-blue-600 to-indigo-600 text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md border-2 border-white ring-4 ring-transparent group-hover:ring-blue-50 transition-all duration-300 transform group-hover:scale-105">
+                A
+            </div>
+
+        </div>
         <div class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-10">
-            <div class="max-w-4xl mx-auto">
-                
-                <div class="mb-8">
-                    <h2 class="text-2xl font-extrabold text-gray-900">Unggah Materi Baru</h2>
-                    <p class="text-gray-500 text-sm mt-1 font-medium">Tambahkan modul ajar, buku, atau video pembelajaran ke dalam repositori.</p>
-                </div>
+            <div class="mb-8">
+                <h2 class="text-2xl font-extrabold text-gray-900">Unggah Materi Baru</h2>
+                <p class="text-gray-500 text-sm mt-1 font-medium">Tambahkan modul ajar, buku, atau video
+                    pembelajaran ke dalam repositori.</p>
+            </div>
 
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-                    <div class="p-5 sm:p-8">
-                        <form id="uploadForm" class="space-y-8">
-                            
-                            <!-- Bagian 1: Data Teks -->
-                            <div>
-                                <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100 pb-2 mb-5">Informasi Dasar</h3>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-                                    <div class="md:col-span-2">
-                                        <label class="block text-sm font-bold text-gray-700 mb-1.5">Judul Materi <span class="text-red-500">*</span></label>
-                                        <input type="text" id="judul" required placeholder="Cth: Modul Ajar Teks Deskripsi Semester 1" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white outline-none transition-all text-sm font-medium text-gray-900 placeholder-gray-400">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-bold text-gray-700 mb-1.5">Peruntukan Kelas <span class="text-red-500">*</span></label>
-                                        <select id="kelas" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white outline-none transition-all text-sm font-medium text-gray-900 cursor-pointer">
-                                            <option value="umum">Umum (Semua Kelas)</option>
-                                            <option value="7">Kelas 7</option>
-                                            <option value="8">Kelas 8</option>
-                                            <option value="9">Kelas 9</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-bold text-gray-700 mb-1.5">Jenis Materi <span class="text-red-500">*</span></label>
-                                        <select id="jenis" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white outline-none transition-all text-sm font-medium text-gray-900 cursor-pointer">
-                                            <option value="modul">Modul Ajar</option>
-                                            <option value="buku">Buku Teks</option>
-                                            <option value="video">Media Pembelajaran / Video</option>
-                                        </select>
-                                    </div>
-                                    <div class="md:col-span-2">
-                                        <label class="block text-sm font-bold text-gray-700 mb-1.5">Nama Penulis / Penyusun <span class="text-red-500">*</span></label>
-                                        <input type="text" id="penulis" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white outline-none transition-all text-sm font-medium text-gray-900 placeholder-gray-400" placeholder="Cth: Budi Santoso, M.Pd.">
-                                    </div>
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="p-5 sm:p-8">
+                    <form id="uploadForm" class="space-y-8">
+
+                        <!-- Bagian 1: Data Teks -->
+                        <div>
+                            <h3
+                                class="text-sm font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100 pb-2 mb-5">
+                                Informasi Dasar</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-bold text-gray-700 mb-1.5">Judul Materi
+                                        <span class="text-red-500">*</span></label>
+                                    <input type="text" id="judul" required
+                                        placeholder="Cth: Modul Ajar Teks Deskripsi Semester 1"
+                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white outline-none transition-all text-sm font-medium text-gray-900 placeholder-gray-400">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-1.5">Peruntukan Kelas
+                                        <span class="text-red-500">*</span></label>
+                                    <select id="kelas"
+                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white outline-none transition-all text-sm font-medium text-gray-900 cursor-pointer">
+                                        <option value="umum">Umum (Semua Kelas)</option>
+                                        <option value="7">Kelas 7</option>
+                                        <option value="8">Kelas 8</option>
+                                        <option value="9">Kelas 9</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-1.5">Jenis Materi
+                                        <span class="text-red-500">*</span></label>
+                                    <select id="jenis"
+                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white outline-none transition-all text-sm font-medium text-gray-900 cursor-pointer">
+                                        <option value="modul">Modul Ajar</option>
+                                        <option value="buku">Buku Teks</option>
+                                        <option value="video">Media Pembelajaran / Video</option>
+                                    </select>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-bold text-gray-700 mb-1.5">Nama Penulis /
+                                        Penyusun <span class="text-red-500">*</span></label>
+                                    <input type="text" id="penulis" required
+                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white outline-none transition-all text-sm font-medium text-gray-900 placeholder-gray-400"
+                                        placeholder="Cth: Budi Santoso, M.Pd.">
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- Bagian 2: Unggah Berkas -->
-                            <div>
-                                <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100 pb-2 mb-5">Berkas Lampiran</h3>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-                                    
-                                    <!-- Upload Cover -->
-                                    <div class="bg-gray-50 p-5 rounded-xl border-2 border-gray-200 border-dashed hover:border-blue-400 hover:bg-blue-50/50 transition-colors group relative">
-                                        <label class="block text-sm font-bold text-gray-700 mb-1">Cover Materi</label>
-                                        <p class="text-xs text-gray-500 mb-4 font-medium">Opsional. Format JPG/PNG (1080x1080 px).</p>
-                                        <input type="file" id="coverFile" accept="image/*" class="w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-blue-100 file:text-blue-700 group-hover:file:bg-blue-200 transition-all cursor-pointer">
-                                    </div>
-                                    
-                                    <!-- Upload Dokumen -->
-                                    <div class="bg-gray-50 p-5 rounded-xl border-2 border-gray-200 border-dashed hover:border-indigo-400 hover:bg-indigo-50/50 transition-colors group relative">
-                                        <label class="block text-sm font-bold text-gray-700 mb-1">Dokumen Materi</label>
-                                        <p class="text-xs text-gray-500 mb-4 font-medium">Abaikan jika memilih jenis Video. (PDF/Word/ZIP).</p>
-                                        <input type="file" id="dokumenFile" class="w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-indigo-100 file:text-indigo-700 group-hover:file:bg-indigo-200 transition-all cursor-pointer">
-                                    </div>
+                        <!-- Bagian 2: Unggah Berkas -->
+                        <div>
+                            <h3
+                                class="text-sm font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100 pb-2 mb-5">
+                                Berkas Lampiran</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
 
-                                    <!-- URL Youtube -->
-                                    <div class="md:col-span-2 mt-2">
-                                        <label class="block text-sm font-bold text-gray-700 mb-1.5 flex items-center gap-2">
-                                            <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
-                                            ID Video Youtube (Opsional)
-                                        </label>
-                                        <div class="relative">
-                                            <input type="text" id="youtubeId" class="w-full pl-4 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-red-500/20 focus:border-red-500 focus:bg-white outline-none transition-all text-sm font-medium text-gray-900 placeholder-gray-400" placeholder="Cth: dQw4w9WgXcQ">
+                                <div class="w-full">
+                                    <label class="block text-sm font-bold text-gray-700 mb-1.5">Cover Materi
+                                        (Opsional)</label>
+                                    <label for="coverFile"
+                                        class="flex flex-col items-center justify-center w-full h-36 border-2 border-blue-300 border-dashed rounded-xl cursor-pointer bg-blue-50 hover:bg-blue-100 transition-colors group">
+                                        <div
+                                            class="flex flex-col items-center justify-center pt-5 pb-6 text-center px-4">
+                                            <svg class="w-8 h-8 mb-2 text-blue-500 group-hover:scale-110 transition-transform"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                                </path>
+                                            </svg>
+                                            <p class="text-sm text-gray-600 font-medium mb-1"><span
+                                                    class="text-blue-600 font-bold">Klik untuk pilih</span>
+                                                gambar</p>
+                                            <p class="text-[11px] text-blue-400 font-semibold truncate w-48"
+                                                id="coverFileName">Format JPG/PNG (1080x1080)</p>
                                         </div>
-                                        <p class="text-xs text-gray-500 mt-2 font-medium">Hanya diisi jika jenis materi berupa Video. Masukkan ID yang terletak di akhir link Youtube.</p>
+                                        <input id="coverFile" type="file" accept="image/*" class="hidden"
+                                            onchange="document.getElementById('coverFileName').innerText = this.files[0] ? this.files[0].name : 'Format JPG/PNG (1080x1080)'" />
+                                    </label>
+                                </div>
+
+                                <div class="w-full">
+                                    <label class="block text-sm font-bold text-gray-700 mb-1.5">Dokumen Materi
+                                        (PDF/Word)</label>
+                                    <label for="dokumenFile"
+                                        class="flex flex-col items-center justify-center w-full h-36 border-2 border-indigo-300 border-dashed rounded-xl cursor-pointer bg-indigo-50 hover:bg-indigo-100 transition-colors group">
+                                        <div
+                                            class="flex flex-col items-center justify-center pt-5 pb-6 text-center px-4">
+                                            <svg class="w-8 h-8 mb-2 text-indigo-500 group-hover:scale-110 transition-transform"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                                </path>
+                                            </svg>
+                                            <p class="text-sm text-gray-600 font-medium mb-1"><span
+                                                    class="text-indigo-600 font-bold">Klik untuk pilih</span>
+                                                dokumen</p>
+                                            <p class="text-[11px] text-indigo-400 font-semibold truncate w-48"
+                                                id="dokumenFileName">Abaikan jika Jenis = Video</p>
+                                        </div>
+                                        <input id="dokumenFile" type="file" class="hidden"
+                                            onchange="document.getElementById('dokumenFileName').innerText = this.files[0] ? this.files[0].name : 'Abaikan jika Jenis = Video'" />
+                                    </label>
+                                </div>
+
+                                <div class="md:col-span-2 mt-2">
+                                    <label class="block text-sm font-bold text-gray-700 mb-1.5 flex items-center gap-2">
+                                        <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                                        </svg>
+                                        ID Video Youtube (Opsional)
+                                    </label>
+                                    <div class="relative">
+                                        <input type="text" id="youtubeId"
+                                            class="w-full pl-4 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-red-500/20 focus:border-red-500 focus:bg-white outline-none transition-all text-sm font-medium text-gray-900 placeholder-gray-400"
+                                            placeholder="Cth: dQw4w9WgXcQ">
                                     </div>
+                                    <p class="text-xs text-gray-500 mt-2 font-medium">Hanya diisi jika jenis
+                                        materi berupa Video. Masukkan ID yang terletak di akhir link Youtube.
+                                    </p>
                                 </div>
                             </div>
-                            
-                            <!-- Notifikasi Status -->
-                            <div id="statusMsg" class="hidden text-sm p-4 rounded-xl font-bold flex items-start gap-3 border shadow-sm mt-4"></div>
+                        </div>
 
-                            <!-- Tombol Aksi -->
-                            <div class="pt-6 border-t border-gray-100 flex justify-end">
-                                <button type="submit" id="btnSubmit" class="w-full sm:w-auto px-8 py-3.5 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
-                                    <span>Simpan & Unggah ke Drive</span>
-                                </button>
-                            </div>
+                        <div id="statusMsg"
+                            class="hidden text-sm p-4 rounded-xl font-bold flex items-start gap-3 border shadow-sm mt-4">
+                        </div>
 
-                        </form>
-                    </div>
+                        <div class="pt-6 border-t border-gray-100 flex justify-end">
+                            <button type="submit" id="btnSubmit"
+                                class="w-full sm:w-auto px-8 py-3.5 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12">
+                                    </path>
+                                </svg>
+                                <span>Simpan & Unggah ke Drive</span>
+                            </button>
+                        </div>
+
+                    </form>
                 </div>
-                
-                <!-- Footer Konten -->
-                <p class="text-center text-xs text-gray-400 mt-8 mb-4 font-semibold tracking-wide">&copy; 2026 MGMP Bahasa Indonesia - Hak Cipta Dilindungi.</p>
             </div>
         </div>
     </main>
@@ -209,21 +312,17 @@
         // ==========================================================
         // GANTI URL DI BAWAH INI DENGAN URL WEB APP (.gs) ANDA
         // ==========================================================
-        const scriptUrl = 'https://script.google.com/macros/s/AKfycbzD18vvYDhC2s9EyuhJlKQqhCwkOty5sYkUSu4dTwJKff4Yf4r317ZRijGWFTR287Fi/exec'; 
-        const SESSION_DURATION = 3600000; // 1 Jam 
+        const scriptUrl = 'URL_WEB_APP_ANDA_DISINI';
+        const SESSION_DURATION = 3600000;
 
-        // Fungsi Buka/Tutup Sidebar (Mobile)
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebarOverlay');
-            
-            // Toggle translate-x
+
             sidebar.classList.toggle('-translate-x-full');
-            
-            // Toggle overlay
+
             if (overlay.classList.contains('hidden')) {
                 overlay.classList.remove('hidden');
-                // Timeout dikit buat animasi opacity
                 setTimeout(() => overlay.classList.remove('opacity-0'), 10);
             } else {
                 overlay.classList.add('opacity-0');
@@ -231,7 +330,6 @@
             }
         }
 
-        // Logika Keamanan Sesi (Session Check)
         function checkSession() {
             const token = localStorage.getItem('cms_token');
             const loginTime = localStorage.getItem('cms_timestamp');
@@ -253,9 +351,9 @@
         function forceLogout() {
             localStorage.removeItem('cms_token');
             localStorage.removeItem('cms_timestamp');
-            window.location.href = 'login.html'; 
+            window.location.href = 'login.html';
         }
-        
+
         function logout() {
             forceLogout();
         }
@@ -265,16 +363,17 @@
             setInterval(() => {
                 remaining -= 1000;
                 if (remaining <= 0) forceLogout();
-                
+
                 const minutes = Math.floor(remaining / 60000);
                 const seconds = Math.floor((remaining % 60000) / 1000);
-                
-                if(remaining < 300000) { // Sisa di bawah 5 menit
-                    timerElement.classList.replace('text-green-400', 'text-red-500');
-                    timerElement.classList.replace('bg-green-400/10', 'bg-red-500/10');
-                    timerElement.classList.replace('border-green-400/20', 'border-red-500/20');
+
+                // Ubah logika warna untuk Light Theme Sidebar
+                if (remaining < 300000) {
+                    timerElement.classList.replace('text-green-700', 'text-red-700');
+                    timerElement.classList.replace('bg-green-50', 'bg-red-50');
+                    timerElement.classList.replace('border-green-200', 'border-red-200');
                 }
-                
+
                 timerElement.innerText = `${minutes}:${seconds.toString().padStart(2, '0')}`;
             }, 1000);
         }
@@ -295,15 +394,14 @@
 
         document.getElementById('uploadForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             const btn = document.getElementById('btnSubmit');
             const statusMsg = document.getElementById('statusMsg');
-            
-            // Animasi tombol saat loading
+
             btn.disabled = true;
             btn.classList.add('cursor-not-allowed', 'opacity-90');
             btn.innerHTML = `<svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> <span>Menyiapkan Berkas...</span>`;
-            
+
             statusMsg.classList.add('hidden');
             statusMsg.className = 'hidden text-sm p-4 rounded-xl font-bold flex items-start gap-3 border shadow-sm mt-4';
 
@@ -338,9 +436,9 @@
                     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify(payload)
                 });
-                
+
                 const result = await response.json();
-                
+
                 statusMsg.classList.remove('hidden');
                 if (result.status === 'success') {
                     statusMsg.classList.add('bg-green-50', 'text-green-800', 'border-green-200');
@@ -350,7 +448,10 @@
                             <p class="font-extrabold text-base">Berhasil!</p>
                             <p class="font-medium text-green-700 mt-0.5">${result.message}</p>
                         </div>`;
+
                     document.getElementById('uploadForm').reset();
+                    document.getElementById('coverFileName').innerText = 'Format JPG/PNG (1080x1080)';
+                    document.getElementById('dokumenFileName').innerText = 'Abaikan jika Jenis = Video';
                 } else {
                     statusMsg.classList.add('bg-red-50', 'text-red-800', 'border-red-200');
                     statusMsg.innerHTML = `
@@ -382,4 +483,5 @@
         });
     </script>
 </body>
+
 </html>

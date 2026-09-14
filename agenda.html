@@ -203,7 +203,7 @@
     <!-- SCRIPT UTAMA & LOGIKA RENDER -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbyum9ib3e9-nwBRcC5RJIhVrqlUk-pc_8L0wCbeYHORzh5l6rwWN1Sy4CMWRQNEGd7X/exec';
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbyb7MY0S-R7Sm9Oy0JM2Ipzegqf3Awt3svuSYz_LijWspQb4Qmkpnn8CayTz8GMNrPe/exec';
             const mainContainer = document.getElementById('dynamic-content');
             const heroContainer = document.getElementById('dynamic-hero');
             const ITEMS_PER_PAGE = 9;
@@ -345,7 +345,7 @@
             }
 
             function renderLayar(result, currentPage) {
-                renderGlobalAndHero(result); // <-- Ini bagian yang sebelumnya tertinggal sehingga banner hero tidak tampil
+                renderGlobalAndHero(result);
 
                 const urlParams = new URLSearchParams(window.location.search);
                 const agendaId = urlParams.get('id');
@@ -357,7 +357,6 @@
                 });
 
                 if (agendaId) {
-                    // ================= DETAIL AGENDA =================
                     const item = agendaData.find(a => String(a.id) === String(agendaId));
                     if (item) {
                         document.title = `${item.agenda_name} | Agenda MGMP`;
@@ -451,7 +450,6 @@
                         </div>`;
                     }
                 } else {
-                    // ================= LIST AGENDA =================
                     if (agendaData.length === 0) {
                         mainContainer.innerHTML = `
                         <div class="max-w-7xl mx-auto px-4 py-16 text-center">
@@ -485,12 +483,10 @@
 
                             <div>
                                 <div class="min-h-[85px] flex flex-col gap-2 text-xs font-medium text-gray-500 mb-6 pt-4 border-t border-gray-100">
-                                    <!-- Baris Waktu -->
                                     <div class="flex items-start gap-2">
                                         <span class="w-4 shrink-0 text-center pt-0.5"><i class="fa-regular fa-clock text-blue-600"></i></span>
                                         <span class="leading-relaxed">${item.agenda_time || '-'}</span>
                                     </div>
-                                    <!-- Baris Lokasi -->
                                     <div class="flex items-start gap-2">
                                         <span class="w-4 shrink-0 text-center pt-0.5"><i class="fa-solid fa-location-dot text-blue-600"></i></span>
                                         <span class="line-clamp-2 leading-relaxed">${item.agenda_location_name || '-'}</span>

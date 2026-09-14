@@ -161,7 +161,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbyb7MY0S-R7Sm9Oy0JM2Ipzegqf3Awt3svuSYz_LijWspQb4Qmkpnn8CayTz8GMNrPe/exec';
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbw7I6sK2J89ijX_IeNNqLVAlT3Fh1w3Wg-zFmrC8_mpbziaBioi-VlNABN3mL7bl3gw/exec';
             const mainContainer = document.getElementById('dynamic-content');
             const heroContainer = document.getElementById('dynamic-hero');
 
@@ -298,7 +298,8 @@
             }
 
             async function fetchData() {
-                const CACHE_KEY = 'mgmp_data_homepage';
+                // Gunakan cache key khusus untuk visi misi agar bersih dan tidak bentrok
+                const CACHE_KEY = 'mgmp_data_visimisi'; 
                 
                 // Cek Cache
                 const cachedData = localStorage.getItem(CACHE_KEY);
@@ -310,9 +311,9 @@
                     }
                 }
 
-                // Ambil data baru
+                // Ambil data baru khusus sheet visimisi
                 try {
-                    const fetchUrl = `${scriptUrl}?v=${new Date().getTime()}`;
+                    const fetchUrl = `${scriptUrl}?sheet=visimisi&v=${new Date().getTime()}`;
                     const response = await fetch(fetchUrl, { method: 'GET', redirect: 'follow' });
                     const result = await response.json();
 

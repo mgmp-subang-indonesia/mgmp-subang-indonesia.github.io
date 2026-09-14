@@ -393,7 +393,8 @@
             }
 
             async function fetchData() {
-                const CACHE_KEY = 'mgmp_data_homepage';
+                // Gunakan cache key khusus untuk pengurus agar tidak bentrok dengan halaman lain
+                const CACHE_KEY = 'mgmp_data_pengurus'; 
                 
                 const cachedData = localStorage.getItem(CACHE_KEY);
                 if (cachedData) {
@@ -405,7 +406,8 @@
                 }
 
                 try {
-                    const fetchUrl = `${scriptUrl}?v=${new Date().getTime()}`;
+                    // Tambahkan parameter ?sheet=pengurus agar server hanya menarik data pengurus
+                    const fetchUrl = `${scriptUrl}?sheet=pengurus&v=${new Date().getTime()}`;
                     const response = await fetch(fetchUrl, { method: 'GET', redirect: 'follow' });
                     const result = await response.json();
 
@@ -420,7 +422,7 @@
                     }
                 }
             }
-
+            
             fetchData();
         });
     </script>

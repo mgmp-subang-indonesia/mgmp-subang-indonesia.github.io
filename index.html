@@ -203,7 +203,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbyb7MY0S-R7Sm9Oy0JM2Ipzegqf3Awt3svuSYz_LijWspQb4Qmkpnn8CayTz8GMNrPe/exec';
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbw7I6sK2J89ijX_IeNNqLVAlT3Fh1w3Wg-zFmrC8_mpbziaBioi-VlNABN3mL7bl3gw/exec';
             const mainContainer = document.getElementById('dynamic-homepage');
 
             // --- Fungsi Pembantu (Konversi URL GDrive & Tanggal) ---
@@ -348,7 +348,10 @@
                                         ${item.penulis_nama}
                                     </div>
                                     <span class="text-gray-400 font-medium flex items-center gap-1">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
                                         ${item.views || 0}
                                     </span>
                                 </div>
@@ -551,7 +554,7 @@
 
                 try {
                     const timeStamp = new Date().getTime();
-                    const fetchUrl = `${scriptUrl}?v=${timeStamp}`;
+                    const fetchUrl = `${scriptUrl}?sheet=homepage&v=${timeStamp}`;
 
                     const response = await fetch(fetchUrl, {
                         method: 'GET',

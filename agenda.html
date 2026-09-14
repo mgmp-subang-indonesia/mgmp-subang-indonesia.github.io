@@ -210,8 +210,10 @@
             function getDirectImageUrl(url) {
                 if (!url) return null;
                 if (url.includes('drive.google.com')) {
-                    const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                    let match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
                     if (match && match[1]) return `https://lh3.googleusercontent.com/d/${match[1]}`;
+                    let matchUc = url.match(/id=([a-zA-Z0-9_-]+)/);
+                    if (matchUc && matchUc[1]) return `https://lh3.googleusercontent.com/d/${matchUc[1]}`;
                 }
                 return url;
             }
@@ -363,9 +365,17 @@
 
                                 ${item.agenda_image ? `
                                     <div class="mb-8 text-center bg-gray-900 rounded-2xl overflow-hidden p-3 border border-gray-200 shadow-sm">
-                                        <img src="${getDirectImageUrl(item.agenda_image)}" alt="Flyer ${item.agenda_name}" class="max-h-[500px] mx-auto rounded-xl object-contain">
+                                        <img src="${getDirectImageUrl(item.agenda_image)}" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'py-12 text-blue-300 flex flex-col items-center justify-center gap-2\'><i class=\'fa-solid fa-calendar-days text-4xl\'></i><p class=\'text-xs font-semibold\'>Poster / Flyer Resmi Agenda</p></div>';" alt="Flyer ${item.agenda_name}" class="max-h-[500px] mx-auto rounded-xl object-contain">
                                     </div>
-                                ` : ''}
+                                ` : `
+                                    <div class="mb-8 text-center bg-gradient-to-r from-blue-900 to-indigo-900 rounded-2xl p-8 text-white shadow-sm flex flex-col items-center justify-center gap-3">
+                                        <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-md border border-white/20">
+                                            <i class="fa-solid fa-calendar-days text-2xl text-blue-200"></i>
+                                        </div>
+                                        <span class="text-xs font-bold uppercase tracking-widest text-blue-300">Agenda Resmi MGMP</span>
+                                        <h2 class="text-xl font-extrabold tracking-tight">${item.agenda_name}</h2>
+                                    </div>
+                                `}
 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 bg-gray-50 p-5 rounded-2xl border border-gray-200/60">
                                     <div class="flex flex-col gap-4">
@@ -431,7 +441,7 @@
                         <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-4 md:p-6 flex flex-col justify-between hover-lift">
                             <div>
                                 <div class="flex items-start gap-4 mb-4">
-                                    <div class="bg-blue-50 text-blue-700 rounded-2xl p-4 text-center border border-blue-100 min-w-[60px] shrink-0">
+                                    <div class="bg-blue-50 text-blue-700 rounded-2xl p-3 text-center border border-blue-100 min-w-[60px] shrink-0">
                                         <span class="block text-[10px] font-bold uppercase tracking-wider text-blue-600">${getMonthName(item.agenda_date)}</span>
                                         <span class="block text-2xl font-extrabold text-gray-900">${getDayNumber(item.agenda_date)}</span>
                                     </div>

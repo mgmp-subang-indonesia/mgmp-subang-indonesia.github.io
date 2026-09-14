@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Agenda | CMS MGMP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="../icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icon/favicon-16x16.png">
+    <link rel="manifest" href="../icon/site.webmanifest">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+            border: 2px solid #f8fafc;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        #sidebar {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 flex h-screen overflow-hidden">
+
+    <!-- TOAST NOTIFICATION CONTAINER (TOP CENTER) -->
+    <div id="toastContainer"
+        class="fixed top-5 left-1/2 -translate-x-1/2 z-[70] flex flex-col items-center gap-2 pointer-events-none"></div>
+
+    <!-- OVERLAY MOBILE -->
+    <div id="sidebarOverlay" onclick="toggleSidebar()"
+        class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm z-40 hidden md:hidden opacity-0 transition-opacity duration-300">
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar"
+        class="fixed inset-y-0 left-0 z-50 w-64 bg-white text-gray-900 flex flex-col h-full flex-shrink-0 transform -translate-x-full md:relative md:translate-x-0 border-r border-gray-200 shadow-2xl md:shadow-none">
+        <div class="h-16 flex items-center justify-between px-6 border-b border-gray-100 bg-white">
+            <h1 class="font-extrabold text-lg tracking-tight flex items-center gap-2.5">
+                <div
+                    class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-600/30">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                CMS MGMP
+            </h1>
+            <button onclick="toggleSidebar()" class="md:hidden text-gray-400 hover:text-gray-900 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
+            <div class="flex flex-col space-y-1">
+                <p class="px-2 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Sistem</p>
+                <a href="welcome.html"
+                    class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-colors">
+                    <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                        </path>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="cms-pengaturan.html"
+                    class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-colors">
+                    <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+                        </path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    Pengaturan Web
+                </a>
+            </div>
+
+            <div class="flex flex-col space-y-2">
+                <p class="px-2 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Menu Utama</p>
+                <a href="cms-materi.html"
+                    class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-colors">
+                    <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                        </path>
+                    </svg>
+                    Kelola Materi
+                </a>
+                <a href="cms-pengurus.html"
+                    class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-colors">
+                    <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                        </path>
+                    </svg>
+                    Susunan Pengurus
+                </a>
+                <a href="cms-visimisi.html"
+                    class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-colors">
+                    <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                        </path>
+                    </svg>
+                    Visi & Misi
+                </a>
+                <a href="cms-agenda.html"
+                    class="flex items-center gap-3 px-3 py-2.5 bg-blue-600 text-white rounded-xl font-semibold shadow-md shadow-blue-600/20">
+                    <svg class="w-5 h-5 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    Agenda Kegiatan
+                </a>
+            </div>
+        </nav>
+
+        <div class="p-5 border-t border-gray-100 bg-white">
+            <div class="flex items-center justify-between mb-4 px-1">
+                <span class="text-[11px] text-gray-500 font-bold uppercase tracking-wider">Sisa Sesi</span>
+                <span id="sessionTimer"
+                    class="text-xs text-green-700 font-bold bg-green-50 px-2.5 py-1 rounded-md border border-green-200 shadow-sm">00:00</span>
+            </div>
+            <button onclick="logout()"
+                class="w-full flex items-center justify-center gap-2 bg-white text-red-600 hover:bg-red-50 font-bold py-2.5 rounded-xl transition-all duration-200 text-sm border border-red-200 hover:border-red-300 shadow-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                    </path>
+                </svg>
+                Akhiri Sesi
+            </button>
+        </div>
+    </aside>
+
+    <!-- AREA KONTEN UTAMA -->
+    <main
+        class="flex-1 flex flex-col h-full relative w-full overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-100">
+        <div class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-10">
+
+            <!-- Header Form -->
+            <div class="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 max-w-4xl mx-auto">
+                <div>
+                    <button onclick="toggleSidebar()"
+                        class="md:hidden mb-4 p-2 -ml-2 rounded-lg bg-white shadow-sm text-gray-600 hover:bg-gray-100 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    <h2 id="formPageTitle" class="text-2xl font-extrabold text-gray-900">Tambah Agenda Baru</h2>
+                    <p id="formPageDesc" class="text-gray-500 text-sm mt-1 font-medium">Buat jadwal agenda baru untuk
+                        dipublikasikan ke halaman pengunjung.</p>
+                </div>
+                <a href="cms-agenda.html"
+                    class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 font-bold rounded-xl hover:bg-gray-50 transition shadow-sm text-sm">
+                    <i class="fa-solid fa-arrow-left"></i> Kembali
+                </a>
+            </div>
+
+            <!-- Card Form Utama -->
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden mb-12">
+                <form id="agendaForm" onsubmit="handleFormSubmit(event)" class="p-6 sm:p-8 space-y-6">
+                    <input type="hidden" id="editId" value="">
+
+                    <!-- Baris 1: Nama Agenda & Tema -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Nama
+                                Agenda <span class="text-red-500">*</span></label>
+                            <input type="text" id="agenda_name" required
+                                placeholder="Contoh: Taklimat Bulan Bahasa 2026"
+                                class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Tema /
+                                Slogan Acara</label>
+                            <input type="text" id="agenda_theme" placeholder="Contoh: Sastra di Era Algoritma"
+                                class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500">
+                        </div>
+                    </div>
+
+                    <!-- Baris 2: Tanggal & Waktu -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Tanggal
+                                Pelaksanaan <span class="text-red-500">*</span></label>
+                            <input type="date" id="agenda_date" required
+                                class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Waktu
+                                (Pukul)</label>
+                            <input type="text" id="agenda_time" placeholder="Contoh: 14:00 - selesai WIB"
+                                class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500">
+                        </div>
+                    </div>
+
+                    <!-- Baris 3: Tipe Lokasi, Nama Lokasi, & URL -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Tipe
+                                Lokasi / Media</label>
+                            <select id="agenda_location_type"
+                                class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500">
+                                <option value="Zoom">Zoom Meeting</option>
+                                <option value="Youtube Channel">YouTube Live</option>
+                                <option value="Google Meet">Google Meet</option>
+                                <option value="Offline">Offline / Tatap Muka</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Nama
+                                Lokasi / Platform</label>
+                            <input type="text" id="agenda_location_name" placeholder="Contoh: Via Zoom Meeting"
+                                class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">URL
+                                Tautan / Meeting</label>
+                            <input type="url" id="agenda_location_url" placeholder="https://zoom.us/j/..."
+                                class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500">
+                        </div>
+                    </div>
+
+                    <!-- Baris 4: Kontak Person & Status -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Kontak
+                                Person (Narahubung)</label>
+                            <input type="text" id="agenda_contact" placeholder="Contoh: 08123456789 (Admin MGMP)"
+                                class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Status
+                                Publikasi</label>
+                            <select id="status"
+                                class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500">
+                                <option value="Aktif">Aktif (Publikasikan)</option>
+                                <option value="Tidak Aktif">Tidak Aktif (Draft)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Baris 5: Deskripsi Singkat -->
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Deskripsi
+                            Singkat (Card Beranda)</label>
+                        <input type="text" id="agenda_desc_short"
+                            placeholder="Ringkasan 1-2 kalimat untuk tampilan kartu..."
+                            class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500">
+                    </div>
+
+                    <!-- Baris 6: Deskripsi Panjang / Undangan Resmi -->
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Undangan /
+                            Deskripsi Lengkap (Halaman Detail)</label>
+                        <textarea id="agenda_desc_long" rows="6"
+                            placeholder="Teks undangan formal atau keterangan lengkap acara..."
+                            class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500"></textarea>
+                    </div>
+
+                    <!-- Baris 7: Upload Flyer / Poster -->
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Flyer /
+                            Poster Acara (Opsional)</label>
+                        <input type="file" id="agendaFile" accept="image/*" onchange="previewImage(event)"
+                            class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer">
+                        <input type="hidden" id="existingImageUrl" value="">
+
+                        <!-- Preview Gambar -->
+                        <div id="imagePreviewContainer" class="mt-4 hidden">
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Pratinjau Gambar:
+                            </p>
+                            <img id="imagePreview" src=""
+                                class="max-h-48 rounded-xl border border-gray-200 object-contain shadow-sm">
+                        </div>
+                    </div>
+
+                    <!-- Tombol Aksi Simpan -->
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-end gap-3">
+                        <a href="cms-agenda.html"
+                            class="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-sm transition">Batal</a>
+                        <button type="submit" id="submitBtn"
+                            class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-sm shadow-lg shadow-blue-600/30 transition flex items-center gap-2">
+                            <span>Simpan Agenda</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <p class="text-center text-xs text-gray-400 mb-4 font-semibold tracking-wide">&copy; 2026 MGMP Bahasa
+                Indonesia - Hak Cipta Dilindungi.</p>
+        </div>
+    </main>
+
+    <script>
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbwmbZCo4GY8CqPQ_0PAleHW4FVK7u0YNui-WYkKh1CbFb4HnG6Dt3p5rxY8_UecMwzA/exec';
+        const SESSION_DURATION = 3600000;
+
+        let base64Image = null;
+        let imageMime = null;
+        let imageName = null;
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            if (!container) return;
+            const toast = document.createElement('div');
+
+            let bgClass = type === 'success' ? 'bg-gray-900 text-white' : 'bg-red-600 text-white';
+            let iconSvg = type === 'success'
+                ? '<svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>'
+                : '<svg class="w-4 h-4 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>';
+
+            toast.className = `flex items-center gap-3 px-4 py-3 rounded-xl shadow-xl text-xs font-bold transition-all duration-300 transform -translate-y-5 opacity-0 pointer-events-auto ${bgClass}`;
+            toast.innerHTML = `${iconSvg}<span>${message}</span>`;
+
+            container.appendChild(toast);
+            setTimeout(() => toast.classList.remove('-translate-y-5', 'opacity-0'), 10);
+
+            setTimeout(() => {
+                toast.classList.add('-translate-y-5', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        function checkSession() {
+            const token = localStorage.getItem('cms_token');
+            let loginTime = localStorage.getItem('cms_timestamp');
+            if (!token || !loginTime || (Date.now() - parseInt(loginTime) > SESSION_DURATION)) {
+                localStorage.removeItem('cms_token');
+                window.location.href = 'login.html';
+            }
+        }
+        function logout() {
+            localStorage.removeItem('cms_token');
+            localStorage.removeItem('cms_timestamp');
+            window.location.href = 'login.html';
+        }
+        checkSession();
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('-translate-x-full');
+            if (overlay.classList.contains('hidden')) {
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+            } else {
+                overlay.classList.add('opacity-0');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            }
+        }
+
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                imageName = file.name;
+                imageMime = file.type;
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    base64Image = e.target.result.split(',')[1];
+                    const preview = document.getElementById('imagePreview');
+                    preview.src = e.target.result;
+                    document.getElementById('imagePreviewContainer').classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function getDirectImageUrl(url) {
+            if (!url) return null;
+            if (url.includes('drive.google.com')) {
+                let match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                if (match && match[1]) return `https://lh3.googleusercontent.com/d/${match[1]}`;
+                let matchUc = url.match(/id=([a-zA-Z0-9_-]+)/);
+                if (matchUc && matchUc[1]) return `https://lh3.googleusercontent.com/d/${matchUc[1]}`;
+            }
+            return url;
+        }
+
+        // --- CEK APAKAH MODE EDIT ATAU TAMBAH BARU ---
+        async function initForm() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const editId = urlParams.get('edit');
+
+            if (editId) {
+                document.getElementById('formPageTitle').innerText = 'Edit Agenda Kegiatan';
+                document.getElementById('formPageDesc').innerText = 'Perbarui informasi jadwal atau detail acara.';
+                document.getElementById('editId').value = editId;
+
+                // Ambil data dari cache lokal atau server
+                let agendaList = [];
+                const cached = localStorage.getItem('cms_agenda_cache');
+                if (cached) {
+                    try { agendaList = JSON.parse(cached); } catch (e) { }
+                }
+
+                let targetItem = agendaList.find(a => String(a.id) === String(editId));
+
+                if (!targetItem) {
+                    // Jika tidak ada di cache, fetch langsung ke server
+                    try {
+                        const res = await fetch(`${scriptUrl}?sheet=agenda&limit=0`);
+                        const json = await res.json();
+                        if (json.status === 'success' && json.data.t_agenda) {
+                            agendaList = json.data.t_agenda;
+                            targetItem = agendaList.find(a => String(a.id) === String(editId));
+                        }
+                    } catch (e) {
+                        console.error(e);
+                    }
+                }
+
+                if (targetItem) {
+                    document.getElementById('agenda_name').value = targetItem.agenda_name || '';
+                    document.getElementById('agenda_theme').value = targetItem.agenda_theme || '';
+
+                    // Format tanggal YYYY-MM-DD untuk input date HTML
+                    if (targetItem.agenda_date) {
+                        const dateOnly = targetItem.agenda_date.split('T')[0];
+                        document.getElementById('agenda_date').value = dateOnly;
+                    }
+
+                    document.getElementById('agenda_time').value = targetItem.agenda_time || '';
+                    document.getElementById('agenda_location_type').value = targetItem.agenda_location_type || 'Zoom';
+                    document.getElementById('agenda_location_name').value = targetItem.agenda_location_name || '';
+                    document.getElementById('agenda_location_url').value = targetItem.agenda_location_url || '';
+                    document.getElementById('agenda_contact').value = targetItem.agenda_contact || '';
+                    document.getElementById('status').value = targetItem.status || 'Aktif';
+                    document.getElementById('agenda_desc_short').value = targetItem.agenda_desc_short || '';
+                    document.getElementById('agenda_desc_long').value = targetItem.agenda_desc_long || '';
+
+                    if (targetItem.agenda_image) {
+                        document.getElementById('existingImageUrl').value = targetItem.agenda_image;
+                        const preview = document.getElementById('imagePreview');
+                        preview.src = getDirectImageUrl(targetItem.agenda_image);
+                        document.getElementById('imagePreviewContainer').classList.remove('hidden');
+                    }
+                }
+            }
+        }
+
+        // --- SUBMIT FORM (TAMBAH / EDIT) ---
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = `<svg class="animate-spin h-5 w-5 text-white mx-auto" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> <span>Menyimpan...</span>`;
+
+            const editId = document.getElementById('editId').value;
+            const actionType = editId ? 'editAgenda' : 'uploadAgenda';
+
+            const payload = {
+                action: actionType,
+                id: editId,
+                agenda_name: document.getElementById('agenda_name').value.trim(),
+                agenda_theme: document.getElementById('agenda_theme').value.trim(),
+                agenda_date: document.getElementById('agenda_date').value,
+                agenda_time: document.getElementById('agenda_time').value.trim(),
+                agenda_location_type: document.getElementById('agenda_location_type').value,
+                agenda_location_name: document.getElementById('agenda_location_name').value.trim(),
+                agenda_location_url: document.getElementById('agenda_location_url').value.trim(),
+                agenda_contact: document.getElementById('agenda_contact').value.trim(),
+                status: document.getElementById('status').value,
+                agenda_desc_short: document.getElementById('agenda_desc_short').value.trim(),
+                agenda_desc_long: document.getElementById('agenda_desc_long').value.trim(),
+                agenda_image: document.getElementById('existingImageUrl').value
+            };
+
+            if (base64Image) {
+                payload.imageData = base64Image;
+                payload.imageMime = imageMime;
+                payload.imageName = imageName;
+            }
+
+            try {
+                const response = await fetch(scriptUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(payload)
+                });
+
+                const rawText = await response.text();
+                let result;
+                try {
+                    result = JSON.parse(rawText);
+                } catch (e) {
+                    throw new Error('Format respons server tidak valid.');
+                }
+
+                if (result.status === 'success') {
+                    showToast(result.message || 'Agenda berhasil disimpan!', 'success');
+                    localStorage.removeItem('cms_agenda_cache');
+                    localStorage.removeItem('cms_agenda_cache_time');
+
+                    setTimeout(() => {
+                        window.location.href = 'cms-agenda.html';
+                    }, 1200);
+                } else {
+                    showToast(result.message || 'Gagal menyimpan data.', 'error');
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                }
+            } catch (error) {
+                console.error(error);
+                showToast('Kesalahan koneksi jaringan ke server.', 'error');
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+        }
+
+        initForm();
+    </script>
+</body>
+
+</html>

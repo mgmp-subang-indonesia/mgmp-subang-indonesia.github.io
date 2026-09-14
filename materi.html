@@ -20,7 +20,7 @@
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
         /* Animasi Modal */
-        #youtubeModal { transition: opacity 0.3s ease; }
+        #youtubeModal, #documentModal { transition: opacity 0.3s ease; }
         .modal-active { opacity: 1; visibility: visible; pointer-events: auto; }
         .modal-inactive { opacity: 0; visibility: hidden; pointer-events: none; }
     </style>
@@ -32,12 +32,9 @@
         class="fixed top-0 inset-x-0 z-50 border-b border-white/10 bg-gray-900/50 backdrop-blur-md shadow-lg transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 h-24 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <!-- Wrapper Logo Header dengan ID -->
                 <div id="header-logo-wrapper"
                     class="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center text-white shadow-lg relative">
-                    <!-- LOGO DINAMIS DARI GDRIVE -->
                     <img id="header-logo" src="" alt="Logo" class="hidden w-full h-full object-contain">
-                    <!-- FALLBACK SVG (Ikon Bawaan) -->
                     <svg id="header-logo-fallback" class="w-7 h-7" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -65,7 +62,7 @@
                     </button>
                     <div class="overflow-hidden absolute top-[calc(100%-15px)] left-0 mt-0 w-56 bg-white border border-gray-100 shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                         <a href="pengurus.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Pengurus</a>
-                        <a href="visi-misi.html" class="block px-4 py-3 text-sm text-blue-700 bg-blue-50 font-semibold">Visi dan Misi</a>
+                        <a href="visi-misi.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">Visi dan Misi</a>
                     </div>
                 </div>
 
@@ -85,7 +82,7 @@
         </div>
     </header>
 
-    <!-- HERO SECTION KHUSUS MATERI (Menyatu dengan Search) -->
+    <!-- HERO SECTION KHUSUS MATERI -->
     <section class="relative py-28 md:py-40 overflow-hidden">
         <div class="absolute inset-0 z-0 bg-blue-950">
             <img id="hero-bg" src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1920&q=80" alt="Hero Literasi" class="w-full h-full object-cover opacity-50">
@@ -187,7 +184,6 @@
 
             <!-- Container Kartu Materi Dinamis -->
             <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 content-start flex-grow" id="materiContainer">
-                <!-- Tampilan Loading Awal -->
                 <div class="col-span-full flex justify-center py-20">
                     <div class="text-center">
                         <svg class="animate-spin h-10 w-10 text-blue-600 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
@@ -219,12 +215,9 @@
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
                 <div class="flex items-center gap-3 mb-4">
-                    <!-- Wrapper Logo Footer dengan ID -->
                     <div id="footer-logo-wrapper"
                         class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white relative">
-                        <!-- LOGO DINAMIS DARI GDRIVE -->
                         <img id="footer-logo" src="" alt="Logo" class="hidden w-full h-full object-contain">
-                        <!-- FALLBACK SVG (Ikon Bawaan) -->
                         <svg id="footer-logo-fallback" class="w-6 h-6" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -243,7 +236,7 @@
             <div class="md:ml-auto">
                 <h4 class="text-white font-bold mb-4">Tautan Cepat</h4>
                 <ul class="space-y-2 text-sm text-gray-400">
-                    <li><a href="#" class="hover:text-blue-400 transition">Beranda</a></li>
+                    <li><a href="index.html" class="hover:text-blue-400 transition">Beranda</a></li>
                     <li><a href="pengurus.html" class="hover:text-blue-400 transition">Profil</a></li>
                     <li><a href="visi-misi.html" class="hover:text-blue-400 transition">Visi dan Misi</a></li>
                     <li><a href="materi.html" class="hover:text-blue-400 transition">Gudang Digital</a></li>
@@ -280,13 +273,35 @@
         </div>
     </div>
 
+    <!-- Document Modal (Google Drive Iframe Viewer) -->
+    <div id="documentModal" class="fixed inset-0 z-[60] modal-inactive bg-gray-900/95 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
+        <div class="relative w-full max-w-5xl h-[85vh] bg-white rounded-xl overflow-hidden shadow-2xl border border-gray-700 flex flex-col">
+            <div class="bg-gray-900 text-white px-6 py-4 flex items-center justify-between">
+                <h3 id="modalDocTitle" class="font-bold text-base truncate pr-4">Pratinjau Dokumen</h3>
+                <div class="flex items-center gap-3 shrink-0">
+                    <!-- Tombol Unduh Tambahan -->
+                    <a id="modalDownloadBtn" href="#" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-3.5 py-2 rounded-lg transition flex items-center gap-1.5 shadow-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        <span>Unduh File</span>
+                    </a>
+                    <button onclick="closeDocument()" class="bg-white/10 hover:bg-red-600 text-white rounded-full p-1.5 transition focus:outline-none">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="flex-grow w-full bg-gray-100 relative">
+                <iframe id="docIframe" class="w-full h-full" src="" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
     <script>
         const scriptUrl = 'https://script.google.com/macros/s/AKfycbyb7MY0S-R7Sm9Oy0JM2Ipzegqf3Awt3svuSYz_LijWspQb4Qmkpnn8CayTz8GMNrPe/exec'; 
 
         const itemsPerPage = 6;
         let currentPage = 1;
         let filteredItems = [];
-        let allItems = []; // Akan diisi elemen HTML asli hasil render
+        let allItems = []; 
 
         const domElements = {
             searchInput: document.getElementById('searchInput'),
@@ -301,28 +316,40 @@
             heroSubtitle: document.getElementById('hero-subtitle')
         };
 
-        // Bantuan URL Drive
         function getDirectImageUrl(url) {
             if (!url) return null;
             if (url.includes('drive.google.com')) {
-                // Cek format 1: /d/ID (biasanya dari share link manual)
                 let match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
                 if (match && match[1]) return `https://lh3.googleusercontent.com/d/${match[1]}`;
-                
-                // Cek format 2: uc?id=ID (hasil generate otomatis dari CMS GAS)
                 let matchUc = url.match(/id=([a-zA-Z0-9_-]+)/);
                 if (matchUc && matchUc[1]) return `https://lh3.googleusercontent.com/d/${matchUc[1]}`;
             }
             return url; 
         }
 
-        // Pembangun Kartu Dinamis dari Data JSON
+        // Konversi URL Google Drive agar bisa dibuka di dalam Iframe
+        function getEmbedDriveUrl(url) {
+            if (!url) return '';
+            let fileId = '';
+            if (url.includes('/d/')) {
+                let match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                if (match && match[1]) fileId = match[1];
+            } else if (url.includes('id=')) {
+                let match = url.match(/id=([a-zA-Z0-9_-]+)/);
+                if (match && match[1]) fileId = match[1];
+            }
+            
+            if (fileId) {
+                return `https://drive.google.com/file/d/${fileId}/preview`;
+            }
+            return url;
+        }
+
         function buildMateriCardHTML(item) {
             let jenis = (item.jenis || 'modul').toLowerCase().trim();
             let kelas = (item.kelas || 'semua').toString().toLowerCase();
             let teksKelas = (kelas === 'semua' || kelas === 'umum') ? 'Umum' : `Kelas ${item.kelas}`;
             
-            // PERBAIKAN 1: Membaca item.tanggal_publish dari JSON Anda
             let dateObj = new Date(item.tanggal_publish || item.tanggal || item.date || new Date());
             let dateStr = isNaN(dateObj.getTime()) ? '-' : dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
             let isoDate = isNaN(dateObj.getTime()) ? '' : dateObj.toISOString();
@@ -332,8 +359,8 @@
             let inisial = item.penulis_inisial || '?';
             let namaPenulis = item.penulis_nama || 'Anonim';
             
-            // PERBAIKAN 2: Membaca item.action_url dari JSON Anda
-            let linkAksi = item.action_url || item.file_url || '#';
+            let linkAksi = item.action_url || item.file_url || '';
+            let isLinkAvailable = linkAksi && linkAksi !== '#' && linkAksi.trim() !== '';
 
             let visualBlock = '';
             let actionButton = '';
@@ -359,7 +386,6 @@
             else if (jenis.includes('buku')) {
                 themeColor = 'indigo';
                 
-                // Jika buku memiliki gambar cover (img), tampilkan gambarnya. Jika tidak, pakai gradasi ikon buku.
                 if (img) {
                     visualBlock = `
                     <div class="relative aspect-[4/3] bg-gray-100 overflow-hidden">
@@ -377,7 +403,12 @@
                     </div>`;
                 }
                 
-                actionButton = `<a href="${linkAksi}" target="_blank" class="w-full flex items-center justify-center gap-2 bg-gray-50 text-gray-700 border border-gray-200 font-semibold py-2.5 rounded-lg hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition text-sm">Unduh Dokumen</a>`;
+                if (isLinkAvailable) {
+                    let safeTitle = (item.judul || 'Pratinjau Materi').replace(/'/g, "\\'");
+                    actionButton = `<button onclick="openDocument('${linkAksi}', '${safeTitle}')" class="w-full flex items-center justify-center gap-2 bg-gray-50 text-gray-700 border border-gray-200 font-semibold py-2.5 rounded-lg hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition text-sm">Lihat Dokumen</button>`;
+                } else {
+                    actionButton = `<button disabled class="w-full flex items-center justify-center gap-2 bg-gray-100 text-gray-400 border border-gray-200 font-semibold py-2.5 rounded-lg cursor-not-allowed text-sm">File Tidak Tersedia</button>`;
+                }
             } 
             else {
                 themeColor = 'green';
@@ -387,8 +418,13 @@
                     <img src="${img || fallbackImg}" onerror="this.src='${fallbackImg}'" alt="Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     <div class="absolute top-3 left-3 bg-white/95 backdrop-blur text-green-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-green-100 uppercase">${jenis}</div>
                 </div>`;
-                // Tombol aksi menggunakan linkAksi
-                actionButton = `<a href="${linkAksi}" target="_blank" class="w-full flex items-center justify-center gap-2 bg-gray-50 text-gray-700 border border-gray-200 font-semibold py-2.5 rounded-lg hover:bg-green-600 hover:text-white hover:border-green-600 transition text-sm">Unduh Dokumen</a>`;
+                
+                if (isLinkAvailable) {
+                    let safeTitle = (item.judul || 'Pratinjau Materi').replace(/'/g, "\\'");
+                    actionButton = `<button onclick="openDocument('${linkAksi}', '${safeTitle}')" class="w-full flex items-center justify-center gap-2 bg-gray-50 text-gray-700 border border-gray-200 font-semibold py-2.5 rounded-lg hover:bg-green-600 hover:text-white hover:border-green-600 transition text-sm">Lihat Dokumen</button>`;
+                } else {
+                    actionButton = `<button disabled class="w-full flex items-center justify-center gap-2 bg-gray-100 text-gray-400 border border-gray-200 font-semibold py-2.5 rounded-lg cursor-not-allowed text-sm">File Tidak Tersedia</button>`;
+                }
             }
 
             const wrapper = document.createElement('div');
@@ -419,9 +455,23 @@
             return wrapper;
         }
 
-        // Pembangun Render Utama
+        function handleUrlHashFilter() {
+            const hash = window.location.hash.toLowerCase();
+            const checkboxes = document.querySelectorAll('.filter-jenis');
+
+            if (hash.includes('modul') || hash.includes('buku') || hash.includes('media') || hash.includes('video')) {
+                checkboxes.forEach(cb => {
+                    let val = cb.value.toLowerCase();
+                    if (hash.includes(val) || (hash.includes('media') && val === 'video')) {
+                        cb.checked = true;
+                    } else {
+                        cb.checked = false;
+                    }
+                });
+            }
+        }
+
         function renderLayar(result) {
-            // Global
             const globalData = {};
             if (result.data.global) {
                 result.data.global.forEach(item => Object.assign(globalData, item));
@@ -437,7 +487,6 @@
                     emailEl.href = `mailto:${globalData.email}`;
                 }
 
-                // --- INTEGRASI LOGO HEADER & FOOTER DARI GDrive ---
                 const headerLogoImg = document.getElementById('header-logo');
                 const headerLogoFallback = document.getElementById('header-logo-fallback');
                 const headerLogoWrapper = document.getElementById('header-logo-wrapper');
@@ -449,13 +498,11 @@
                 if (globalData.logo) {
                     const parsedLogoUrl = getDirectImageUrl(globalData.logo);
                     if (parsedLogoUrl) {
-                        // Terapkan Logo Header & Hapus Styling Box-nya
                         headerLogoImg.src = parsedLogoUrl;
                         headerLogoImg.classList.remove('hidden');
                         headerLogoFallback.classList.add('hidden');
                         headerLogoWrapper.classList.remove('bg-white/10', 'backdrop-blur-md', 'border', 'border-white/20', 'rounded-xl', 'shadow-lg');
 
-                        // Terapkan Logo Footer & Hapus Styling Box-nya
                         footerLogoImg.src = parsedLogoUrl;
                         footerLogoImg.classList.remove('hidden');
                         footerLogoFallback.classList.add('hidden');
@@ -464,7 +511,6 @@
                 }
             }
 
-            // Hero
             if (result.data.t_heroimage) {
                 const hero = result.data.t_heroimage.find(x => x.status && x.status.toLowerCase() === 'aktif' && x.halaman && x.halaman.toLowerCase() === 'materi');
                 if (hero) {
@@ -478,9 +524,8 @@
                 }
             }
 
-            // Materi Data Injector
-            domElements.materiContainer.innerHTML = ''; // Hapus loading
-            allItems = []; // Reset Array HTML
+            domElements.materiContainer.innerHTML = ''; 
+            allItems = []; 
 
             let materiData = result.data.t_materi || [];
             let activeMateri = materiData.filter(item => item.status && item.status.toLowerCase() === 'aktif');
@@ -491,7 +536,7 @@
                 allItems.push(cardDOM);
             });
 
-            // Jalankan Filter & Sorting bawaan setelah data masuk semua
+            handleUrlHashFilter();
             applyFilters();
         }
 
@@ -510,7 +555,6 @@
             const checkboxesJenis = document.querySelectorAll('.filter-jenis:checked');
             const checkedJenis = Array.from(checkboxesJenis).map(cb => cb.value.toLowerCase());
 
-            // Filtering
             filteredItems = allItems.filter(card => {
                 const cardKelas = card.getAttribute('data-kelas');
                 const cardJenis = card.getAttribute('data-jenis').toLowerCase();
@@ -518,14 +562,11 @@
 
                 const matchSearch = cardJudul.includes(searchInput);
                 const matchKelas = filterKelas === 'semua' || cardKelas === filterKelas;
-                
-                // Pencocokan fleksibel jenis materi
                 const matchJenis = checkedJenis.some(j => cardJenis.includes(j));
 
                 return matchSearch && matchKelas && matchJenis;
             });
 
-            // Sorting
             filteredItems.sort((a, b) => {
                 if (sortOption === 'terbaru') {
                     return new Date(b.getAttribute('data-date')) - new Date(a.getAttribute('data-date'));
@@ -537,7 +578,6 @@
                 return 0;
             });
 
-            // Susun Ulang DOM
             filteredItems.forEach(item => domElements.materiContainer.appendChild(item));
 
             currentPage = 1;
@@ -578,12 +618,10 @@
 
             let html = `<nav class="inline-flex rounded-lg shadow-sm gap-1 bg-white p-1.5 border border-gray-100">`;
 
-            // Prev
             html += `<button onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''} class="inline-flex items-center px-3 py-2 rounded-md text-sm font-medium ${currentPage === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:bg-gray-50 hover:text-blue-600'} transition">
                         <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
                     </button>`;
 
-            // Angka
             for (let i = 1; i <= totalPages; i++) {
                 if (i === currentPage) {
                     html += `<button class="bg-blue-600 text-white inline-flex items-center px-4 py-2 rounded-md text-sm font-bold shadow-sm">${i}</button>`;
@@ -592,7 +630,6 @@
                 }
             }
 
-            // Next
             html += `<button onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''} class="inline-flex items-center px-3 py-2 rounded-md text-sm font-medium ${currentPage === totalPages ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:bg-gray-50 hover:text-blue-600'} transition">
                         <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
                     </button></nav>`;
@@ -614,7 +651,7 @@
             applyFilters();
         }
 
-        // Modal Video
+        // Modal Video Controller
         const modal = document.getElementById('youtubeModal');
         const iframe = document.getElementById('ytIframe');
 
@@ -636,6 +673,46 @@
             if (e.target === modal) closeVideo();
         });
 
+        // Modal Document Controller (Iframe GDrive)
+        const docModal = document.getElementById('documentModal');
+        const docIframe = document.getElementById('docIframe');
+        const modalDocTitle = document.getElementById('modalDocTitle');
+        const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+
+        function openDocument(url, title) {
+            docIframe.src = getEmbedDriveUrl(url);
+            modalDocTitle.innerText = title;
+            
+            // Set URL asli ke tombol unduh (mengubah /preview atau /edit menjadi /view atau biarkan URL aslinya)
+            let downloadUrl = url;
+            if (url.includes('/file/d/')) {
+                downloadUrl = url.replace(/\/preview$/, '/view').replace(/\/edit$/, '/view');
+            }
+            modalDownloadBtn.href = downloadUrl;
+
+            docModal.classList.remove('modal-inactive');
+            docModal.classList.add('modal-active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDocument() {
+            docIframe.src = '';
+            modalDownloadBtn.href = '#';
+            docModal.classList.remove('modal-active');
+            docModal.classList.add('modal-inactive');
+            document.body.style.overflow = 'auto';
+        }
+
+        docModal.addEventListener('click', function (e) {
+            if (e.target === docModal) closeDocument();
+        });
+
+        // Mendeteksi perubahan Hash di URL secara dinamis (misal klik navigasi menu)
+        window.addEventListener('hashchange', () => {
+            handleUrlHashFilter();
+            applyFilters();
+        });
+
         domElements.searchInput.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
@@ -643,7 +720,6 @@
             }
         });
 
-        // --- BOOTSTRAPPING / PEMANGGILAN DATA SERVER ---
         async function fetchData() {
             const CACHE_KEY = 'mgmp_data_homepage';
             
@@ -673,9 +749,7 @@
             }
         }
 
-        // Inisialisasi
         fetchData();
-        
     </script>
 </body>
 </html>

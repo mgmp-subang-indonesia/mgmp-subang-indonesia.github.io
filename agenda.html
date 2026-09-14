@@ -203,9 +203,11 @@
     <!-- SCRIPT UTAMA & LOGIKA RENDER -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbwmbZCo4GY8CqPQ_0PAleHW4FVK7u0YNui-WYkKh1CbFb4HnG6Dt3p5rxY8_UecMwzA/exec';
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbynzI9SFjkdOyoIa2FD4zV4n-9NrUXvpGwu-6I47yIfZhwQL6xMd_cSM2SH-A9-LNiy/exec';
             const mainContainer = document.getElementById('dynamic-content');
             const heroContainer = document.getElementById('dynamic-hero');
+
+            const ITEMS_PER_PAGE = 9;
 
             function getDirectImageUrl(url) {
                 if (!url) return null;
@@ -237,7 +239,6 @@
 
             function cleanText(text) {
                 if (!text) return '';
-                // Membersihkan karakter aneh/rusak () dan merapikan spasi/simbol
                 return text.replace(/[^\w\s.,:;()?!*_\-\n]/g, ' ').replace(/\s+/g, ' ').trim();
             }
 
@@ -252,7 +253,7 @@
                 return 'Tidak ada deskripsi singkat.';
             }
 
-            function renderLayar(result) {
+            function renderGlobalAndHero(result) {
                 const globalData = {};
                 if (result.data.global) {
                     result.data.global.forEach(item => Object.assign(globalData, item));
@@ -301,25 +302,51 @@
                     const subtitle = heroAgenda ? heroAgenda.hero_subtitle : 'Jadwal dan informasi kegiatan resmi MGMP Bahasa Indonesia SMP Kabupaten Subang.';
 
                     heroContainer.innerHTML = `
-                    <section class="relative min-h-[50vh] md:min-h-[55vh] flex items-center py-24 overflow-hidden">
-                        <div class="absolute inset-0 z-0 bg-gray-900">
-                            <img src="${bgUrl}" class="w-full h-full object-cover opacity-40">
-                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent"></div>
-                        </div>
-                        <div class="relative z-10 max-w-7xl mx-auto px-4 w-full text-center">
-                            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 drop-shadow-lg tracking-tight">
-                                ${titleFirst} 
-                                ${titleSecond ? `<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">${titleSecond}</span>` : ''}
-                            </h1>
-                            ${subtitle ? `<p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-medium leading-relaxed">${subtitle}</p>` : ''}
-                        </div>
-                        <div class="absolute -bottom-1 inset-x-0">
-                            <svg class="w-full h-auto text-gray-50 drop-shadow-sm" viewBox="0 0 1440 120" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,42.7C1120,32,1280,32,1360,32L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
-                            </svg>
-                        </div>
-                    </section>`;
+                <section class="relative min-h-[50vh] md:min-h-[55vh] flex items-center py-24 overflow-hidden">
+                    <div class="absolute inset-0 z-0 bg-gray-900">
+                        <img src="${bgUrl}" class="w-full h-full object-cover opacity-40">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent"></div>
+                    </div>
+                    <div class="relative z-10 max-w-7xl mx-auto px-4 w-full text-center">
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 drop-shadow-lg tracking-tight">
+                            ${titleFirst} 
+                            ${titleSecond ? `<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">${titleSecond}</span>` : ''}
+                        </h1>
+                        ${subtitle ? `<p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-medium leading-relaxed">${subtitle}</p>` : ''}
+                    </div>
+                    <div class="absolute -bottom-1 inset-x-0">
+                        <svg class="w-full h-auto text-gray-50 drop-shadow-sm" viewBox="0 0 1440 120" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,42.7C1120,32,1280,32,1360,32L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
+                        </svg>
+                    </div>
+                </section>`;
                 }
+            }
+
+            function renderPagination(currentPage, totalPages) {
+                if (totalPages <= 1) return '';
+
+                let pagesHTML = '';
+                for (let i = 1; i <= totalPages; i++) {
+                    const isActive = i === currentPage;
+                    pagesHTML += `
+                    <a href="agenda.html?page=${i}" data-page="${i}" class="pagination-btn px-4 py-2 rounded-xl text-sm font-semibold transition ${isActive ? 'bg-blue-600 text-white shadow-sm' : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'}">
+                        ${i}
+                    </a>
+                `;
+                }
+
+                return `
+                <div class="flex justify-center items-center gap-2 mt-12">
+                    ${currentPage > 1 ? `<a href="agenda.html?page=${currentPage - 1}" data-page="${currentPage - 1}" class="pagination-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 transition"><i class="fa-solid fa-chevron-left text-xs mr-1"></i> Prev</a>` : ''}
+                    ${pagesHTML}
+                    ${currentPage < totalPages ? `<a href="agenda.html?page=${currentPage + 1}" data-page="${currentPage + 1}" class="pagination-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 transition">Next <i class="fa-solid fa-chevron-right text-xs ml-1"></i></a>` : ''}
+                </div>
+            `;
+            }
+
+            function renderLayar(result, currentPage) {
+                renderGlobalAndHero(result);
 
                 const urlParams = new URLSearchParams(window.location.search);
                 const agendaId = urlParams.get('id');
@@ -336,7 +363,6 @@
                     if (item) {
                         document.title = `${item.agenda_name} | Agenda MGMP`;
 
-                        // Text share WA bersih tanpa karakter rusak dan tanpa spasi link yang terputus
                         const shareUrl = window.location.href.trim();
                         const waText = encodeURIComponent(
                             `*${item.agenda_name}*\n` +
@@ -346,147 +372,159 @@
                         );
 
                         mainContainer.innerHTML = `
-                        <div class="max-w-4xl mx-auto px-4 pt-6">
-                            <div class="md:mt-24 mb-6">
-                                <a href="agenda.html" class="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-800 bg-white border border-gray-200 px-4 py-2 rounded-xl shadow-sm transition hover-lift">
-                                    <i class="fa-solid fa-arrow-left"></i> Kembali ke Daftar Agenda
+                    <div class="max-w-4xl mx-auto px-4 pt-6">
+                        <div class="md:mt-24 mb-6">
+                            <a href="agenda.html" class="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-800 bg-white border border-gray-200 px-4 py-2 rounded-xl shadow-sm transition hover-lift">
+                                <i class="fa-solid fa-arrow-left"></i> Kembali ke Daftar Agenda
+                            </a>
+                        </div>
+                        <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 md:p-10 hover-lift">
+                            <div class="md:flex items-center justify-between gap-4 mb-6 pb-6 border-b border-gray-100">
+                                <div class="md:max-w-lg">
+                                    <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 mt-2">${item.agenda_name}</h1>
+                                    ${item.agenda_theme ? `<p class="text-blue-600 font-medium text-sm mt-1">Tema: "${item.agenda_theme}"</p>` : ''}
+                                </div>
+                                <a href="https://api.whatsapp.com/send?text=${waText}" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-5 py-2.5 rounded-xl transition flex items-center gap-2 text-sm shadow-sm">
+                                    <i class="fa-brands fa-whatsapp text-lg"></i> Share ke WA
                                 </a>
                             </div>
-                            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 md:p-10 hover-lift">
-                                <div class="md:flex items-center justify-between gap-4 mb-6 pb-6 border-b border-gray-100">
-                                    <div class="md:max-w-lg">
-                                        <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 mt-2">${item.agenda_name}</h1>
-                                        ${item.agenda_theme ? `<p class="text-blue-600 font-medium text-sm mt-1">Tema: "${item.agenda_theme}"</p>` : ''}
-                                    </div>
-                                    <a href="https://api.whatsapp.com/send?text=${waText}" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-5 py-2.5 rounded-xl transition flex items-center gap-2 text-sm shadow-sm">
-                                        <i class="fa-brands fa-whatsapp text-lg"></i> Share ke WA
-                                    </a>
+
+                            ${item.agenda_image ? `
+                                <div class="mb-8 text-center bg-gray-900 rounded-2xl overflow-hidden p-3 border border-gray-200 shadow-sm">
+                                    <img src="${getDirectImageUrl(item.agenda_image)}" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'py-12 text-blue-300 flex flex-col items-center justify-center gap-2\'><i class=\'fa-solid fa-calendar-days text-4xl\'></i><p class=\'text-xs font-semibold\'>Poster / Flyer Resmi Agenda</p></div>';" alt="Flyer ${item.agenda_name}" class="max-h-[500px] mx-auto rounded-xl object-contain">
                                 </div>
+                            ` : `
+                                <div class="mb-8 text-center bg-gradient-to-r from-blue-900 to-indigo-900 rounded-2xl p-8 text-white shadow-sm flex flex-col items-center justify-center gap-3">
+                                    <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-md border border-white/20">
+                                        <i class="fa-solid fa-calendar-days text-2xl text-blue-200"></i>
+                                    </div>
+                                    <span class="text-xs font-bold uppercase tracking-widest text-blue-300">Agenda Resmi MGMP</span>
+                                    <h2 class="text-xl font-extrabold tracking-tight">${item.agenda_name}</h2>
+                                </div>
+                            `}
 
-                                ${item.agenda_image ? `
-                                    <div class="mb-8 text-center bg-gray-900 rounded-2xl overflow-hidden p-3 border border-gray-200 shadow-sm">
-                                        <img src="${getDirectImageUrl(item.agenda_image)}" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'py-12 text-blue-300 flex flex-col items-center justify-center gap-2\'><i class=\'fa-solid fa-calendar-days text-4xl\'></i><p class=\'text-xs font-semibold\'>Poster / Flyer Resmi Agenda</p></div>';" alt="Flyer ${item.agenda_name}" class="max-h-[500px] mx-auto rounded-xl object-contain">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 bg-gray-50 p-5 rounded-2xl border border-gray-200/60">
+                                <div class="flex flex-col gap-4">
+                                    <div>
+                                        <span class="text-xs text-gray-400 block font-bold uppercase tracking-wider mb-1">TANGGAL ACARA</span>
+                                        <span class="font-semibold text-gray-800 flex items-center gap-2"><i class="fa-regular fa-calendar text-blue-600"></i> ${formatDate(item.agenda_date)}</span>
                                     </div>
-                                ` : `
-                                    <div class="mb-8 text-center bg-gradient-to-r from-blue-900 to-indigo-900 rounded-2xl p-8 text-white shadow-sm flex flex-col items-center justify-center gap-3">
-                                        <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-md border border-white/20">
-                                            <i class="fa-solid fa-calendar-days text-2xl text-blue-200"></i>
-                                        </div>
-                                        <span class="text-xs font-bold uppercase tracking-widest text-blue-300">Agenda Resmi MGMP</span>
-                                        <h2 class="text-xl font-extrabold tracking-tight">${item.agenda_name}</h2>
-                                    </div>
-                                `}
-
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 bg-gray-50 p-5 rounded-2xl border border-gray-200/60">
-                                    <div class="flex flex-col gap-4">
-                                        <div>
-                                            <span class="text-xs text-gray-400 block font-bold uppercase tracking-wider mb-1">TANGGAL ACARA</span>
-                                            <span class="font-semibold text-gray-800 flex items-center gap-2"><i class="fa-regular fa-calendar text-blue-600"></i> ${formatDate(item.agenda_date)}</span>
-                                        </div>
-                                        <div>
-                                            <span class="text-xs text-gray-400 block font-bold uppercase tracking-wider mb-1">WAKTU</span>
-                                            <span class="font-semibold text-gray-800 flex items-center gap-2"><i class="fa-regular fa-clock text-blue-600"></i> ${item.agenda_time || '-'}</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-1">
-                                        <span class="text-xs text-gray-400 block font-bold uppercase tracking-wider mb-1">LOKASI / MEDIA</span>
-                                        <span class="font-semibold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-location-dot text-blue-600"></i> ${item.agenda_location_name || '-'}</span>
+                                    <div>
+                                        <span class="text-xs text-gray-400 block font-bold uppercase tracking-wider mb-1">WAKTU</span>
+                                        <span class="font-semibold text-gray-800 flex items-center gap-2"><i class="fa-regular fa-clock text-blue-600"></i> ${item.agenda_time || '-'}</span>
                                     </div>
                                 </div>
-
-                                <div class="mb-8">
-                                    <h3 class="font-bold text-gray-900 mb-3 text-lg">Informasi & Undangan Resmi</h3>
-                                    <div class="text-gray-700 whitespace-pre-line leading-relaxed bg-white border border-gray-200 p-6 rounded-2xl shadow-inner font-mono text-sm">${item.agenda_desc_long || item.agenda_desc_short || ''}</div>
-                                </div>
-
-                                <div class="flex flex-wrap gap-4 items-center justify-between pt-6 border-t border-gray-100">
-                                    ${item.agenda_contact && item.agenda_contact !== '-' ? `
-                                        <div class="text-sm text-gray-600 font-medium">
-                                            <i class="fa-solid fa-phone text-blue-600 mr-1.5"></i> Kontak Person: <span class="font-bold text-gray-800">${item.agenda_contact}</span>
-                                        </div>
-                                    ` : '<div></div>'}
-                                    
-                                    ${item.agenda_location_url ? `
-                                        <a href="${item.agenda_location_url}" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-6 py-2.5 rounded-xl transition shadow-sm inline-flex items-center gap-2">
-                                            <span>Buka Tautan Acara</span> 
-                                            <i class="fa-solid fa-external-link-alt text-xs"></i>
-                                        </a>
-                                    ` : ''}
+                                <div class="flex-1">
+                                    <span class="text-xs text-gray-400 block font-bold uppercase tracking-wider mb-1">LOKASI / MEDIA</span>
+                                    <span class="font-semibold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-location-dot text-blue-600"></i> ${item.agenda_location_name || '-'}</span>
                                 </div>
                             </div>
-                        </div>`;
+
+                            <div class="mb-8">
+                                <h3 class="font-bold text-gray-900 mb-3 text-lg">Informasi & Undangan Resmi</h3>
+                                <div class="text-gray-700 whitespace-pre-line leading-relaxed bg-white border border-gray-200 p-6 rounded-2xl shadow-inner font-mono text-sm">${item.agenda_desc_long || item.agenda_desc_short || ''}</div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-4 items-center justify-between pt-6 border-t border-gray-100">
+                                ${item.agenda_contact && item.agenda_contact !== '-' ? `
+                                    <div class="text-sm text-gray-600 font-medium">
+                                        <i class="fa-solid fa-phone text-blue-600 mr-1.5"></i> Kontak Person: <span class="font-bold text-gray-800">${item.agenda_contact}</span>
+                                    </div>
+                                ` : '<div></div>'}
+                                
+                                ${item.agenda_location_url ? `
+                                    <a href="${item.agenda_location_url}" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-6 py-2.5 rounded-xl transition shadow-sm inline-flex items-center gap-2">
+                                        <span>Buka Tautan Acara</span> 
+                                        <i class="fa-solid fa-external-link-alt text-xs"></i>
+                                    </a>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>`;
                     } else {
                         mainContainer.innerHTML = `
-                        <div class="max-w-xl mx-auto px-4 pt-16 text-center">
-                            <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
-                                <h2 class="text-xl font-bold text-gray-800 mb-2">Agenda Tidak Ditemukan</h2>
-                                <p class="text-gray-500 text-sm mb-6">ID agenda yang Anda cari tidak terdaftar atau sudah dinonaktifkan.</p>
-                                <a href="agenda.html" class="bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-xl text-sm transition">Kembali ke Daftar Agenda</a>
-                            </div>
-                        </div>`;
+                    <div class="max-w-xl mx-auto px-4 pt-16 text-center">
+                        <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
+                            <h2 class="text-xl font-bold text-gray-800 mb-2">Agenda Tidak Ditemukan</h2>
+                            <p class="text-gray-500 text-sm mb-6">ID agenda yang Anda cari tidak terdaftar atau sudah dinonaktifkan.</p>
+                            <a href="agenda.html" class="bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-xl text-sm transition">Kembali ke Daftar Agenda</a>
+                        </div>
+                    </div>`;
                     }
                 } else {
                     // ================= LIST AGENDA =================
                     if (agendaData.length === 0) {
                         mainContainer.innerHTML = `
-                        <div class="max-w-7xl mx-auto px-4 py-16 text-center">
-                            <div class="bg-white p-12 rounded-3xl border border-gray-100 shadow-sm max-w-lg mx-auto">
-                                <p class="text-gray-400 font-medium">Belum ada agenda kegiatan aktif saat ini.</p>
-                            </div>
-                        </div>`;
+                    <div class="max-w-7xl mx-auto px-4 py-16 text-center">
+                        <div class="bg-white p-12 rounded-3xl border border-gray-100 shadow-sm max-w-lg mx-auto">
+                            <p class="text-gray-400 font-medium">Belum ada agenda kegiatan aktif saat ini.</p>
+                        </div>
+                    </div>`;
                         return;
                     }
 
-                    const cardsHTML = agendaData.map(item => `
-                        <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-4 md:p-6 flex flex-col justify-between hover-lift">
-                            <div>
-                                <div class="flex items-start gap-4 mb-4">
-                                    <div class="bg-blue-50 text-blue-700 rounded-2xl p-3 text-center border border-blue-100 min-w-[60px] shrink-0">
-                                        <span class="block text-[10px] font-bold uppercase tracking-wider text-blue-600">${getMonthName(item.agenda_date)}</span>
-                                        <span class="block text-2xl font-extrabold text-gray-900">${getDayNumber(item.agenda_date)}</span>
-                                    </div>
-                                    <div>
-                                        <h2 class="font-extrabold text-lg text-gray-900 line-clamp-2">${item.agenda_name}</h2>
-                                        ${item.agenda_theme ? `<p class="text-xs text-blue-600 font-semibold italic mt-0.5 line-clamp-1">Tema: "${item.agenda_theme}"</p>` : ''}
-                                    </div>
-                                </div>
-                                <p class="text-gray-600 text-sm mb-6 line-clamp-3 leading-relaxed min-h-[70px]">
-                                    ${getShortDescription(item)}
-                                </p>
-                            </div>
+                    const totalData = result.total || agendaData.length;
+                    const totalPages = Math.ceil(totalData / ITEMS_PER_PAGE);
 
-                            <div>
-                                <div class="min-h-[85px] flex flex-col gap-2 text-xs font-medium text-gray-500 mb-6 pt-4 border-t border-gray-100">
-                                    <!-- Baris Waktu -->
-                                    <div class="flex items-start gap-2">
-                                        <span class="w-4 shrink-0 text-center pt-0.5"><i class="fa-regular fa-clock text-blue-600"></i></span>
-                                        <span class="leading-relaxed">${item.agenda_time || '-'}</span>
-                                    </div>
-                                    <!-- Baris Lokasi -->
-                                    <div class="flex items-start gap-2">
-                                        <span class="w-4 shrink-0 text-center pt-0.5"><i class="fa-solid fa-location-dot text-blue-600"></i></span>
-                                        <span class="line-clamp-2 leading-relaxed">${item.agenda_location_name || '-'}</span>
-                                    </div>
+                    const cardsHTML = agendaData.map(item => `
+                    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-4 md:p-6 flex flex-col justify-between hover-lift">
+                        <div>
+                            <div class="flex items-start gap-4 mb-4">
+                                <div class="bg-blue-50 text-blue-700 rounded-2xl p-3 text-center border border-blue-100 min-w-[60px] shrink-0">
+                                    <span class="block text-[10px] font-bold uppercase tracking-wider text-blue-600">${getMonthName(item.agenda_date)}</span>
+                                    <span class="block text-2xl font-extrabold text-gray-900">${getDayNumber(item.agenda_date)}</span>
                                 </div>
-                                <div class="flex items-center gap-3">
-                                    <a href="agenda.html?id=${item.id}" class="flex-1 bg-blue-50 hover:bg-blue-600 text-blue-700 hover:text-white text-center font-semibold py-2.5 rounded-xl text-xs transition flex items-center justify-center gap-1.5">
-                                        <span>Lihat Detail</span>
-                                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                                    </a>
+                                <div>
+                                    <h2 class="font-extrabold text-lg text-gray-900 line-clamp-2">${item.agenda_name}</h2>
+                                    ${item.agenda_theme ? `<p class="text-xs text-blue-600 font-semibold italic mt-0.5 line-clamp-1">Tema: "${item.agenda_theme}"</p>` : ''}
                                 </div>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-6 line-clamp-3 leading-relaxed min-h-[70px]">
+                                ${getShortDescription(item)}
+                            </p>
+                        </div>
+
+                        <div>
+                            <div class="min-h-[85px] flex flex-col gap-2 text-xs font-medium text-gray-500 mb-6 pt-4 border-t border-gray-100">
+                                <div class="flex items-start gap-2">
+                                    <span class="w-4 shrink-0 text-center pt-0.5"><i class="fa-regular fa-clock text-blue-600"></i></span>
+                                    <span class="leading-relaxed">${item.agenda_time || '-'}</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <span class="w-4 shrink-0 text-center pt-0.5"><i class="fa-solid fa-location-dot text-blue-600"></i></span>
+                                    <span class="line-clamp-2 leading-relaxed">${item.agenda_location_name || '-'}</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <a href="agenda.html?id=${item.id}" class="flex-1 bg-blue-50 hover:bg-blue-600 text-blue-700 hover:text-white text-center font-semibold py-2.5 rounded-xl text-xs transition flex items-center justify-center gap-1.5">
+                                    <span>Lihat Detail</span>
+                                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                </a>
                             </div>
                         </div>
-                    `).join('');
+                    </div>
+                `).join('');
 
                     mainContainer.innerHTML = `
-                    <div class="max-w-7xl mx-auto px-4 pt-12">
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                            ${cardsHTML}
-                        </div>
-                    </div>`;
+                <div class="max-w-7xl mx-auto px-4 pt-12">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                        ${cardsHTML}
+                    </div>
+                    ${renderPagination(currentPage, totalPages)}
+                </div>`;
+
+                    // Tangani klik pagination secara AJAX agar halaman tidak reload penuh
+                    document.querySelectorAll('.pagination-btn').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const targetPage = parseInt(btn.getAttribute('data-page'));
+                            window.history.pushState({}, '', `agenda.html?page=${targetPage}`);
+                            fetchData(targetPage);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        });
+                    });
                 }
 
-                // Otomatis scroll halus ke konten setelah halaman dirender (jika ada parameter ?id=)
                 if (agendaId) {
                     setTimeout(() => {
                         mainContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -494,15 +532,18 @@
                 }
             }
 
-            async function fetchData() {
-                const CACHE_KEY = 'mgmp_data_homepage';
+            async function fetchData(page = 1) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const agendaId = urlParams.get('id');
+                const activePage = agendaId ? 1 : (parseInt(urlParams.get('page')) || page);
 
-                // Mengambil data dari cache instan agar klik detail tidak perlu loading ulang
+                const CACHE_KEY = `mgmp_data_agenda_p${activePage}_l${ITEMS_PER_PAGE}`;
+
                 const cachedData = localStorage.getItem(CACHE_KEY);
                 if (cachedData) {
                     try {
                         const parsed = JSON.parse(cachedData);
-                        renderLayar(parsed);
+                        renderLayar(parsed, activePage);
                         return;
                     } catch (e) {
                         localStorage.removeItem(CACHE_KEY);
@@ -510,13 +551,14 @@
                 }
 
                 try {
-                    const fetchUrl = `${scriptUrl}?v=${new Date().getTime()}`;
+                    // Ambil data dengan sheet=agenda, page dinamis, dan limit = 9
+                    const fetchUrl = `${scriptUrl}?sheet=agenda&page=${activePage}&limit=${ITEMS_PER_PAGE}&v=${new Date().getTime()}`;
                     const response = await fetch(fetchUrl, { method: 'GET', redirect: 'follow' });
                     const result = await response.json();
 
                     if (result.status === 'success') {
                         localStorage.setItem(CACHE_KEY, JSON.stringify(result));
-                        renderLayar(result);
+                        renderLayar(result, activePage);
                     }
                 } catch (error) {
                     console.error('Fetch error:', error);
@@ -524,7 +566,9 @@
                 }
             }
 
-            fetchData();
+            const initialParams = new URLSearchParams(window.location.search);
+            const startPage = parseInt(initialParams.get('page')) || 1;
+            fetchData(startPage);
         });
     </script>
 </body>

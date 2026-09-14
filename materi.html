@@ -340,10 +340,10 @@
             let actionButton = '';
             let themeColor = 'blue'; 
 
-            if (jenis.includes('video') && !img) {
+            if (jenis.includes('video')) {
                 themeColor = 'red';
                 let ytId = item.youtube_id || '';
-                let ytThumb = ytId ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg` : 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=600&q=80';
+                let ytThumb = ytId ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg` : (img || 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=600&q=80');
                 
                 visualBlock = `
                 <div class="relative aspect-[4/3] bg-gray-900 cursor-pointer overflow-hidden" onclick="openVideo('${ytId}')">
@@ -355,32 +355,41 @@
                     </div>
                     <div class="absolute top-3 left-3 bg-white/95 backdrop-blur text-red-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-red-100 uppercase">${jenis}</div>
                 </div>`;
-                // Tombol aksi jika Video
                 actionButton = `<button onclick="openVideo('${ytId}')" class="w-full flex items-center justify-center gap-2 bg-red-50 text-red-700 border border-red-200 font-semibold py-2.5 rounded-lg hover:bg-red-600 hover:text-white transition text-sm">Putar Video</button>`;
             } 
-            else if (jenis.includes('buku') && !img) {
+            else if (jenis.includes('buku')) {
                 themeColor = 'indigo';
-                visualBlock = `
-                <div class="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-blue-500 to-indigo-700 flex flex-col items-center justify-center text-white group-hover:from-blue-600 group-hover:to-indigo-800 transition-colors">
-                    <svg class="w-16 h-16 mb-2 opacity-80 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                    </svg>
-                    <span class="font-bold tracking-wider text-sm opacity-90">DOKUMEN ${jenis.toUpperCase()}</span>
-                    <div class="absolute top-3 left-3 bg-white/95 backdrop-blur text-indigo-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-indigo-100 uppercase">${jenis}</div>
-                </div>`;
-                // Tombol aksi menggunakan linkAksi
+                
+                // Jika buku memiliki gambar cover (img), tampilkan gambarnya. Jika tidak, pakai gradasi ikon buku.
+                if (img) {
+                    visualBlock = `
+                    <div class="relative aspect-[4/3] bg-gray-100 overflow-hidden">
+                        <img src="${img}" alt="Cover Buku" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 bg-white/95 backdrop-blur text-indigo-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-indigo-100 uppercase">${jenis}</div>
+                    </div>`;
+                } else {
+                    visualBlock = `
+                    <div class="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-blue-500 to-indigo-700 flex flex-col items-center justify-center text-white group-hover:from-blue-600 group-hover:to-indigo-800 transition-colors">
+                        <svg class="w-16 h-16 mb-2 opacity-80 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <span class="font-bold tracking-wider text-sm opacity-90">DOKUMEN ${jenis.toUpperCase()}</span>
+                        <div class="absolute top-3 left-3 bg-white/95 backdrop-blur text-indigo-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-indigo-100 uppercase">${jenis}</div>
+                    </div>`;
+                }
+                
                 actionButton = `<a href="${linkAksi}" target="_blank" class="w-full flex items-center justify-center gap-2 bg-gray-50 text-gray-700 border border-gray-200 font-semibold py-2.5 rounded-lg hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition text-sm">Unduh Dokumen</a>`;
             } 
             else {
-                themeColor = 'blue';
+                themeColor = 'green';
                 let fallbackImg = 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80';
                 visualBlock = `
                 <div class="relative aspect-[4/3] bg-gray-100 overflow-hidden">
                     <img src="${img || fallbackImg}" onerror="this.src='${fallbackImg}'" alt="Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute top-3 left-3 bg-white/95 backdrop-blur text-blue-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-blue-100 uppercase">${jenis}</div>
+                    <div class="absolute top-3 left-3 bg-white/95 backdrop-blur text-green-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-green-100 uppercase">${jenis}</div>
                 </div>`;
                 // Tombol aksi menggunakan linkAksi
-                actionButton = `<a href="${linkAksi}" target="_blank" class="w-full flex items-center justify-center gap-2 bg-gray-50 text-gray-700 border border-gray-200 font-semibold py-2.5 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition text-sm">Unduh Dokumen</a>`;
+                actionButton = `<a href="${linkAksi}" target="_blank" class="w-full flex items-center justify-center gap-2 bg-gray-50 text-gray-700 border border-gray-200 font-semibold py-2.5 rounded-lg hover:bg-green-600 hover:text-white hover:border-green-600 transition text-sm">Unduh Dokumen</a>`;
             }
 
             const wrapper = document.createElement('div');

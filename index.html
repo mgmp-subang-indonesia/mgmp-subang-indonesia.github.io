@@ -7,6 +7,7 @@
     <title>Beranda | MGMP Indonesia - SMP Subang</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
@@ -203,10 +204,10 @@
     <!-- SCRIPT MESIN RENDER -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbyo_VhBHvPdhV-vAnKh8b-cp5Zm8lHyBwq4WyzKdt-SZQ-aBwa-x2cKpPGuAK371ZhC/exec';
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbyum9ib3e9-nwBRcC5RJIhVrqlUk-pc_8L0wCbeYHORzh5l6rwWN1Sy4CMWRQNEGd7X/exec';
             const mainContainer = document.getElementById('dynamic-homepage');
 
-            // --- Fungsi Pembantu (Konversi URL GDrive) ---
+            // --- Fungsi Pembantu (Konversi URL GDrive & Tanggal) ---
             function getDirectImageUrl(url) {
                 if (!url) return null;
                 if (url.includes('drive.google.com')) {
@@ -214,6 +215,33 @@
                     if (match && match[1]) return `https://lh3.googleusercontent.com/d/${match[1]}`;
                 }
                 return url;
+            }
+
+            function getMonthName(dateString) {
+                if (!dateString) return '';
+                const options = { month: 'short' };
+                return new Date(dateString).toLocaleDateString('id-ID', options).toUpperCase();
+            }
+
+            function getDayNumber(dateString) {
+                if (!dateString) return '';
+                return new Date(dateString).getDate();
+            }
+
+            function cleanText(text) {
+                if (!text) return '';
+                return text.replace(/[^\w\s.,:;()?!*_\-\n]/g, ' ').replace(/\s+/g, ' ').trim();
+            }
+
+            function getShortDescription(item) {
+                if (item.agenda_desc_short && item.agenda_desc_short.trim() !== '') {
+                    return cleanText(item.agenda_desc_short);
+                }
+                if (item.agenda_desc_long && item.agenda_desc_long.trim() !== '') {
+                    const cleaned = cleanText(item.agenda_desc_long);
+                    return cleaned.length > 120 ? cleaned.substring(0, 120) + '...' : cleaned;
+                }
+                return 'Tidak ada deskripsi singkat.';
             }
 
             // --- PUSTAKA TEMPLATE LAYOUT ---
@@ -347,35 +375,46 @@
                 },
 
                 list_agenda: (config, data) => {
-                    let cards = data.map((item, index) => {
-                        const bgColor = index % 2 === 0 ? 'bg-blue-600 group-hover:bg-blue-700' : 'bg-gray-800 group-hover:bg-gray-900';
-                        const textColor = index % 2 === 0 ? 'text-blue-200' : 'text-gray-300';
-
-                        const tgl = new Date(item.agenda_date);
-                        const bulan = tgl.toLocaleString('id-ID', { month: 'short' });
-                        const tanggal = String(tgl.getDate()).padStart(2, '0');
-                        const tahun = tgl.getFullYear();
-
-                        return `
-                        <div class="flex flex-col sm:flex-row bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden hover:border-blue-300 hover:shadow-lg transition-all group">
-                            <div class="${bgColor} text-white p-6 flex flex-col justify-center items-center min-w-[120px] transition">
-                                <span class="text-sm font-bold uppercase tracking-wider mb-1">${bulan}</span>
-                                <span class="text-4xl font-extrabold leading-none mb-1">${tanggal}</span>
-                                <span class="text-xs font-medium ${textColor}">${tahun}</span>
+                    let cards = data.map(item => `
+                        <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-4 md:p-6 flex flex-col justify-between hover-lift">
+                            <div>
+                                <div class="flex items-start gap-4 mb-4">
+                                    <div class="bg-blue-50 text-blue-700 rounded-2xl p-3 text-center border border-blue-100 min-w-[60px] shrink-0">
+                                        <span class="block text-[10px] font-bold uppercase tracking-wider text-blue-600">${getMonthName(item.agenda_date)}</span>
+                                        <span class="block text-2xl font-extrabold text-gray-900">${getDayNumber(item.agenda_date)}</span>
+                                    </div>
+                                    <div>
+                                        <h2 class="font-extrabold text-lg text-gray-900 line-clamp-2">${item.agenda_name}</h2>
+                                        ${item.agenda_theme ? `<p class="text-xs text-blue-600 font-semibold italic mt-0.5 line-clamp-1">Tema: "${item.agenda_theme}"</p>` : ''}
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 text-sm mb-6 line-clamp-3 leading-relaxed min-h-[70px]">
+                                    ${getShortDescription(item)}
+                                </p>
                             </div>
-                            <div class="p-6 flex-grow flex flex-col justify-center">
-                                <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition">${item.agenda_name}</h3>
-                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">${item.agenda_desc_short}</p>
-                                <div class="flex items-center gap-4 text-xs font-semibold text-gray-500 mt-auto">
-                                    <span class="flex items-center gap-1.5 md:min-w-[130px]"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> ${item.agenda_time}</span>
-                                    <a href="${item.agenda_location_url || '#'}" target="_blank" class="flex items-center gap-1.5 hover:text-blue-600 transition cursor-pointer">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> 
-                                        ${item.agenda_location_name}
+
+                            <div>
+                                <div class="min-h-[85px] flex flex-col gap-2 text-xs font-medium text-gray-500 mb-6 pt-4 border-t border-gray-100">
+                                    <!-- Baris Waktu -->
+                                    <div class="flex items-start gap-2">
+                                        <span class="w-4 shrink-0 text-center pt-0.5"><i class="fa-regular fa-clock text-blue-600"></i></span>
+                                        <span class="leading-relaxed">${item.agenda_time || '-'}</span>
+                                    </div>
+                                    <!-- Baris Lokasi -->
+                                    <div class="flex items-start gap-2">
+                                        <span class="w-4 shrink-0 text-center pt-0.5"><i class="fa-solid fa-location-dot text-blue-600"></i></span>
+                                        <span class="line-clamp-2 leading-relaxed">${item.agenda_location_name || '-'}</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <a href="agenda.html?id=${item.id}" class="flex-1 bg-blue-50 hover:bg-blue-600 text-blue-700 hover:text-white text-center font-semibold py-2.5 rounded-xl text-xs transition flex items-center justify-center gap-1.5">
+                                        <span>Lihat Detail</span>
+                                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
                                     </a>
                                 </div>
                             </div>
-                        </div>`;
-                    }).join('');
+                        </div>
+                    `).join('');
 
                     return `
                     <section id="${config.section_id}" class="py-20 bg-white border-y border-gray-100">
@@ -384,12 +423,12 @@
                                 <h2 class="text-3xl font-extrabold text-gray-900 mb-4">${config.title}</h2>
                                 <div class="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
                             </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                                 ${cards}
                             </div>
                             ${config.view_more === 'yes' ? `
-                            <div class="text-center mt-10">
-                                <a href="agenda.html" class="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-gray-200 rounded-lg text-gray-700 font-bold hover:bg-gray-50 hover:border-gray-300 transition">Lihat Kalender Lengkap</a>
+                            <div class="text-center mt-12">
+                                <a href="agenda.html" class="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-gray-200 rounded-xl text-gray-700 font-bold hover:bg-gray-50 hover:border-gray-300 transition shadow-sm">Lihat Kalender Lengkap</a>
                             </div>` : ''}
                         </div>
                     </section>`;
@@ -447,13 +486,11 @@
                 if (globalData.logo) {
                     const parsedLogoUrl = getDirectImageUrl(globalData.logo);
                     if (parsedLogoUrl) {
-                        // Terapkan Logo Header & Hapus Styling Box-nya
                         headerLogoImg.src = parsedLogoUrl;
                         headerLogoImg.classList.remove('hidden');
                         headerLogoFallback.classList.add('hidden');
                         headerLogoWrapper.classList.remove('bg-white/10', 'backdrop-blur-md', 'border', 'border-white/20', 'rounded-xl', 'shadow-lg');
 
-                        // Terapkan Logo Footer & Hapus Styling Box-nya
                         footerLogoImg.src = parsedLogoUrl;
                         footerLogoImg.classList.remove('hidden');
                         footerLogoFallback.classList.add('hidden');
@@ -476,8 +513,19 @@
                             return st === 'aktif' || st === 'publish';
                         });
 
-                        if (section.qty && section.qty.toString().toUpperCase() !== "ALL") {
-                            masterData = masterData.slice(0, parseInt(section.qty));
+                        // Urutkan agenda berdasarkan tanggal terbaru jika sumbernya agenda
+                        if (sourceKey === 't_agenda') {
+                            masterData.sort((a, b) => new Date(b.agenda_date) - new Date(a.agenda_date));
+                        }
+
+                        // Batasi maksimal 3 secara paksa khusus untuk agenda di beranda
+                        let limitQty = parseInt(section.qty);
+                        if (sourceKey === 't_agenda') {
+                            limitQty = 3;
+                        }
+
+                        if (!isNaN(limitQty) && limitQty > 0) {
+                            masterData = masterData.slice(0, limitQty);
                         }
                     }
 
@@ -498,7 +546,6 @@
                         const parsedCache = JSON.parse(cachedData);
                         renderLayar(parsedCache);
                     } catch (e) {
-                        console.log("Cache error, dibersihkan.");
                         localStorage.removeItem(CACHE_KEY);
                     }
                 }

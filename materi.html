@@ -282,7 +282,7 @@
 
     <!-- Script Utama (Dinamic Render + Cache + Logic Lanjutan) -->
     <script>
-        const scriptUrl = 'https://script.google.com/macros/s/AKfycbxDMXD1-aGnc9p4A_4IWWIOdEVgWOp02dyX2IQYZAGSrEC9g3DbQsNeCyDkEG1dUC2I/exec'; 
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbyum9ib3e9-nwBRcC5RJIhVrqlUk-pc_8L0wCbeYHORzh5l6rwWN1Sy4CMWRQNEGd7X/exec'; 
 
         const itemsPerPage = 6;
         let currentPage = 1;
@@ -318,7 +318,6 @@
         }
 
         // Pembangun Kartu Dinamis dari Data JSON
-        // Pembangun Kartu Dinamis dari Data JSON
         function buildMateriCardHTML(item) {
             let jenis = (item.jenis || 'modul').toLowerCase().trim();
             let kelas = (item.kelas || 'semua').toString().toLowerCase();
@@ -341,7 +340,7 @@
             let actionButton = '';
             let themeColor = 'blue'; 
 
-            if (jenis === 'video' || item.youtube_id) {
+            if (jenis.includes('video') && !img) {
                 themeColor = 'red';
                 let ytId = item.youtube_id || '';
                 let ytThumb = ytId ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg` : 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=600&q=80';
@@ -359,7 +358,7 @@
                 // Tombol aksi jika Video
                 actionButton = `<button onclick="openVideo('${ytId}')" class="w-full flex items-center justify-center gap-2 bg-red-50 text-red-700 border border-red-200 font-semibold py-2.5 rounded-lg hover:bg-red-600 hover:text-white transition text-sm">Putar Video</button>`;
             } 
-            else if (jenis === 'buku' && !img) {
+            else if (jenis.includes('buku') && !img) {
                 themeColor = 'indigo';
                 visualBlock = `
                 <div class="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-blue-500 to-indigo-700 flex flex-col items-center justify-center text-white group-hover:from-blue-600 group-hover:to-indigo-800 transition-colors">
@@ -488,7 +487,6 @@
             applyFilters();
         }
 
-        // --- CORE LOGIC JS ASLI DARI USER ---
         function applyFilters() {
             if(allItems.length === 0) {
                 domElements.resultCount.innerText = `Ditemukan 0 materi`;
@@ -502,17 +500,19 @@
             const sortOption = domElements.sortOption.value;
 
             const checkboxesJenis = document.querySelectorAll('.filter-jenis:checked');
-            const checkedJenis = Array.from(checkboxesJenis).map(cb => cb.value);
+            const checkedJenis = Array.from(checkboxesJenis).map(cb => cb.value.toLowerCase());
 
             // Filtering
             filteredItems = allItems.filter(card => {
                 const cardKelas = card.getAttribute('data-kelas');
-                const cardJenis = card.getAttribute('data-jenis');
+                const cardJenis = card.getAttribute('data-jenis').toLowerCase();
                 const cardJudul = card.getAttribute('data-judul').toLowerCase();
 
                 const matchSearch = cardJudul.includes(searchInput);
                 const matchKelas = filterKelas === 'semua' || cardKelas === filterKelas;
-                const matchJenis = checkedJenis.includes(cardJenis);
+                
+                // Pencocokan fleksibel jenis materi
+                const matchJenis = checkedJenis.some(j => cardJenis.includes(j));
 
                 return matchSearch && matchKelas && matchJenis;
             });

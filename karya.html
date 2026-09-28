@@ -13,7 +13,7 @@
     <link rel="manifest" href="icon/site.webmanifest">
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .karya-card { transition: opacity 0.3s ease-in-out, transform 0.2s ease; }
+        .karya-card { transition: all 0.3s ease; }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
@@ -84,11 +84,11 @@
                         <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div class="overflow-hidden absolute top-[calc(100%-15px)] left-0 mt-0 w-56 bg-white border border-gray-100 shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                        <a href="karya.html#puisi" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Puisi</a>
-                        <a href="karya.html#cerita-pendek" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Cerita Pendek</a>
-                        <a href="karya.html#baca-puisi" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Baca Puisi</a>
-                        <a href="karya.html#bercerita" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Bercerita</a>
-                        <a href="karya.html#musikalisasi-puisi" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">Musikalisasi Puisi</a>
+                        <a href="karya.html#puisi" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Puisi (Teks)</a>
+                        <a href="karya.html#cerita-pendek" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Cerita Pendek (Teks)</a>
+                        <a href="karya.html#baca-puisi" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Baca Puisi (Video)</a>
+                        <a href="karya.html#bercerita" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Bercerita (Video)</a>
+                        <a href="karya.html#musikalisasi-puisi" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">Musikalisasi Puisi (Video)</a>
                     </div>
                 </div>
                 
@@ -154,27 +154,25 @@
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-3">Kategori Karya</label>
                         <div class="space-y-3">
-                            <!-- Kategori Text/Doc -->
                             <label class="flex items-center group cursor-pointer">
                                 <input type="checkbox" value="puisi" class="filter-jenis w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" checked onchange="applyFilters()">
-                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Puisi</span>
+                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Puisi (Teks)</span>
                             </label>
                             <label class="flex items-center group cursor-pointer">
                                 <input type="checkbox" value="cerita pendek" class="filter-jenis w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" checked onchange="applyFilters()">
-                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Cerita Pendek</span>
+                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Cerita Pendek (Teks)</span>
                             </label>
-                            <!-- Kategori Video -->
                             <label class="flex items-center group cursor-pointer">
                                 <input type="checkbox" value="baca puisi" class="filter-jenis w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" checked onchange="applyFilters()">
-                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Baca Puisi</span>
+                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Baca Puisi (Video)</span>
                             </label>
                             <label class="flex items-center group cursor-pointer">
                                 <input type="checkbox" value="bercerita" class="filter-jenis w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" checked onchange="applyFilters()">
-                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Bercerita</span>
+                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Bercerita (Video)</span>
                             </label>
                             <label class="flex items-center group cursor-pointer">
                                 <input type="checkbox" value="musikalisasi puisi" class="filter-jenis w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" checked onchange="applyFilters()">
-                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Musikalisasi Puisi</span>
+                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Musikalisasi Puisi (Video)</span>
                             </label>
                         </div>
                     </div>
@@ -289,7 +287,7 @@
         </div>
     </div>
 
-    <!-- Document Modal (Google Drive Iframe Viewer) -->
+    <!-- Document Modal -->
     <div id="documentModal" class="fixed inset-0 z-[60] modal-inactive bg-gray-900/95 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
         <div class="relative w-full max-w-5xl h-[85vh] bg-white rounded-xl overflow-hidden shadow-2xl border border-gray-700 flex flex-col">
             <div class="bg-gray-900 text-white px-6 py-4 flex items-center justify-between">
@@ -311,7 +309,6 @@
     </div>
 
     <script>
-        // Sesuaikan parameter sheet
         const scriptUrl = 'https://script.google.com/macros/s/AKfycbys45BwhK_KENMgY531g0M52SGhv59y6zv7-q81AaJEBpcdwbEYVklalzOR1Z2UNxek/exec'; 
 
         const itemsPerPage = 6;
@@ -359,7 +356,6 @@
         }
 
         function buildKaryaCardHTML(item) {
-            // Ambil data kategori
             let kategori = (item.jenis || item.kategori || 'puisi').toLowerCase().trim(); 
             let tipe = (item.tipe || '').toLowerCase().trim();
             
@@ -375,7 +371,6 @@
             let linkAksi = item.action_url || item.file_url || '';
             let isLinkAvailable = linkAksi && linkAksi !== '#' && linkAksi.trim() !== '';
 
-            // Menentukan Video (YouTube) atau Teks (Dokumen)
             let isVideo = tipe === 'video' || kategori.includes('baca') || kategori.includes('bercerita') || kategori.includes('musikalisasi') || item.youtube_id;
 
             let visualBlock = '';
@@ -387,61 +382,66 @@
                 let ytThumb = ytId ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg` : (img || 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=600&q=80');
                 
                 visualBlock = `
-                <div class="relative aspect-[4/3] bg-gray-900 cursor-pointer overflow-hidden" onclick="openVideo('${ytId}')">
-                    <img src="${ytThumb}" alt="Thumbnail" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+                <div class="relative aspect-[16/10] bg-gray-900 cursor-pointer overflow-hidden" onclick="openVideo('${ytId}')">
+                    <img src="${ytThumb}" alt="Thumbnail" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:bg-red-700 group-hover:scale-110 transition-all">
-                            <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                        <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:bg-red-700 group-hover:scale-110 transition-all">
+                            <svg class="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
                         </div>
                     </div>
-                    <div class="absolute top-3 left-3 bg-white/95 backdrop-blur text-red-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-red-100 uppercase">${kategori}</div>
+                    <span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md shadow-sm uppercase tracking-wider">${kategori}</span>
                 </div>`;
-                actionButton = `<button onclick="openVideo('${ytId}')" class="w-full flex items-center justify-center gap-2 bg-red-50 text-red-700 border border-red-200 font-semibold py-2.5 rounded-lg hover:bg-red-600 hover:text-white transition text-sm">Tonton Video</button>`;
+                actionButton = `<button onclick="openVideo('${ytId}')" class="w-full flex items-center justify-center gap-2 bg-red-50 text-red-700 border border-red-200 hover:bg-red-600 hover:text-white font-semibold py-2.5 rounded-xl transition text-sm shadow-sm">Tonton Video</button>`;
             } 
             else {
-                // Tema Teks (Puisi/Cerpen)
                 let fallbackImg = 'https://images.unsplash.com/photo-1544716278-e513176f20b5?auto=format&fit=crop&w=600&q=80';
                 if (!img) img = fallbackImg;
                 
                 visualBlock = `
-                <div class="relative aspect-[4/3] bg-gray-100 overflow-hidden">
+                <div class="relative aspect-[16/10] bg-gray-100 overflow-hidden">
                     <img src="${img}" onerror="this.src='${fallbackImg}'" alt="Cover Karya" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute top-3 left-3 bg-white/95 backdrop-blur text-blue-700 text-xs font-bold px-2.5 py-1 rounded shadow-sm border border-blue-100 uppercase">${kategori}</div>
+                    <span class="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md shadow-sm uppercase tracking-wider">${kategori}</span>
                 </div>`;
                 
                 if (isLinkAvailable) {
                     let safeTitle = (item.judul || 'Pratinjau Karya').replace(/'/g, "\\'");
-                    actionButton = `<button onclick="openDocument('${linkAksi}', '${safeTitle}')" class="w-full flex items-center justify-center gap-2 bg-gray-50 text-gray-700 border border-gray-200 font-semibold py-2.5 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition text-sm">Baca Karya</button>`;
+                    actionButton = `<button onclick="openDocument('${linkAksi}', '${safeTitle}')" class="w-full flex items-center justify-center gap-2 bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-600 hover:text-white font-semibold py-2.5 rounded-xl transition text-sm shadow-sm">Baca Karya</button>`;
                 } else {
-                    actionButton = `<button disabled class="w-full flex items-center justify-center gap-2 bg-gray-100 text-gray-400 border border-gray-200 font-semibold py-2.5 rounded-lg cursor-not-allowed text-sm">File Tidak Tersedia</button>`;
+                    actionButton = `<button disabled class="w-full flex items-center justify-center gap-2 bg-gray-100 text-gray-400 border border-gray-200 font-semibold py-2.5 rounded-xl cursor-not-allowed text-sm">File Tidak Tersedia</button>`;
                 }
             }
 
             const wrapper = document.createElement('div');
-            wrapper.className = "karya-card item-data bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition flex flex-col group";
+            wrapper.className = "karya-card item-data bg-white rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 overflow-hidden flex flex-col group";
             wrapper.setAttribute('data-jenis', kategori);
             wrapper.setAttribute('data-judul', item.judul || '');
             wrapper.setAttribute('data-penulis', namaPenulis || '');
             wrapper.setAttribute('data-date', isoDate);
             wrapper.setAttribute('data-views', views);
 
+            // Perbaikan UI/UX Hirarki Card
             wrapper.innerHTML = `
                 ${visualBlock}
-                <div class="p-5 flex-grow flex flex-col">
-                    <h3 class="text-base font-bold text-gray-900 mb-3 leading-tight group-hover:text-${themeColor}-600 transition">${item.judul}</h3>
-                    
-                    <div class="mt-auto">
-                        <div class="flex items-center gap-3 text-[11px] text-gray-500 mb-3 border-b border-gray-100 pb-3">
-                            <span class="flex items-center gap-1">👁️ ${views} Dilihat</span>
-                            <span class="flex items-center gap-1">📅 ${dateStr}</span>
-                        </div>
-                        
-                        <div class="flex flex-col mb-4">
-                            <span class="text-sm font-bold text-gray-800">${namaPenulis}</span>
-                            <span class="text-xs text-gray-500 mt-0.5 flex items-center gap-1">
-                                <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                <div class="p-5 flex-grow flex flex-col justify-between">
+                    <div>
+                        <!-- Info Penulis & Sekolah Ditarik ke Atas agar Lebih Menonjol -->
+                        <div class="flex flex-col mb-2.5">
+                            <span class="text-xs font-bold text-blue-600 tracking-wide">${namaPenulis}</span>
+                            <span class="text-[11px] text-gray-400 font-medium flex items-center gap-1 mt-0.5">
+                                <svg class="w-3 h-3 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                                 ${asalSekolah}
                             </span>
+                        </div>
+
+                        <!-- Judul Karya -->
+                        <h3 class="md:text-xl font-extrabold text-gray-900 mb-4 leading-snug group-hover:text-blue-600 transition line-clamp-2">${item.judul}</h3>
+                    </div>
+
+                    <div>
+                        <!-- Statistik Views & Tanggal di Bawah Sebelum Tombol -->
+                        <div class="flex items-center justify-between text-[11px] text-gray-400 mb-4 pt-3 border-t border-gray-100 font-medium">
+                            <span class="flex items-center gap-1">👁️ ${views} Dilihat</span>
+                            <span class="flex items-center gap-1">📅 ${dateStr}</span>
                         </div>
                         ${actionButton}
                     </div>
@@ -450,17 +450,15 @@
         }
 
         function handleUrlHashFilter() {
-            // Ambil hash lalu hilangkan simbol pagar
             const hash = window.location.hash.toLowerCase().replace('#', '');
-            if (!hash) return; // Jika tidak ada hash, biarkan default
+            if (!hash) return;
 
             const validCategories = ['puisi', 'cerita-pendek', 'baca-puisi', 'bercerita', 'musikalisasi-puisi'];
             if (validCategories.includes(hash)) {
                 const checkboxes = document.querySelectorAll('.filter-jenis');
                 checkboxes.forEach(cb => {
-                    // Normalize value checkbox (contoh "cerita pendek" -> "cerita-pendek")
                     let val = cb.value.toLowerCase().replace(/\s+/g, '-');
-                    cb.checked = (val === hash); // Hanya hash yang sama persis yang aktif
+                    cb.checked = (val === hash);
                 });
             }
         }
@@ -509,11 +507,9 @@
                 const hero = result.data.t_heroimage.find(x => x.status && x.status.toLowerCase() === 'aktif' && x.halaman && x.halaman.toLowerCase() === 'karya');
                 if (hero) {
                     domElements.heroBg.src = getDirectImageUrl(hero.foto) || domElements.heroBg.src;
-                    
                     let titleHTML = hero.hero_first_title || 'Galeri Karya Sastra';
                     if(hero.hero_second_title) titleHTML += `<br>${hero.hero_second_title}`;
                     domElements.heroTitle.innerHTML = titleHTML;
-                    
                     if(hero.hero_subtitle) domElements.heroSubtitle.innerText = hero.hero_subtitle;
                 }
             }
@@ -521,7 +517,6 @@
             domElements.karyaContainer.innerHTML = ''; 
             allItems = []; 
 
-            // Baca Array T_Karya dari JSON response CMS
             let karyaData = result.data.t_karya || result.data.t_materi || [];
             let activeKarya = karyaData.filter(item => item.status && item.status.toLowerCase() === 'aktif');
 
@@ -554,8 +549,6 @@
                 const cardJudul = card.getAttribute('data-judul').toLowerCase();
 
                 const matchSearch = cardJudul.includes(searchInput);
-                
-                // Gunakan "===" (strict equal) agar "puisi" tidak match dengan "baca puisi"
                 const matchJenis = checkedJenis.some(j => cardJenis === j);
 
                 return matchSearch && matchJenis;
@@ -646,7 +639,6 @@
             applyFilters();
         }
 
-        // Modal Video Controller
         const modal = document.getElementById('youtubeModal');
         const iframe = document.getElementById('ytIframe');
 
@@ -668,7 +660,6 @@
             if (e.target === modal) closeVideo();
         });
 
-        // Modal Document Controller
         const docModal = document.getElementById('documentModal');
         const docIframe = document.getElementById('docIframe');
         const modalDocTitle = document.getElementById('modalDocTitle');

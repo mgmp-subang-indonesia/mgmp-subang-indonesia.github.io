@@ -78,7 +78,20 @@
                     </div>
                 </div>
                 
-                <a href="karya.html" class="px-4 py-2 text-white bg-white/30 rounded-md font-semibold transition">Galeri Karya</a>
+                <div class="relative group h-full flex items-center">
+                    <button class="px-4 py-2 text-white bg-white/30 rounded-md flex items-center gap-1 focus:outline-none transition font-semibold">
+                        Galeri Karya
+                        <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="overflow-hidden absolute top-[calc(100%-15px)] left-0 mt-0 w-56 bg-white border border-gray-100 shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="karya.html#puisi" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Puisi</a>
+                        <a href="karya.html#cerita-pendek" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Cerita Pendek</a>
+                        <a href="karya.html#baca-puisi" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Baca Puisi</a>
+                        <a href="karya.html#bercerita" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Bercerita</a>
+                        <a href="karya.html#musikalisasi-puisi" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">Musikalisasi Puisi</a>
+                    </div>
+                </div>
+                
                 <a href="agenda.html" class="px-4 py-2 hover:text-white hover:bg-white/10 rounded-md transition">Agenda</a>
             </nav>
         </div>
@@ -144,24 +157,24 @@
                             <!-- Kategori Text/Doc -->
                             <label class="flex items-center group cursor-pointer">
                                 <input type="checkbox" value="puisi" class="filter-jenis w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" checked onchange="applyFilters()">
-                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Puisi (Teks)</span>
+                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Puisi</span>
                             </label>
                             <label class="flex items-center group cursor-pointer">
                                 <input type="checkbox" value="cerita pendek" class="filter-jenis w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" checked onchange="applyFilters()">
-                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Cerita Pendek (Teks)</span>
+                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Cerita Pendek</span>
                             </label>
                             <!-- Kategori Video -->
                             <label class="flex items-center group cursor-pointer">
                                 <input type="checkbox" value="baca puisi" class="filter-jenis w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" checked onchange="applyFilters()">
-                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Baca Puisi (Video)</span>
+                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Baca Puisi</span>
                             </label>
                             <label class="flex items-center group cursor-pointer">
                                 <input type="checkbox" value="bercerita" class="filter-jenis w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" checked onchange="applyFilters()">
-                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Bercerita (Video)</span>
+                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Bercerita</span>
                             </label>
                             <label class="flex items-center group cursor-pointer">
                                 <input type="checkbox" value="musikalisasi puisi" class="filter-jenis w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" checked onchange="applyFilters()">
-                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Musikalisasi Puisi (Video)</span>
+                                <span class="ml-3 text-sm text-gray-700 font-medium group-hover:text-blue-600 transition">Musikalisasi Puisi</span>
                             </label>
                         </div>
                     </div>
@@ -298,7 +311,7 @@
     </div>
 
     <script>
-        // Sesuaikan parameter sheet jika ada (contoh: sheet=karya)
+        // Sesuaikan parameter sheet
         const scriptUrl = 'https://script.google.com/macros/s/AKfycbys45BwhK_KENMgY531g0M52SGhv59y6zv7-q81AaJEBpcdwbEYVklalzOR1Z2UNxek/exec'; 
 
         const itemsPerPage = 6;
@@ -346,9 +359,8 @@
         }
 
         function buildKaryaCardHTML(item) {
-            // Ambil data kategori, gunakan "jenis" atau "kategori" dari sheet
+            // Ambil data kategori
             let kategori = (item.jenis || item.kategori || 'puisi').toLowerCase().trim(); 
-            // Ambil data tipe jika diset (misal: "video" atau "text"), jika kosong ditebak dari kategori
             let tipe = (item.tipe || '').toLowerCase().trim();
             
             let dateObj = new Date(item.tanggal_publish || item.tanggal || item.date || new Date());
@@ -363,7 +375,7 @@
             let linkAksi = item.action_url || item.file_url || '';
             let isLinkAvailable = linkAksi && linkAksi !== '#' && linkAksi.trim() !== '';
 
-            // Menentukan apakah format ini Video (YouTube) atau Teks (Dokumen)
+            // Menentukan Video (YouTube) atau Teks (Dokumen)
             let isVideo = tipe === 'video' || kategori.includes('baca') || kategori.includes('bercerita') || kategori.includes('musikalisasi') || item.youtube_id;
 
             let visualBlock = '';
@@ -387,7 +399,7 @@
                 actionButton = `<button onclick="openVideo('${ytId}')" class="w-full flex items-center justify-center gap-2 bg-red-50 text-red-700 border border-red-200 font-semibold py-2.5 rounded-lg hover:bg-red-600 hover:text-white transition text-sm">Tonton Video</button>`;
             } 
             else {
-                // Tema untuk file Teks (Puisi/Cerpen)
+                // Tema Teks (Puisi/Cerpen)
                 let fallbackImg = 'https://images.unsplash.com/photo-1544716278-e513176f20b5?auto=format&fit=crop&w=600&q=80';
                 if (!img) img = fallbackImg;
                 
@@ -438,17 +450,17 @@
         }
 
         function handleUrlHashFilter() {
-            const hash = window.location.hash.toLowerCase();
-            const checkboxes = document.querySelectorAll('.filter-jenis');
+            // Ambil hash lalu hilangkan simbol pagar
+            const hash = window.location.hash.toLowerCase().replace('#', '');
+            if (!hash) return; // Jika tidak ada hash, biarkan default
 
-            if (hash.includes('puisi') || hash.includes('cerita') || hash.includes('baca') || hash.includes('bercerita') || hash.includes('musikalisasi')) {
+            const validCategories = ['puisi', 'cerita-pendek', 'baca-puisi', 'bercerita', 'musikalisasi-puisi'];
+            if (validCategories.includes(hash)) {
+                const checkboxes = document.querySelectorAll('.filter-jenis');
                 checkboxes.forEach(cb => {
-                    let val = cb.value.toLowerCase();
-                    if (hash.includes(val)) {
-                        cb.checked = true;
-                    } else {
-                        cb.checked = false;
-                    }
+                    // Normalize value checkbox (contoh "cerita pendek" -> "cerita-pendek")
+                    let val = cb.value.toLowerCase().replace(/\s+/g, '-');
+                    cb.checked = (val === hash); // Hanya hash yang sama persis yang aktif
                 });
             }
         }
@@ -509,7 +521,7 @@
             domElements.karyaContainer.innerHTML = ''; 
             allItems = []; 
 
-            // Sesuaikan pembacaan objek dari JSON (Misal: t_karya atau t_materi, tergantung sheet)
+            // Baca Array T_Karya dari JSON response CMS
             let karyaData = result.data.t_karya || result.data.t_materi || [];
             let activeKarya = karyaData.filter(item => item.status && item.status.toLowerCase() === 'aktif');
 
@@ -542,8 +554,9 @@
                 const cardJudul = card.getAttribute('data-judul').toLowerCase();
 
                 const matchSearch = cardJudul.includes(searchInput);
-                // Cek apakah kategori kartu mengandung salah satu jenis yang dicentang
-                const matchJenis = checkedJenis.some(j => cardJenis.includes(j));
+                
+                // Gunakan "===" (strict equal) agar "puisi" tidak match dengan "baca puisi"
+                const matchJenis = checkedJenis.some(j => cardJenis === j);
 
                 return matchSearch && matchJenis;
             });
@@ -655,7 +668,7 @@
             if (e.target === modal) closeVideo();
         });
 
-        // Modal Document Controller (Iframe GDrive)
+        // Modal Document Controller
         const docModal = document.getElementById('documentModal');
         const docIframe = document.getElementById('docIframe');
         const modalDocTitle = document.getElementById('modalDocTitle');
@@ -665,7 +678,6 @@
             docIframe.src = getEmbedDriveUrl(url);
             modalDocTitle.innerText = title;
             
-            // Set URL asli ke tombol unduh (mengubah /preview atau /edit menjadi /view atau biarkan URL aslinya)
             let downloadUrl = url;
             if (url.includes('/file/d/')) {
                 downloadUrl = url.replace(/\/preview$/, '/view').replace(/\/edit$/, '/view');
@@ -714,7 +726,6 @@
             }
 
             try {
-                // Fetch mengambil dari sheet 'karya' (Bisa disesuaikan jika masih mengambil dari materi)
                 const fetchUrl = `${scriptUrl}?sheet=karya&v=${new Date().getTime()}`;
                 const response = await fetch(fetchUrl, { method: 'GET', redirect: 'follow' });
                 const result = await response.json();
